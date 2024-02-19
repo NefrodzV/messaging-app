@@ -1,0 +1,5 @@
+input {
+    box-sizing: border-box;
+    font-size: clamp(1rem, .8vw + 1rem, 1.4rem);
+    outline-color: var(--primary-color);
+}
