@@ -4,6 +4,7 @@ import { CSSTransition } from 'react-transition-group'
 import './error.css'
 
 export default function Error({name, errors}) {
+    
     const [error, setError] = useState(null)
     const [isActive, setActive] = useState(false)
 
@@ -15,20 +16,17 @@ export default function Error({name, errors}) {
             setActive(true)
             return
         }
-
         setActive(false)
-
     },[errors])
 
     return (
         <CSSTransition in={isActive} 
             classNames="error-transition"
-            timeout={2000}
+            timeout={200}
+            unmountOnExit
             >
             <div className='error'>{error}</div>
         </CSSTransition>
-        
-        
     )
 }
 
