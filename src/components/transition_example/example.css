@@ -1,0 +1,55 @@
+:root {
+    --primary-clr: #6B8F99;
+    --secondary-clr: #AAC6CE;
+    --accent-clr: #AAC6CE;
+    --background-clr: #F6F7F8;
+    --text-clr: #F6F7F8;
+
+    --small-padding: .5rem;
+    --medium-padding: .8rem;
+    --big-padding: 1rem;
+}
+
+.example {
+    background-color: lightblue;
+    opacity: 0;
+    
+}
+.error-transition-enter {
+    opacity: 0;
+}
+
+.error-transition-enter-active {
+    opacity: 1;
+    transition: opacity 2s ease;
+}
+
+.error-transition-enter-done {
+    opacity: 1;
+}
+
+.error-transition-exit {
+    opacity: 1;
+}
+
+.error-transition-exit-active {
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+
+
+
+/* .my-node-enter {
+    opacity: 0;
+}
+.my-node-enter-active {
+opacity: 1;
+transition: opacity 200ms;
+}
+.my-node-exit {
+opacity: 1;
+}
+.my-node-exit-active {
+opacity: 0;
+transition: opacity 200ms;
+} */
