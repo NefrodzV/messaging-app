@@ -1,0 +1,97 @@
+:root {
+  --primary-color: #56B084;
+  --secondary--color: #A2DABF;
+  --accent-color: #6ACE9D;
+  --background-color: #F9FCFB;
+  --text-color:#070C09;
+}
+
+html, body, .full-height {
+  height: 100%;
+}
+
+/* A little reset */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+}
+
+button {
+  text-transform: uppercase;
+}
+
+#root {
+  display: flex;
+  height: 100%;
+  position: relative;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.centered {
+  align-self: center;
+  margin-inline: auto;
+}
+.primary-outline {
+  outline-color: var(--accent-color);
+}
+.primary {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+/* button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+} */
+.center-block {
+
+}
+.group {
+  margin-block: 8px;
+}
+/* .error {
+  width: max-content;
+  height: 1rem;
+  color: black;
+  background-color: red;
+  box-sizing: content-box;
+} */
+/* .error[data-visible="false"] {
+  opacity: 0;
+  transition: opacity 5s;
+  transition-delay: 5s;
+}
+
+.error[data-visible="true"] {
+  opacity: 1;
+} */
+
