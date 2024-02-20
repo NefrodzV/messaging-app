@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import erroClass from '../stylesheets/error.module.css'
 import '../stylesheets/fade.css'
+
 export default function Error({name, errors}) {
     
     const [error, setError] = useState(null)
@@ -12,6 +13,7 @@ export default function Error({name, errors}) {
         // If errors undefined just return
         if(!errors) return
         if(Object.hasOwn(errors, name)) {
+            if(isActive) return
             setError(errors[name])
             setActive(true)
             return
