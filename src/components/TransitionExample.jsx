@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CSSTransition } from "react-transition-group";
-import './example.css'
+
 // Example of how the transition dependency works
 export default function TransitionExample() {
 

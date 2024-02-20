@@ -1,9 +1,7 @@
 import { useState } from "react"
-import Error from "../error/Error"
-import Input from "../input/Input"
-import './sign-up-form.css'
-import PrimaryButton from "../buttons/PrimaryButton"
-
+import Error from "./Error"
+import Input from "./Input"
+import cardStyles from '../stylesheets/card.module.css'
 export default function RegisterForm() {
     
     const [errors, setErrors] = useState(null)
@@ -40,7 +38,9 @@ export default function RegisterForm() {
     }
 
     return (
-        <form className="sign-up"onSubmit={registerHandler} noValidate="true">
+        <form 
+            className={cardStyles.card}
+            onSubmit={registerHandler} noValidate="true">
             <h1>Create a new account</h1>
             <hr/>
             <div className="group">
@@ -71,7 +71,8 @@ export default function RegisterForm() {
                     name={"confirmPassword"} />
                 <Error name={'confirmPassword'} errors={errors} />
             </div>
-            <PrimaryButton clickHandler={register} text={"sign up"}/>
+            <button onClick={register} value={"sign up"}> sign up </button>
+            {/* <button clickHandler={register} text={"sign up"}/> */}
         </form>
     )
 }

@@ -1,0 +1,105 @@
+:root {
+  --primary-color: #56B084;
+  --secondary-color: #A2DABF;
+  --accent-color: #6ACE9D;
+  --background-color: #F9FCFB;
+  --text-color:#070C09;
+
+  --
+}
+
+html, body, .full-height {
+  height: 100%;
+}
+
+/* A little reset */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+body {
+  color: var(--text-color);
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  height: 100%;
+  position: relative;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.signup-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+input {
+  box-sizing: border-box;
+  font-size: clamp(1rem, .8vw + 1rem, 1.4rem);
+  outline-color: var(--primary-color);
+}
+
+button {
+  font-size: clamp(1rem, .9vw + 1rem, 1.5rem);
+  padding: min(8px, 1vw) 16px  ;
+  text-transform: capitalize;
+  font-weight: bold;
+  width: max-content;
+  align-self: center;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--primary-color);
+}
+
+button {
+  box-shadow: 2px 3px rgb(0,0,0, 0.5);
+}
+
+button:active {
+  box-shadow: 1px 1.5px rgb(0,0,0, 0.5);
+  transform: translateY(2px);
+}
+
+.sign-up {
+  width: min(350px, 70%);
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 6px rgb(0,0,0, 0.3);
+  align-items: center;
+  gap: 8px;
+}
+hr {
+  outline-color: var(--secondary-color);
+  width: 100%;
+}
+.group {
+  width: min(300px, 90%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: clamp(1rem, .9vw + 1rem, 1.5rem);
+  text-align: center;
+}

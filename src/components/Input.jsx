@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types'
-import './input.css'
 export default function Input({type, name, id, label, placeholder}) {
     return(
         <>

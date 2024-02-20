@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import './error.css'
+import fadeClass from '../stylesheets/fade.module.css'
+import erroClass from '../stylesheets/error.module.css'
 
 export default function Error({name, errors}) {
     
@@ -21,11 +22,11 @@ export default function Error({name, errors}) {
 
     return (
         <CSSTransition in={isActive} 
-            classNames="error-transition"
+            classNames="fade-transition"
             timeout={200}
             unmountOnExit
             >
-            <div className='error'>{error}</div>
+            <div className={erroClass.error}>{error}</div>
         </CSSTransition>
     )
 }
