@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import fadeClass from '../stylesheets/fade.module.css'
 import erroClass from '../stylesheets/error.module.css'
-
+import '../stylesheets/fade.css'
 export default function Error({name, errors}) {
     
     const [error, setError] = useState(null)
