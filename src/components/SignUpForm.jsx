@@ -40,8 +40,8 @@ export default function RegisterForm() {
     return (
         <form 
             className={cardStyles.card}
-            onSubmit={registerHandler} noValidate="true">
-            <h1>Create a new account</h1>
+            onSubmit={registerHandler} noValidate={false}>
+            <h1>Create account</h1>
             <hr/>
             <div className="group">
                 <Input
