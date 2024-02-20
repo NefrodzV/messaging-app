@@ -1,5 +1,5 @@
 import SignUpForm from "../components/SignUpForm";
-import signUpStyles from '../stylesheets/sign-up.module.css'
+import signUpStyles from '../stylesheets/signup.module.css'
 
 export default function SignUpPage() {
     return(

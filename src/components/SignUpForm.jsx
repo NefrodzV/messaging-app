@@ -1,7 +1,8 @@
 import { useState } from "react"
 import Error from "./Error"
 import Input from "./Input"
-import signUpStyles from '../stylesheets/sign-up-form.module.css'
+import { Link } from "react-router-dom"
+import signUpStyles from '../stylesheets/signup-form.module.css'
 export default function RegisterForm() {
     
     const [errors, setErrors] = useState(null)
@@ -72,6 +73,7 @@ export default function RegisterForm() {
                 <Error name={'confirmPassword'} errors={errors} />
             </div>
             <button onClick={register} value={"sign up"}> sign up </button>
+            <Link to="/login">Already got an account?</Link>
         </form>
     )
 }
