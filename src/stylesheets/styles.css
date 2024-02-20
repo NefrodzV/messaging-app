@@ -4,11 +4,9 @@
   --accent-color: #6ACE9D;
   --background-color: #F9FCFB;
   --text-color:#070C09;
-
-  --
 }
 
-html, body, .full-height {
+html, body, #root {
   height: 100%;
 }
 
@@ -20,33 +18,6 @@ h1, h2, h3, h4, h5, h6 {
 body {
   color: var(--text-color);
   margin: 0;
-}
-
-#root {
-  display: flex;
-  height: 100%;
-  position: relative;
-}
-
-.flex {
-  display: flex;
-}
-
-.flex-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.full-width {
-  width: 100%;
-}
-
-.signup-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
 }
 
 input {
@@ -77,25 +48,9 @@ button:active {
   transform: translateY(2px);
 }
 
-.sign-up {
-  width: min(350px, 70%);
-  display: flex;
-  flex-direction: column;
-  padding: 32px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 6px rgb(0,0,0, 0.3);
-  align-items: center;
-  gap: 8px;
-}
 hr {
   outline-color: var(--secondary-color);
   width: 100%;
-}
-.group {
-  width: min(300px, 90%);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
 
 h1 {
