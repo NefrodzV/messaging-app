@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Error from "./Error"
 import Input from "./Input"
-import cardStyles from '../stylesheets/card.module.css'
+import signUpStyles from '../stylesheets/sign-up-form.module.css'
 export default function RegisterForm() {
     
     const [errors, setErrors] = useState(null)
@@ -39,32 +39,32 @@ export default function RegisterForm() {
 
     return (
         <form 
-            className={cardStyles.card}
+            className={signUpStyles.wrapper}
             onSubmit={registerHandler} noValidate={false}>
             <h1>Create account</h1>
             <hr/>
-            <div className="group">
+            <div className={signUpStyles.group}>
                 <Input
                     type={'text'}
                     placeholder={'Username'}
                     name={"username"} /> 
                 <Error name={'username'} errors={errors} />
             </div>
-            <div className="group">
+            <div className={signUpStyles.group}>
                 <Input
                     type={'email'}
                     placeholder={'E-mail'}
                     name={"email"} /> 
                 <Error name={'email'} errors={errors}/>
             </div>
-            <div className="group">
+            <div className={signUpStyles.group}>
                 <Input
                     type={'password'}
                     placeholder={'Password'}
                     name={"password"} />
                 <Error name={'password'} errors={errors} />
             </div>
-            <div className="group">
+            <div className={signUpStyles.group}>
                 <Input
                     type={'password'}
                     placeholder={'Confirm password'}
@@ -72,7 +72,6 @@ export default function RegisterForm() {
                 <Error name={'confirmPassword'} errors={errors} />
             </div>
             <button onClick={register} value={"sign up"}> sign up </button>
-            {/* <button clickHandler={register} text={"sign up"}/> */}
         </form>
     )
 }
