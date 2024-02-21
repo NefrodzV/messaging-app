@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function  useSignup() {
 
@@ -18,15 +18,20 @@ export default function  useSignup() {
             })
 
             const response = await request.json()
-            console.log(response)
-            setSuccess(true)
-            if(request.status === 422) {
+            if(!response.ok) {
+                
                 setErrors(response.errors)
             }
+            setSuccess(true)
+
         } catch(e) {
-        
             console.log("Something went with signup" + e)
+        } finally {
+            if(success) {
+                setSuccess(false)
+            }
         }
+        
     }
     return [
         signup,
