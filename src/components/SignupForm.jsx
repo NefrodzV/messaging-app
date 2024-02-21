@@ -3,45 +3,26 @@ import Error from "./Error"
 import Input from "./Input"
 import { Link } from "react-router-dom"
 import signUpStyles from '../stylesheets/signup-form.module.css'
-export default function RegisterForm() {
+import useSignup from "../hooks/useSignup"
+
+export default function SignupForm() {
     
-    const [errors, setErrors] = useState(null)
+    const [signup, success, errors] = useSignup()
     
-    function registerHandler(e) {
+    function signupHandler(e) {
+        console.log("Sign up handler")
         e.preventDefault()
         
         const data = Object.fromEntries(
             new FormData(e.target)
         )
-        register(data)
-    }
-
-    async function register(data) {
-        try {
-            const request = await fetch(
-            'http://localhost:3000/api/session/register',
-            {
-                method: 'post',
-                headers: {
-                    "Content-Type" : "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-
-            const response = await request.json()
-            
-            if(request.status === 422) {
-                setErrors(response.errors)
-            }
-        } catch(e) {
-            console.log(e)
-        }
+        signup(data)
     }
 
     return (
         <form 
             className={signUpStyles.wrapper}
-            onSubmit={registerHandler} noValidate={false}>
+            onSubmit={signupHandler} noValidate={false}>
             <h1>Create account</h1>
             <hr/>
             <div className={signUpStyles.group}>
@@ -72,7 +53,7 @@ export default function RegisterForm() {
                     name={"confirmPassword"} />
                 <Error name={'confirmPassword'} errors={errors} />
             </div>
-            <button onClick={register} value={"sign up"}> sign up </button>
+            <button> sign up </button>
             <Link to="/login">Already got an account?</Link>
         </form>
     )
