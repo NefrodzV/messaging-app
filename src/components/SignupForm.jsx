@@ -1,18 +1,27 @@
-import { useState } from "react"
 import Error from "./Error"
 import Input from "./Input"
 import { Link } from "react-router-dom"
 import signUpStyles from '../stylesheets/signup-form.module.css'
 import useSignup from "../hooks/useSignup"
+import Toast from "./Toast"
+import { useEffect, useState } from "react"
 
 export default function SignupForm() {
     
     const [signup, success, errors] = useSignup()
-    
+    const [showToast, setShow] = useState(false)
+
+    useEffect(() => {
+        // If signup was a success show the toast for two seconds
+        if(!success) return
+        setShow(true)
+        setTimeout(() => {
+            setShow(false)
+        }, 2000);
+    },[success])
+
     function signupHandler(e) {
-        console.log("Sign up handler")
         e.preventDefault()
-        
         const data = Object.fromEntries(
             new FormData(e.target)
         )
@@ -55,6 +64,7 @@ export default function SignupForm() {
             </div>
             <button> sign up </button>
             <Link to="/login">Already got an account?</Link>
+            <Toast message={"successful sign up"}  isActive={showToast}/>
         </form>
     )
 }
