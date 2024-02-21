@@ -14,7 +14,6 @@ export default function Error({name, errors}) {
         // If errors undefined just return
         if(!errors) return
         if(Object.hasOwn(errors, name)) {
-            if(isActive) return
             setError(errors[name])
             setActive(true)
             return
