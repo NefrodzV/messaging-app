@@ -19,8 +19,8 @@ export default function  useSignup() {
 
             const response = await request.json()
             if(!response.ok) {
-                
                 setErrors(response.errors)
+                return
             }
             setSuccess(true)
 
