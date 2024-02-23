@@ -6,7 +6,7 @@ export default function useLogin() {
 
     const navigate = useNavigate()
 
-    const { updateToken, token } = useContext(UserContext)
+    const { setToken, token } = useContext(UserContext)
     const [errors, setErrors] = useState({})
 
     useEffect(() => {
@@ -37,7 +37,7 @@ export default function useLogin() {
             }
 
             // Update the user token and reset errors to empty object
-            updateToken(response.token)
+            setToken(response.token)
             setErrors({})
 
         } catch(e) {
