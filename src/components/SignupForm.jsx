@@ -8,15 +8,15 @@ import { useEffect, useState } from "react"
 
 export default function SignupForm() {
     
-    const [signup, success, errors] = useSignup()
-    const [showToast, setShow] = useState(false)
-
+    const { signup, setSuccess, success, errors } = useSignup()
+    
     useEffect(() => {
-        // If signup was a success show the toast for two seconds
+        // If success not true not need for a timer just re
         if(!success) return
-        setShow(true)
+        console.log("sending toast")
         setTimeout(() => {
-            setShow(false)
+            //Reset success after two seconds
+            setSuccess(false) 
         }, 2000);
     },[success])
 
@@ -64,7 +64,7 @@ export default function SignupForm() {
             </div>
             <button> sign up </button>
             <Link to="/login">Already got an account?</Link>
-            <Toast message={"successful sign up"}  isActive={showToast}/>
+            <Toast message={"successful sign up"}  isActive={success}/>
         </form>
     )
 }
