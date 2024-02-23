@@ -1,41 +1,36 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function  useSignup() {
 
-    const [errors, setErrors] = useState(null)
-    const [success, setSuccess] = useState(null)
+    const [errors, setErrors] = useState({})
+    const [success, setSuccess] = useState(false)
 
     async function signup(data) {
         try {
             const request = await fetch(
             'http://localhost:3000/api/session/register',
             {
-                method: 'post',
+                method: 'POST',
                 headers: {
                     "Content-Type" : "application/json"
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(data),
+                mode: 'cors'
+                
             })
 
             const response = await request.json()
-            if(!response.ok) {
+            
+            if(!request.ok) {
                 setErrors(response.errors)
                 return
             }
             setSuccess(true)
+            setErrors({})
 
         } catch(e) {
             console.log("Something went with signup" + e)
-        } finally {
-            if(success) {
-                setSuccess(false)
-            }
-        }
-        
+        } 
     }
-    return [
-        signup,
-        success,
-        errors,
-    ]
+    return {signup, setSuccess, success, errors}
 }
