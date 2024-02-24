@@ -1,13 +1,13 @@
 import loginStyles from '../stylesheets/login.module.css'
 import LoginForm from '../components/LoginForm'
-import { useContext, useEffect } from 'react'
-import { UserContext } from '../contexts/UserContext'
+import {  useEffect } from 'react'
 import { useNavigationType } from 'react-router-dom'
+import useUserContext from '../hooks/useUserContext'
 
 export default function LoginPage() {
     const navType = useNavigationType()
-    const { resetToken } = useContext(UserContext)
-
+    const { resetToken } = useUserContext()
+    
     useEffect(() => {
         if(navType === "POP") {
             resetToken()
@@ -19,5 +19,7 @@ export default function LoginPage() {
             <div className='brand'>Logo</div>
             <LoginForm />
         </div>
+
+        
     )
 }
