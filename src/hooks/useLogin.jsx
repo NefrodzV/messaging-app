@@ -6,14 +6,14 @@ export default function useLogin() {
 
     const navigate = useNavigate()
 
-    const { setToken, token } = useContext(UserContext)
+    const { token, setToken } = useContext(UserContext)
+
     const [errors, setErrors] = useState({})
 
     useEffect(() => {
-        // When token has changed navigate to home
         if(token) {
-            navigate('/')
-        }
+             navigate('/')
+       }
     },[token, navigate])
 
     async function login(data) {
@@ -39,7 +39,7 @@ export default function useLogin() {
             // Update the user token and reset errors to empty object
             setToken(response.token)
             setErrors({})
-
+            
         } catch(e) {
             console.log("Something happened when login: " + e)
         }
