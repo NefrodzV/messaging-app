@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { UserContext } from "../contexts/UserContext"
+import Header from "../components/Header"
 
 export default function HomePage() {
 
@@ -19,7 +20,11 @@ export default function HomePage() {
     
     return (
         <>
-            { loading ? <h1>Loading...</h1> : <h1>Homepage</h1> }
+            { loading ? <h1>Loading...</h1> : 
+                <div className="wrapper">
+                    <Header />
+                </div> 
+            }
         </>
     )
 }
