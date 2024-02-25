@@ -1,25 +1,32 @@
 import loginStyles from '../stylesheets/login.module.css'
 import LoginForm from '../components/LoginForm'
-import {  useEffect } from 'react'
-import { useNavigationType } from 'react-router-dom'
-import useUserContext from '../hooks/useUserContext'
+import { useContext, useEffect, useState} from 'react'
+import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../contexts/UserContext'
+
 
 export default function LoginPage() {
-    const navType = useNavigationType()
-    const { resetToken } = useUserContext()
+    const navigate = useNavigate()
+    const { token } = useContext(UserContext)
+    const [loading, setLoading] = useState(true)
     
     useEffect(() => {
-        if(navType === "POP") {
-            resetToken()
+        if(token) navigate('/')
+        else {
+            setLoading(false)
         }
-    },[navType, resetToken])
+    })
 
     return (
-        <div className={loginStyles.page}>
-            <div className='brand'>Logo</div>
-            <LoginForm />
-        </div>
-
-        
+        <>
+        {
+            // TODO IMPLEMENT LOADING ELEMENT
+            loading ? <h1>Loading...</h1> :
+                <div className={loginStyles.page}>
+                    <div className='brand'>Logo</div>
+                    <LoginForm />
+                </div>
+        }
+        </> 
     )
 }
