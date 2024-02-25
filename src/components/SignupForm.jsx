@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import signUpStyles from '../stylesheets/signup-form.module.css'
 import useSignup from "../hooks/useSignup"
 import Toast from "./Toast"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 export default function SignupForm() {
     
@@ -13,7 +13,6 @@ export default function SignupForm() {
     useEffect(() => {
         // If success not true not need for a timer just re
         if(!success) return
-        console.log("sending toast")
         setTimeout(() => {
             //Reset success after two seconds
             setSuccess(false) 
