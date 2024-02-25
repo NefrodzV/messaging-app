@@ -12,6 +12,7 @@ function App() {
     setToken(null)
   }
 
+  // Check if a cookie with token exists and update its state
   useEffect(() => {
     const data = Cookies.get("token")
     if(data && data !== "null") {
@@ -20,11 +21,14 @@ function App() {
     }
   })
 
-  useEffect(() => {
-    if(token) {
-      Cookies.set('token', token, { expires: 3 })
-    }
-  },[token])
+  // useEffect(() => {
+  //   if(token) {
+  //     Cookies.set('token', token, { expires: 3 })
+  //   } else {
+  //     // Removing the token when user presses log out
+  //     Cookies.remove('token')
+  //   }
+  // },[token])
   return (
     <>
       <UserContext.Provider value={{
