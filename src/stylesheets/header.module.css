@@ -1,0 +1,28 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    border: 1px solid black;
+}
+.icon {
+    aspect-ratio: 1 / 1;
+    height: 30px;
+}
+
+.navlist {
+    display: flex;
+    list-style-type: none;
+}
+
+.navitem {
+    display: flex;
+    align-items: center;
+}
+
+.button {
+    text-transform: none;
+    display: flex;
+    align-items: center;
+    box-shadow: none;
+    gap: 8px;
+}
