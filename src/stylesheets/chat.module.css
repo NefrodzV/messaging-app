@@ -1,0 +1,30 @@
+.chat {
+    display: grid;
+    gap: 16px;
+    padding: 16px;
+    box-sizing: content-box;
+    cursor: pointer;
+}
+
+.chat:hover {
+    background-color: var(--secondary-color);
+}
+
+.chat:not(:last-child) {
+    border-bottom: 1px solid black;
+}
+
+.date {
+    font-size: clamp(.8rem, .2vw + .8rem, 1rem);
+    color: var(--text-color);
+    opacity: 70%;
+    font-weight: bold;
+}
+
+.message {
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: clamp(1rem, .2vw + 1rem, 1.2rem);
+    font-weight: bold;
+    text-overflow: ellipsis;
+}
