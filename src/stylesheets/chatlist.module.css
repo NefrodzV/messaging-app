@@ -1,0 +1,17 @@
+.list {
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    grid-row: span 2;
+}
+
+.title {
+
+    box-sizing: content-box;
+    text-align: start;
+    padding-left: 16px;
+}
+
+body {
+    overflow-y: hidden;
+}
