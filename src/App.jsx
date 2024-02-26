@@ -7,10 +7,7 @@ import Cookies from 'js-cookie'
 function App() {
 
   const [token, setToken] = useState(null)
-
-  const resetToken = () => {
-    setToken(null)
-  }
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   // Check if a cookie with token exists and update its state
   useEffect(() => {
@@ -18,23 +15,20 @@ function App() {
     if(data && data !== "null") {
       console.log("cookie:" + data)
       setToken(data)
+      setIsLoggedIn(true) 
+    } else {
+      setIsLoggedIn(false)
     }
   })
-
-  // useEffect(() => {
-  //   if(token) {
-  //     Cookies.set('token', token, { expires: 3 })
-  //   } else {
-  //     // Removing the token when user presses log out
-  //     Cookies.remove('token')
-  //   }
-  // },[token])
+  
   return (
     <>
       <UserContext.Provider value={{
         token, 
+        isLoggedIn,
         setToken,
-        resetToken }} >
+        setIsLoggedIn, 
+        }} >
         <RouterProvider router={router} />
       </UserContext.Provider>
     </>

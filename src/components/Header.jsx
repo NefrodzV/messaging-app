@@ -5,13 +5,11 @@ import headerStyles from '../stylesheets/header.module.css'
 import Cookie from 'js-cookie'
 export default function Header() {
     
-    const { setToken } = useContext(UserContext)
-
-
+    const { setIsLoggedIn } = useContext(UserContext)
     function logoutHandler() {
-        // removes the token from cookies and set token state to null
+        // removes the token from cookies
         Cookie.remove('token')
-        setToken(null)
+        setIsLoggedIn(false)
     }
 
     return(

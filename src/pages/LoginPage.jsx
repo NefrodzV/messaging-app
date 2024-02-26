@@ -7,11 +7,11 @@ import { UserContext } from '../contexts/UserContext'
 
 export default function LoginPage() {
     const navigate = useNavigate()
-    const { token } = useContext(UserContext)
+    const { isLoggedIn } = useContext(UserContext)
     const [loading, setLoading] = useState(true)
     
     useEffect(() => {
-        if(token) navigate('/')
+        if(isLoggedIn) navigate('/')
         else {
             setLoading(false)
         }
