@@ -1,4 +1,4 @@
-import Chat from "./Chat";
+import ChatCard from "./ChatCard";
 import chatListStyle from '../stylesheets/chatlist.module.css'
 export default function ChatList() {
     return (
@@ -9,18 +9,18 @@ export default function ChatList() {
                     Settings
                 </div> */}
             </div>
-            <Chat />
-            <Chat />
-            <Chat></Chat>
-            <Chat></Chat>
-            <Chat></Chat>
-            <Chat></Chat>
-            <Chat></Chat>
-            <Chat></Chat>
-            <Chat></Chat>
-            <Chat></Chat>
-            <Chat></Chat>
-            <Chat></Chat>
+            <ChatCard />
+            <ChatCard />
+            <ChatCard></ChatCard>
+            <ChatCard></ChatCard>
+            <ChatCard></ChatCard>
+            <ChatCard></ChatCard>
+            <ChatCard></ChatCard>
+            <ChatCard></ChatCard>
+            <ChatCard></ChatCard>
+            <ChatCard></ChatCard>
+            <ChatCard></ChatCard>
+            <ChatCard></ChatCard>
         </ul>
     )
 }
