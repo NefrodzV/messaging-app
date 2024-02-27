@@ -24,30 +24,6 @@ function App() {
       setIsLoggedIn(false)
     }
   },[token])
-  // Check if a cookie with token exists and update its state
-  // useEffect(() => {
-  //   // const data = Cookies.get("token")
-  //   // console.log(data)
-  //   // if(data && data !== "null") {
-  //   //   console.log("cookie:" + data)
-  //   //   setToken(data)
-  //   //   setIsLoggedIn(true)
-  //   // } else {
-  //   //   setIsLoggedIn(false)
-  //   // }
-  // },[setToken,setIsLoggedIn])
-
-  // useEffect(() => {
-  //     if(token) {
-  //       setIsLoggedIn(true)
-  //     } else {
-  //       setIsLoggedIn(false)
-  //     }
-  // }, [token])
-
-  // useEffect(() => {
-  //   if(!isLoggedIn) Cookies
-  // },[isLoggedIn])
   
   return (
     <>
