@@ -5,8 +5,6 @@ import { useContext, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 export default function UserList() {
 
-    // const [users, setUsers] = useState(null)
-
     const { token } = useContext(UserContext)
     const { data, status } = useQuery({
         queryKey: ['users'],
@@ -27,6 +25,8 @@ export default function UserList() {
     useEffect(() => {
         if(status === "success") {
             setLoading(false)
+        } else {
+            setLoading(true)
         }
     },[status])
     
