@@ -1,21 +1,42 @@
 import { useParams, useSearchParams } from "react-router-dom"
 import chatStyle from '../stylesheets/chat.module.css'
 import { useQuery } from "@tanstack/react-query"
-import { useContext } from "react"
+import { useContext, useState, useEffect } from "react"
 import { UserContext } from "../contexts/UserContext"
 
 export default function Chat() {
     const { token } = useContext(UserContext)
-    const [queryParams] = useSearchParams()
+
+    const [queryParams, setQueryParams] = useSearchParams()
+
+    const [ chatId, setChatId ] = useState(null)
+
+    const [messages, setMessages] = useState([])
+
+    const { data, status } = useQuery({
+        queryKey:['messages'],
+        queryFn: async () => {
+            const response = await fetch(
+               `http://localhost:3000/api/messages?chatId=${chatId}`, {
+                headers: {
+                    'authorization': "Bearer " + token
+                }
+            })
+            return response.json()
+        }
+    })
 
     async function sendMessage(message) {
         const body = {
             userId: queryParams.get("userId"),
             message: message
         }
-        const response = fetch('http://localhost:3000/api/chat',{
+        console.log(JSON.stringify(body))
+        const response = await fetch('http://localhost:3000/api/chats',{
+            method: 'POST',
             headers:{
-                "authorization": "Bearer " + token
+                "authorization": "Bearer " + token,
+                "content-type": "application/json"
             },
             body: JSON.stringify(body)
         })
@@ -23,18 +44,24 @@ export default function Chat() {
         const data = await response.json()
 
         if(!response.ok) {
-            
+            console.log(data.errors)
             throw new Error('Something went wrong with sending message...')
         }
         console.log("Successfully sent a message")
         console.log(data)
     }
+
+    useEffect(() => {
+        if(status === 'success'){
+            setMessages(data.messages)
+        }
+    },[status])
     
     function sendMessageHandler(e) {
         e.preventDefault()
-        const message = e.target["message"].value
-        console.log(message)
-        // sendMessage()
+        setChatId("65de4e980bd11fb500ab5333")
+        // const message = e.target["message"].value
+        // sendMessage(message)
     }
 
     return(
