@@ -6,12 +6,9 @@
 }
 
 .title {
-
     box-sizing: content-box;
     text-align: start;
     padding-left: 16px;
 }
 
-body {
-    overflow-y: hidden;
-}
+
