@@ -7,17 +7,16 @@ export default function useLogin() {
 
     const navigate = useNavigate()
 
-    const { token, setToken } = useContext(UserContext)
+    const { setToken, isLoggedIn } = useContext(UserContext)
 
     const [errors, setErrors] = useState({})
 
-    useEffect(() => {
-        if(token) {
-            Cookie.set('token', token, { expires: 3 })
-            navigate('/')
-       }
-    },[token, navigate])
-
+    // useEffect(() => {
+    //     if(isLoggedIn) {
+    //         navigate('/')
+    //     }
+    // },[isLoggedIn])
+    
     async function login(data) {
         try {
             const request = await fetch(
@@ -38,7 +37,6 @@ export default function useLogin() {
                 return
             }
 
-            // Update the user token and reset errors to empty object
             setToken(response.token)
             setErrors({})
             

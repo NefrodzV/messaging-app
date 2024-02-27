@@ -4,18 +4,19 @@ import { useContext, useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../contexts/UserContext'
 
-
 export default function LoginPage() {
     const navigate = useNavigate()
     const { isLoggedIn } = useContext(UserContext)
     const [loading, setLoading] = useState(true)
     
     useEffect(() => {
-        if(isLoggedIn) navigate('/')
-        else {
+        if(isLoggedIn)  {
+            navigate('/')
+            return
+        } else {
             setLoading(false)
         }
-    })
+    },[isLoggedIn])
 
     return (
         <>
