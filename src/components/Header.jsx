@@ -6,12 +6,12 @@ import Cookie from 'js-cookie'
 export default function Header() {
     
     const { setIsLoggedIn } = useContext(UserContext)
+    
     function logoutHandler() {
-        // removes the token from cookies
-        Cookie.remove('token')
+        Cookie.remove("token")
         setIsLoggedIn(false)
     }
-
+   
     return(
         <header className={headerStyles.wrapper}>
             <span>Logo</span>
