@@ -1,30 +1,25 @@
 .chat {
+    grid-row: span 2;
     display: grid;
-    gap: 16px;
+    grid-template-rows: 85% 15%;
+}
+
+input[name="message"] {
+    width: 100%;
+    border-radius: 25px;
     padding: 16px;
-    box-sizing: content-box;
-    cursor: pointer;
+    height: 50px;
 }
 
-.chat:hover {
-    background-color: var(--secondary-color);
+.control {
+    padding-inline: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
 }
 
-.chat:not(:last-child) {
-    border-bottom: 1px solid black;
+.control > button {
+    margin: 0;
 }
 
-.date {
-    font-size: clamp(.8rem, .2vw + .8rem, 1rem);
-    color: var(--text-color);
-    opacity: 70%;
-    font-weight: bold;
-}
-
-.message {
-    overflow: hidden;
-    white-space: nowrap;
-    font-size: clamp(1rem, .2vw + 1rem, 1.2rem);
-    font-weight: bold;
-    text-overflow: ellipsis;
-}
