@@ -7,9 +7,10 @@
     align-items: center;
 }
 
-.card:not(:last-child) {
+/* .card:not(:last-child) {
     border-bottom: 1px solid black;
-}
+} */
+
 .profile {
     border-radius: 25%;
     height: 75px;
@@ -17,6 +18,8 @@
 }
 
 .text {
+    white-space: no-wrap;
+    text-overflow: ellipsis;
     font-size: clamp(1rem, 1rem + 1vw, 1.2rem);
     padding: 16px;
     flex: 1;
