@@ -1,18 +1,12 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { UserContext } from "../contexts/UserContext.jsx"
-import { useNavigate } from "react-router-dom"
-import Cookie from "js-cookie"
 
 export default function useLogin() {
 
-    
-
     const { setToken } = useContext(UserContext)
 
-    const [errors, setErrors] = useState({})
+    const [ errors, setErrors ] = useState({})
 
-    
-    
     async function login(data) {
         try {
             const request = await fetch(
