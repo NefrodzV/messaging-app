@@ -5,17 +5,13 @@ import Cookie from "js-cookie"
 
 export default function useLogin() {
 
-    const navigate = useNavigate()
+    
 
-    const { setToken, isLoggedIn } = useContext(UserContext)
+    const { setToken } = useContext(UserContext)
 
     const [errors, setErrors] = useState({})
 
-    // useEffect(() => {
-    //     if(isLoggedIn) {
-    //         navigate('/')
-    //     }
-    // },[isLoggedIn])
+    
     
     async function login(data) {
         try {
