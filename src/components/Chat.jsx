@@ -5,6 +5,8 @@ import { useContext, useState, useEffect } from "react"
 import { UserContext } from "../contexts/UserContext"
 
 export default function Chat() {
+    // Todo Refresh when a chat has been created
+    // When chat has been created redirect to chat with chat/:id
     const { token } = useContext(UserContext)
 
     const [queryParams, setQueryParams] = useSearchParams()
@@ -13,7 +15,7 @@ export default function Chat() {
 
     const [messages, setMessages] = useState([])
 
-    const { data, status } = useQuery({
+    const { data, status, refetch } = useQuery({
         queryKey:['messages'],
         queryFn: async () => {
             const response = await fetch(
@@ -55,11 +57,13 @@ export default function Chat() {
         if(status === 'success'){
             setMessages(data.messages)
         }
+        console.log(data)
     },[status])
-    
+
     function sendMessageHandler(e) {
         e.preventDefault()
         setChatId("65de4e980bd11fb500ab5333")
+        console.log('running send messages handler')
         // const message = e.target["message"].value
         // sendMessage(message)
     }
