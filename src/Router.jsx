@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage'
 import UserList from './components/UserList'
 import ChatList from './components/ChatList'
 import Chat from './components/Chat'
+import CreateChat from './components/CreateChat'
 
 const router = createBrowserRouter([
     {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
             },
             {
                 path:'chat',
-                element: <Chat />
+                element: <CreateChat />
             }
         ]
     },
