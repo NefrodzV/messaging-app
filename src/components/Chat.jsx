@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { useState } from 'react'
-import { useQuery  } from '@tanstack/react-query'
+import { useMutation, useQuery  } from '@tanstack/react-query'
 import chatStyle from '../stylesheets/chat.module.css'
 import { useContext, useEffect } from 'react'
 import {UserContext} from '../contexts/UserContext'
@@ -29,15 +29,39 @@ export default function Chat() {
         }
 
         // TODO: Maybe do an loading animation here if status is pending
-    },[status])
+    },[status,data])
 
 
-    // TODO : use mutations to send this message  and make optimistic updates
-    async function sendMessage(message) {
+    const messageMutation = useMutation({
+        mutationFn: sendMessage,
+        onSuccess: (data, variables, context ) => {
+            console.log("On success happend")
+            console.log(data)
+            console.log(variables)
+            console.log(context)
+            refetch()
+        },
+        onError: (error ,variables, context) => {
+            console.log("an error happened to mutation")
+            console.log(error)
+            console.log(variables)
+            console.log(context)
+        },
+        onSettled: (data, error, variables, context)  => {
+            console.log("Settled ran")
+            console.log(data)
+            console.log(error)
+            console.log(variables)
+            console.log(context)
+            refetch()
+        }
+    })
+
+    function sendMessage(message) {
         const body = {
             message: message
         }
-        const response = await fetch(
+        return fetch(
             `http://localhost:3000/api/messages?chatId=${params.id}`,
             {
                 method: "POST",
@@ -48,21 +72,43 @@ export default function Chat() {
                 body: JSON.stringify(body)
             }
         )
-
-        const data = await response.json()
-
-        if(!response.ok) {
-            throw new Error(data)
-        }
-
-        refetch()
-        console.log("message send and created successfully")
     }
+    // TODO : use mutations to send this message  and make optimistic updates
+//     async function sendMessage(message) {
+//         const body = {
+//             message: message
+//         }
+//         const response = await fetch(
+//             `http://localhost:3000/api/messages?chatId=${params.id}`,
+//             {
+//                 method: "POST",
+//                 headers:{
+//                     "authorization": "Bearer " + token,
+//                     "content-type": "application/json"
+//                 },
+//                 body: JSON.stringify(body)
+//             }
+//         )
+// 
+//         const data = await response.json()
+// 
+//         if(!response.ok) {
+//             throw new Error(data)
+//         }
+// 
+//         refetch()
+//         console.log("message send and created successfully")
+//     }
     function sendMessageHandler(e) {
         e.preventDefault()
         const message = e.target["message"].value
-        sendMessage(message)
+        if(!message.trim()) {
+            console.log("empty message")
+            return
+        } 
+        messageMutation.mutate(message)
         console.log("sending message...")
+        e.target.reset()
     }
 
     return(
