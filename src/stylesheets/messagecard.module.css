@@ -1,9 +1,10 @@
-.message {
-    display: grid;
-    grid-template-columns: 10% 80%;
-    margin-block: 16px;
+.card {
+    padding: 16px;
+    border: 1px solid black;
+    border-radius: 15px;
+    box-sizing: border-box;
+    margin: 4px;
 }
-
 .pic {
     height: 75px;
 }
