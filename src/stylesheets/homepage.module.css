@@ -2,11 +2,8 @@ main {
     flex: 1;
     display: grid;
     grid-template-columns: 40% 60%;
+    grid-template-rows: 1fr;
     min-height: 0;
-}
-
-main > * {
-    /* border: 1px solid black; */
 }
 
 .wrapper {
