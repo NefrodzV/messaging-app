@@ -3,16 +3,12 @@ import { useNavigate , Outlet ,Link } from "react-router-dom"
 import { UserContext } from "../contexts/UserContext"
 import Header from "../components/Header"
 import homeStyle from '../stylesheets/homepage.module.css'
-import ChatList from "../components/ChatList"
-import FriendList from "../components/FriendList"
-import UsersModal from "../components/UserModel"
-import UserList from "../components/UserList"
+import ProfileCard from "../components/ProfileCard"
 
 export default function HomePage() {
 
     const [ loading, setLoading ] = useState(true)
     const { isLoggedIn } = useContext(UserContext)
-    const [ showUsers, setShowUser] = useState(false)
     
     const navigate = useNavigate()
 
@@ -24,13 +20,6 @@ export default function HomePage() {
         setLoading(false)
     },[isLoggedIn])
 
-    function showUsersModalHandler() {
-        if(showUsers) {
-            setShowUser(false)
-        } else {
-            setShowUser(true)
-        }
-    }
     return (
         <>
             { loading ? <h1>Loading...</h1> : 
@@ -38,15 +27,14 @@ export default function HomePage() {
                     <Header />
                     <main>
                         <aside>
-                            <FriendList />
-                            <Link to="/users">Users</Link>
+                            {/* <FriendList /> */}
+                            <ProfileCard />
+                            <Link to="/users">Start chat</Link>
                             <Link to="/chats">Chats</Link>
                            
                         </aside>
                         <Outlet />
-                        
                     </main>
-                   
                 </div> 
             }
         </>
