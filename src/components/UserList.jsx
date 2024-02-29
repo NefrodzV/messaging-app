@@ -17,7 +17,6 @@ export default function UserList() {
             
             return await response.json()
         },
-        notifyOnChangeProps:['data']
     })
 
     const [loading, setLoading] = useState(true)
