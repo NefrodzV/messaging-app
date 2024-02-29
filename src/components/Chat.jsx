@@ -35,25 +35,7 @@ export default function Chat() {
 
     const messageMutation = useMutation({
         mutationFn: sendMessage,
-        onSuccess: (data, variables, context ) => {
-            console.log("On success happend")
-            console.log(data)
-            console.log(variables)
-            console.log(context)
-            refetch()
-        },
-        onError: (error ,variables, context) => {
-            console.log("an error happened to mutation")
-            console.log(error)
-            console.log(variables)
-            console.log(context)
-        },
         onSettled: (data, error, variables, context)  => {
-            console.log("Settled ran")
-            console.log(data)
-            console.log(error)
-            console.log(variables)
-            console.log(context)
             refetch()
         }
     })
@@ -74,32 +56,7 @@ export default function Chat() {
             }
         )
     }
-    // TODO : use mutations to send this message  and make optimistic updates
-//     async function sendMessage(message) {
-//         const body = {
-//             message: message
-//         }
-//         const response = await fetch(
-//             `http://localhost:3000/api/messages?chatId=${params.id}`,
-//             {
-//                 method: "POST",
-//                 headers:{
-//                     "authorization": "Bearer " + token,
-//                     "content-type": "application/json"
-//                 },
-//                 body: JSON.stringify(body)
-//             }
-//         )
-// 
-//         const data = await response.json()
-// 
-//         if(!response.ok) {
-//             throw new Error(data)
-//         }
-// 
-//         refetch()
-//         console.log("message send and created successfully")
-//     }
+
     function sendMessageHandler(e) {
         e.preventDefault()
         const message = e.target["message"].value
@@ -112,11 +69,14 @@ export default function Chat() {
 
     return(
         <div className={chatStyle.chat}>
-             <ul className={chatStyle.messagelist}>
+            <h2><span>Messages with</span> User</h2>
+            <ul className={chatStyle.messagelist}>
+                
                 {
-                    messages?.map((message) => <MessageCard key={message._id} message={message} />)
+                    messages?.map((message) => 
+                        <MessageCard key={message._id} message={message} />)
                 }
-             </ul>
+            </ul>
              <form noValidate={true} onSubmit={sendMessageHandler}>
                  <div className={chatStyle.control}>
                      <input type="text" name="message" id="message" />
