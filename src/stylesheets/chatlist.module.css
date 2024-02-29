@@ -4,6 +4,7 @@
     padding: 0;
     grid-row: span 2;
     scrollbar-width: none;
+    list-style-type: none;
 }
 
 .title {
