@@ -1,10 +1,11 @@
-
-import chatStyle from '../stylesheets/chat.module.css'
-export default function ChatCard() {
+import { Link } from 'react-router-dom'
+import style from '../stylesheets/chatcard.module.css'
+export default function ChatCard({ chat }) {
     return (
-        <li className={chatStyle.chat}>
-            <div className={chatStyle.date}>09/Jan/2024</div>
-            <div className={chatStyle.message}>Epso Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis accusamus maiores unde corporis provident exercitationem maxime dolorem. Error velit, odit a numquam nisi ab rerum, architecto aliquam, reiciendis inventore molestiae.</div>
+        <li className={style.chat}>
+            <h3 className={ style.date }>{chat.lastMessage.date}</h3>
+            <h4 className={ style.message }>{chat.lastMessage.text}</h4>
+            <Link to={`/chat/${chat._id}`}>Go to chat with</Link>
         </li>
     )
 }
