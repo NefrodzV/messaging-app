@@ -1,0 +1,9 @@
+.message {
+    display: grid;
+    grid-template-columns: 10% 80%;
+    margin-block: 16px;
+}
+
+.pic {
+    height: 75px;
+}

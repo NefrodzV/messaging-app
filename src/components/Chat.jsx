@@ -4,6 +4,7 @@ import { useMutation, useQuery  } from '@tanstack/react-query'
 import chatStyle from '../stylesheets/chat.module.css'
 import { useContext, useEffect } from 'react'
 import {UserContext} from '../contexts/UserContext'
+import MessageCard from './MessageCard'
 export default function Chat() {
 
     const params = useParams()
@@ -103,11 +104,9 @@ export default function Chat() {
         e.preventDefault()
         const message = e.target["message"].value
         if(!message.trim()) {
-            console.log("empty message")
             return
         } 
         messageMutation.mutate(message)
-        console.log("sending message...")
         e.target.reset()
     }
 
@@ -115,7 +114,7 @@ export default function Chat() {
         <div className={chatStyle.chat}>
              <ul className={chatStyle.messagelist}>
                 {
-                    messages?.map((message) => <li key={message._id}>text:{message.text}, date: {message.date}</li>)
+                    messages?.map((message) => <MessageCard key={message._id} message={message} />)
                 }
              </ul>
              <form noValidate={true} onSubmit={sendMessageHandler}>
