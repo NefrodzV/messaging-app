@@ -10,6 +10,7 @@ export default function Chat() {
     const params = useParams()
     const { token } = useContext(UserContext)
     const [ messages, setMessages ] = useState([])
+    const [loading, setLoading] = useState(true)
 
     const { data, status, refetch } = useQuery({
         queryKey:['messages'],
@@ -25,11 +26,15 @@ export default function Chat() {
     })
 
     useEffect(() => {
-        if(status === "success") {
-            setMessages(data.messages)
+        if(status === "pending") {
+            setLoading(true)
+            return
         }
-
-        // TODO: Maybe do an loading animation here if status is pending
+        if(status === "success") { 
+            setLoading(false)
+            setMessages(data.messages)
+           
+        }
     },[status,data])
 
 
@@ -68,21 +73,26 @@ export default function Chat() {
     }
 
     return(
-        <div className={chatStyle.chat}>
-            <h2><span>Messages with</span> User</h2>
-            <ul className={chatStyle.messagelist}>
-                
-                {
-                    messages?.map((message) => 
-                        <MessageCard key={message._id} message={message} />)
-                }
-            </ul>
-             <form noValidate={true} onSubmit={sendMessageHandler}>
-                 <div className={chatStyle.control}>
-                     <input type="text" name="message" id="message" />
-                     <button>send</button>
-                 </div>
-             </form>
-        </div>
-     )
+        <>
+            {
+                loading ? <div>Loading...</div> :
+                <div className={chatStyle.chat}>
+                    <h2><span>Messages with</span> User</h2>
+                    <ul className={chatStyle.messagelist}>     
+                    {
+                        messages?.map((message) => 
+                            <MessageCard key={message._id} message={message} />)
+                    }
+                    </ul>
+                    <form noValidate={true} onSubmit={sendMessageHandler}>
+                        <div className={chatStyle.control}>
+                            <input type="text" name="message" id="message" />
+                            <button>send</button>
+                        </div>
+                    </form>
+                </div>
+            }
+        </>
+        
+    )
 }
