@@ -1,6 +1,6 @@
 import { useNavigate, useSearchParams } from "react-router-dom"
 import chatStyle from '../stylesheets/chat.module.css'
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../contexts/UserContext"
 
 export default function CreateChat() {
@@ -8,6 +8,7 @@ export default function CreateChat() {
     const navigate = useNavigate()
 
     const [params] = useSearchParams()
+    const [loading, setLoading] = useState(true)
 
     async function createChat(message) {
         const body = {
@@ -49,8 +50,10 @@ export default function CreateChat() {
 
         const data = await response.json()
 
-        if(!response.ok) return
-        console.log(data)
+        if(!response.ok) {
+            setLoading(false)
+            return
+        }
         navigate('/chat/' + data.chat._id)
 
     }
@@ -64,18 +67,24 @@ export default function CreateChat() {
     }
 
     return(
-       <div className={chatStyle.chat}>
-        <h2>Start chat with user</h2>
-            <ul className={chatStyle.messagelist}>
-                
-            </ul>
-            <form noValidate={true} onSubmit={createChatHandler}>
-                <div className={chatStyle.control}>
-                    <input type="text" name="message" id="message" 
-                    placeholder="Send message to start a chat with this user..."/>
-                    <button>send</button>
-                </div>
-            </form>
-       </div>
+        <>
+            {
+                loading ? <div>Loading ...</div> :
+                <div className={chatStyle.chat}>
+                <h2>Start chat with user</h2>
+                    <ul className={chatStyle.messagelist}>
+                        
+                    </ul>
+                    <form noValidate={true} onSubmit={createChatHandler}>
+                        <div className={chatStyle.control}>
+                            <input type="text" name="message" id="message" 
+                            placeholder="Send message to start a chat with this user..."/>
+                            <button>send</button>
+                        </div>
+                    </form>
+               </div>
+            }
+        </>
+        
     )
 }
