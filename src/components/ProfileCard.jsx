@@ -6,6 +6,11 @@ export default function ProfileCard() {
 
     const { user, loading } = useUser()
     
+    function imageHandler(image) {
+        const url = `data:${image.mimeType};base64,${image.data}`
+        return url
+    }
+    
     return (
         <>
             {
@@ -14,7 +19,7 @@ export default function ProfileCard() {
                 <Link className={style.link} to="/profile">Go to my profile</Link>
                 <img 
                 className={style.img}
-                src={userIcon} 
+                src={user.image ? imageHandler(user.image) : userIcon} 
                 alt="My profile image"/>
                 <h3>{user?.username}</h3>
                 </div>

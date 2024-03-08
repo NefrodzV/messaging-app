@@ -2,9 +2,16 @@ import { useState } from 'react'
 import userIcon from '../assets/user.svg'
 import useUser from '../hooks/useUser'
 import PasswordForm from './PasswordForm'
+import ImageForm from './ImageForm'
 export default function Profile() {
     const { user , loading } = useUser()
     const [show, setShow] = useState(null)
+
+    function imageHandler(image) {
+        const url = `data:${image.mimeType};base64,${image.data}`
+        return url
+    }
+
     function showHandler(id) {
         setShow(id)
     }
@@ -23,7 +30,7 @@ export default function Profile() {
                         width: '200px',
                         height: '200px'
                     }}
-                        src={userIcon} 
+                        src={user.image ? imageHandler(user.image) : userIcon} 
                         alt="My profile image" />
                     <h3>{user?.username}</h3>
                     <button 
@@ -31,6 +38,7 @@ export default function Profile() {
                         Change password</button>
                     <button onClick={() => showHandler("image")}>Change profile image</button>
                     <PasswordForm  show={show} close={closeHander}/>
+                    <ImageForm show={show} close={closeHander} />
                 </div>
             }
         </>
