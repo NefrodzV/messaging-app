@@ -1,6 +1,6 @@
 .chat {
     position: relative;
-    display: grid;
+    display: flex;
     gap: 16px;
     padding: 16px;
     box-sizing: content-box;
@@ -14,7 +14,11 @@
 .chat:not(:last-child) {
     border-bottom: 1px solid black;
 }
-
+.user {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
 .date {
     font-size: clamp(.8rem, .2vw + .8rem, 1rem);
     color: var(--text-color);
@@ -37,4 +41,13 @@
     bottom: 0;
     position: absolute;
     opacity: 0;
+}
+
+.image {
+    height: 50px;
+    aspect-ratio:  1 /1;
+}
+
+.content {
+    flex: 1;
 }
