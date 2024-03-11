@@ -1,9 +1,36 @@
 .card {
-    padding: 16px;
-    border: 1px solid black;
+    --corner: 50px;
+    margin: 8px 16px;
+    padding: 20px;
+    /* border: 1px solid black; */
     border-radius: 15px;
     box-sizing: border-box;
-    margin: 4px;
+    position: relative;
+    background-color: var(--secondary-color);
+}
+
+.card::before {
+    z-index: -1;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    content: "";
+    width: var(--corner);
+    height: var(--corner);
+    background-color: var(--secondary-color);
+    transform: rotate(45deg);
+}
+
+.card::after {
+    z-index: -1;
+    position: absolute;
+    top: 10%;
+    right: 0;
+    content: "";
+    width: var(--corner);
+    height: var(--corner);
+    background-color: var(--secondary-color);
+    transform: rotate(45deg);
 }
 .pic {
     height: 75px;
