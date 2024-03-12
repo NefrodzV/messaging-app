@@ -43,3 +43,15 @@ input[name="message"] {
     /* gap: 8px; */
     scrollbar-width: none;
 }
+.header {
+    font-size: 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.header > img { 
+    height: 50px;
+    width: 50px;
+    aspect-ratio: 1 / 1;
+}
