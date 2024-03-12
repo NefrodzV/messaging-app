@@ -4,9 +4,10 @@ import { useContext, useEffect, useState } from "react"
 export default function useChat(id) {
 
     const { token } = useContext(UserContext)
-    const [chat, setChat] = useState(null)
-    const [status, setStatus] = useState('loading')
-    const [errors, setErrors] = useState({})
+    const [data, setData] = useState(null)
+    const [status, setStatus] = useState('pending')
+    // This is not in use right now  but in the future it might
+    // const [errors, setErrors] = useState({})
 
 
     useEffect(() => {
@@ -15,27 +16,29 @@ export default function useChat(id) {
 
     async function getChat() {
         try {
+            
             const response = await fetch(
-                'http://localhost:3000/api/chat/'+id,{
+                'http://localhost:3000/api/chats/'+id,{
                     headers: {
                         "authorization": "Bearer " + token,
-                        'content-type': "application/json"
+                        
                     }
                 }
             )
     
-            const data = await response.json()
+            const json = await response.json()
             if(!response.ok) {
                 setStatus('error')
-                setErrors(data.errors)
-                throw new Error("Something went wrong getting chat")
+                // setErrors(data.errors)
+                console.log(data.errors)
+                return
             }
             setStatus("success")
-            setChat(data.chat)
+            setData(json)
         } catch(e) {
             setStatus('error')
             throw new Error("Error fetching chat data: " + e)
         }
     }
-    return { chat, status, errors }
+    return { data, status }
 }
