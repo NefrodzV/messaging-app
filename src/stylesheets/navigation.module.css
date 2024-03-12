@@ -1,0 +1,22 @@
+.navlist {
+    display: flex;
+    list-style-type: none;
+}
+
+.navitem {
+    display: flex;
+    align-items: center;
+}
+
+.button {
+    text-transform: none;
+    display: flex;
+    align-items: center;
+    box-shadow: none;
+    gap: 8px;
+}
+
+.icon {
+    aspect-ratio: 1 / 1;
+    height: 30px;
+}
