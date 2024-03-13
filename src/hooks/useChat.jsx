@@ -5,10 +5,9 @@ export default function useChat(id) {
 
     const { token } = useContext(UserContext)
     const [data, setData] = useState(null)
-    const [status, setStatus] = useState('pending')
+    const [loading, setLoading] = useState(true)
     // This is not in use right now  but in the future it might
     // const [errors, setErrors] = useState({})
-
 
     useEffect(() => {
         getChat()
@@ -18,7 +17,7 @@ export default function useChat(id) {
         try {
             
             const response = await fetch(
-                'http://localhost:3000/api/chats/'+id,{
+                'http://localhost:3000/api/chats/'+ id,{
                     headers: {
                         "authorization": "Bearer " + token,
                         
@@ -28,17 +27,18 @@ export default function useChat(id) {
     
             const json = await response.json()
             if(!response.ok) {
-                setStatus('error')
+                // setStatus('error')
                 // setErrors(data.errors)
                 console.log(data.errors)
                 return
             }
-            setStatus("success")
             setData(json)
         } catch(e) {
-            setStatus('error')
+            // setStatus('error')
             throw new Error("Error fetching chat data: " + e)
+        } finally  {
+            setLoading(false)
         }
     }
-    return { data, status }
+    return { data, loading }
 }
