@@ -1,27 +1,26 @@
 import { UserContext } from "../contexts/UserContext"
-import { useContext, useEffect, useState } from "react"
+import { useCallback, useContext, useEffect, useState } from "react"
 // Returns a specific chat with id
 export default function useChat(id) {
 
-    
     const { token } = useContext(UserContext)
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(true)
     // This is not in use right now  but in the future it might
     const [error, setError] = useState(null)
+    const handleGetChat = useCallback(getChat, [id, token])
 
     useEffect(() => {
-        getChat()
-    },[])
+        handleGetChat()
+    },[id, handleGetChat])
 
     async function getChat() {
         try {
-            
             const response = await fetch(
                 'http://localhost:3000/api/chats/'+ id,{
                     headers: {
                         "authorization": "Bearer " + token,
-                        
+
                     }
                 }
             )
