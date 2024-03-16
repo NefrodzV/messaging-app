@@ -31,7 +31,8 @@ export default function ChatCard({ chat }) {
             <img 
                 className={style.image}
                 src={user.profile.image ? 
-                imageHandler(user.profile.image) : userIcon} />
+                imageHandler(user.profile.image) : userIcon} 
+                alt='User profile image I am chatting with'/>
             <div className={style.content}>
                 <h3 className={style.user}>
                     {user.profile.username} 
