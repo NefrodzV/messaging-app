@@ -3,8 +3,7 @@ import { useNavigate , Outlet ,Link } from "react-router-dom"
 import { UserContext } from "../contexts/UserContext"
 import Header from "../components/Header"
 import homeStyle from '../stylesheets/homepage.module.css'
-import ProfileCard from "../components/ProfileCard"
-
+import Navigation from "../components/Navigation"
 export default function HomePage() {
 
     const [ loading, setLoading ] = useState(true)
@@ -26,13 +25,14 @@ export default function HomePage() {
                 <div className={homeStyle.wrapper}>
                     <Header />
                     <main>
-                        <aside>
-                            {/* <FriendList /> */}
+                        <Navigation isMobileNavigation={false}/>
+                        {/* <aside>
+                            
                             <ProfileCard />
                             <Link to="/users">Start chat</Link>
                             <Link to="/chats">Chats</Link>
                            
-                        </aside>
+                        </aside> */}
                         <Outlet />
                     </main>
                 </div> 
