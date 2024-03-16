@@ -15,4 +15,15 @@ main {
 aside {
     grid-row: span 2;
     border-right: 1px solid black;
+    box-sizing: border-box;
+}
+
+nav {
+    grid-row: span 2;
+}
+
+@media(max-width: 768px) {
+    main {
+        grid-template-columns: none;
+    }
 }
