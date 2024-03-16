@@ -1,23 +1,69 @@
 import Cookie from 'js-cookie'
 import { UserContext } from '../contexts/UserContext'
-import { useContext } from 'react'
-import styles from '../stylesheets/navigation.module.css'
+import { useContext, useEffect, useRef, useState } from 'react'
+import style from '../stylesheets/navigation.module.css'
 import logoutIcon from '../assets/logout.svg'
-export default function Navigation() {
+import hamburgerIcon from '../assets/hamburger.svg'
+import { Link } from 'react-router-dom'
+import userIcon from '../assets/user.svg'
+import useUser from '../hooks/useUser'
+export default function Navigation({isMobileNavigation}) {
+
+    const navRef = useRef()
+    const [isOpen, setOpen] = useState(false)
 
     const { setIsLoggedIn } = useContext(UserContext)
-    
+    const { user, loading } = useUser()
+
     function logoutHandler() {
         Cookie.remove("token")
         setIsLoggedIn(false)
     }
+
+    function imageHandler(image) {
+        const url = `data:${image.mimeType};base64,${image.data}`
+        return url
+    }
+
+    function toggleHandler(e) {
+        if(isOpen) {
+            setOpen(false)
+        } else {
+            setOpen(true)
+        }
+    }
+
+    
     return (
-        <nav>
-                <ul className={styles.navlist}>
-                    <li className={styles.navitem}>
-                        <button className={styles.button}
+        <nav className={isMobileNavigation ? style.mobile : style.primary}>
+                <button className={style.toggle} onClick={toggleHandler}>
+                    <img className={style.icon} src={hamburgerIcon} />
+                </button>
+
+                <ul className={style.navlist} open={isOpen}>
+                    <li className={style.navitem} >
+                        <Link className={style.link} to="/profile">
+                            Go to my profile
+                        </Link>
+                        <img 
+                        className={style.img}
+                        src={user.image ? imageHandler(user.image) : userIcon} 
+                        alt="My profile image"/>
+                        <h3>{user?.username}</h3>
+                    </li>        
+                    <li className={style.navitem} >
+                        <Link className={style.link}to="/chats">Go to my chats</Link>
+                        My chats
+                    </li>
+                    <li className={style.navitem} >
+                        <Link className={style.link} to="/users">Start a new chat</Link>
+                        New chat
+                    </li>
+                    
+                    <li className={style.navitem} >
+                        <button className={style.button}
                             onClick={logoutHandler}>
-                            <img className={styles.icon} src={logoutIcon}/>
+                            <img className={style.icon} src={logoutIcon}/>
                             Log out
                         </button>
                     </li>
