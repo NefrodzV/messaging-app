@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom'
-import { useMutation } from '@tanstack/react-query'
 import chatStyle from '../stylesheets/chat.module.css'
 import { useContext, useState, useEffect } from 'react'
 import {UserContext} from '../contexts/UserContext'
@@ -62,7 +61,6 @@ export default function Chat() {
             return
         }
         sendMessage(message)
-        // messageMutation.mutate(message)
         e.target.reset()
     }
 
