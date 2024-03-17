@@ -32,15 +32,16 @@ export default function ChatList() {
 
     },[data, status])
     return (
-        <ul className={chatListStyle.list}>
-            <div>
-                <h1 className={chatListStyle.title}>Chats</h1>
-            </div>
-            {
-                loading ? 
-                <div>Loading...</div> :
-                chats?.map(chat => <ChatCard key={chat._id} chat={chat} />)
-            }
-        </ul>
+        <>
+            <h1>Chats</h1>
+            <ul className={chatListStyle.list}>
+                {
+                    loading ? 
+                    <div>Loading...</div> :
+                    chats?.map(chat => <ChatCard key={chat._id} chat={chat} />)
+                }
+            </ul>
+        </>
+        
     )
 }
