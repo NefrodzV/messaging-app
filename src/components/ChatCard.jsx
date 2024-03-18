@@ -34,11 +34,11 @@ export default function ChatCard({ chat }) {
                 imageHandler(user.profile.image) : userIcon} 
                 alt='User profile image I am chatting with'/>
             <div className={style.content}>
-                <h3 className={style.user}>
+                <p className={style.user}>
                     {user.profile.username} 
                     <span className={style.date}>{formatDate(chat.lastMessage.date)}</span>
-                </h3>
-                <h4 className={ style.message }>{chat.lastMessage.text}</h4>
+                </p>
+                <p className={ style.message }>{chat.lastMessage.text}</p>
             </div>
             
         </li>

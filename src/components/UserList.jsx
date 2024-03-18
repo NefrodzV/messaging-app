@@ -31,7 +31,7 @@ export default function UserList() {
     
     return(
         <>  
-        <h1>Users</h1>
+            <h1>Users</h1>
             <ul className={style.wrapper}>
                 {
                     loading ? 

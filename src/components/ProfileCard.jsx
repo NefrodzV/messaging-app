@@ -21,7 +21,7 @@ export default function ProfileCard() {
                 className={style.img}
                 src={user.image ? imageHandler(user.image) : userIcon} 
                 alt="My profile image"/>
-                <h3>{user?.username}</h3>
+                <h2>{user?.username}</h2>
                 </div>
             }
         

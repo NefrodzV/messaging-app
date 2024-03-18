@@ -9,7 +9,6 @@ import userIcon from '../assets/user.svg'
 import useUser from '../hooks/useUser'
 export default function Navigation({isMobileNavigation}) {
 
-    const navRef = useRef()
     const [isOpen, setOpen] = useState(false)
 
     const { setIsLoggedIn } = useContext(UserContext)
@@ -36,10 +35,17 @@ export default function Navigation({isMobileNavigation}) {
     
     return (
         <nav className={isMobileNavigation ? style.mobile : style.primary}>
+                
                 <button className={style.toggle} onClick={toggleHandler}>
-                    <img className={style.icon} src={hamburgerIcon} />
+                    <img className={style.icon} src={hamburgerIcon}  alt='menu icon'/>
+                    <span style={{
+                        display: "none"
+                    }}>Open menu</span>
                 </button>
 
+                <h1 style={{
+                    display: 'none'
+                }}>Navigation</h1>
                 <ul className={style.navlist} open={isOpen}>
                     <li className={style.navitem} >
                         <Link className={style.link} to="/profile">
@@ -49,7 +55,7 @@ export default function Navigation({isMobileNavigation}) {
                         className={style.img}
                         src={user.image ? imageHandler(user.image) : userIcon} 
                         alt="My profile image"/>
-                        <h3>{user?.username}</h3>
+                        <h2>{user?.username}</h2>
                     </li>        
                     <li className={style.navitem} >
                         <Link className={style.link}to="/chats">Go to my chats</Link>
@@ -63,7 +69,7 @@ export default function Navigation({isMobileNavigation}) {
                     <li className={style.navitem} >
                         <button className={style.button}
                             onClick={logoutHandler}>
-                            <img className={style.icon} src={logoutIcon}/>
+                            <img className={style.icon} src={logoutIcon} alt='logout icon'/>
                             Log out
                         </button>
                     </li>
