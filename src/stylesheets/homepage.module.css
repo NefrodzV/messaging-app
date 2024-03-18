@@ -2,7 +2,7 @@ main {
     flex: 1;
     display: grid;
     grid-template-columns: 40% 60%;
-    grid-template-rows: 1fr;
+    grid-template-rows: auto 1fr;
     min-height: 0;
 }
 
@@ -12,11 +12,11 @@ main {
     flex-direction: column
 }
 
-aside {
+/* aside {
     grid-row: span 2;
     border-right: 1px solid black;
     box-sizing: border-box;
-}
+} */
 
 nav {
     grid-row: span 2;

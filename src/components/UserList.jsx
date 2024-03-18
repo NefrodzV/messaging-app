@@ -30,12 +30,16 @@ export default function UserList() {
     },[status])
     
     return(
-        <ul className={style.wrapper}>
-            {
-                loading ? 
-                <div>Loading...</div> : 
-                data?.users?.map(user => <UserCard key={user._id} user={user} />)
-            }
-        </ul>
+        <>  
+        <h1>Users</h1>
+            <ul className={style.wrapper}>
+                {
+                    loading ? 
+                    <div>Loading...</div> : 
+                    data?.users?.map(user => <UserCard key={user._id} user={user} />)
+                }
+            </ul>
+        </>
+        
     )
 }
