@@ -9,7 +9,7 @@ export default function useChat(id) {
     // This is not in use right now  but in the future it might
     const [error, setError] = useState(null)
     const handleGetChat = useCallback(getChat, [id, token])
-
+    const updateHandler = useCallback(update,[id])
     useEffect(() => {
         handleGetChat()
     },[id, handleGetChat])
@@ -20,7 +20,6 @@ export default function useChat(id) {
                 'http://localhost:3000/api/chats/'+ id,{
                     headers: {
                         "authorization": "Bearer " + token,
-
                     }
                 }
             )
@@ -46,5 +45,5 @@ export default function useChat(id) {
     }
 
     // TODO: Implement a reload function here
-    return { data, loading, error, update }
+    return { data, loading, error, update: updateHandler }
 }
