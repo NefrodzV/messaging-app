@@ -1,14 +1,31 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function useDimen() {
 
-    const { innerWidth } = window
     const [currentWidth, setCurrentWidth] = useState(0)
-    
+    const [deviceType, setDeviceType] = useState(null)
 
-    window.addEventListener('resize', () => {
+    useEffect(() => {
+        function onChangeResize(e) {
+            const window = e.target
+            setCurrentWidth(window.innerWidth)
+        }
+        window.addEventListener('resize', onChangeResize)
         setCurrentWidth(innerWidth)
-    })
+        return () => {
+            window.removeEventListener('resize', onChangeResize)
+        }
+    },[])
 
-    return { currentWidth }
+    useEffect(() => {
+        if(currentWidth > 768) {
+            setDeviceType('desktop')
+        } else {
+            setDeviceType('mobile')
+        }
+    },[currentWidth])
+
+    
+    
+    return { deviceType }
 }
