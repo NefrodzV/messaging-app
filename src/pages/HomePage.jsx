@@ -1,15 +1,18 @@
 import { useContext, useEffect, useState } from "react"
-import { useNavigate , Outlet ,Link } from "react-router-dom"
+import { useNavigate , Outlet } from "react-router-dom"
 import { UserContext } from "../contexts/UserContext"
 import Header from "../components/Header"
 import homeStyle from '../stylesheets/homepage.module.css'
 import Navigation from "../components/Navigation"
+import useDimen from "../hooks/useDimen"
 export default function HomePage() {
 
     const [ loading, setLoading ] = useState(true)
     const { isLoggedIn } = useContext(UserContext)
     
     const navigate = useNavigate()
+
+    const { deviceType } = useDimen()
 
     useEffect(() => {
         if(!isLoggedIn) {
@@ -25,14 +28,7 @@ export default function HomePage() {
                 <div className={homeStyle.wrapper}>
                     <Header />
                     <main>
-                        <Navigation isMobileNavigation={false}/>
-                        {/* <aside>
-                            
-                            <ProfileCard />
-                            <Link to="/users">Start chat</Link>
-                            <Link to="/chats">Chats</Link>
-                           
-                        </aside> */}
+                        { deviceType === 'desktop' ? <Navigation /> : false }
                         <Outlet />
                     </main>
                 </div> 
