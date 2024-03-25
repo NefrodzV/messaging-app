@@ -1,5 +1,7 @@
 import { useContext, useState } from "react"
 import { UserContext } from "../contexts/UserContext.jsx"
+import Cookies from "js-cookie"
+
 
 export default function useLogin() {
 
@@ -27,6 +29,7 @@ export default function useLogin() {
                 return
             }
 
+            Cookies.set('token', response.token , { expires: 1 })
             setToken(response.token)
             setErrors({})
             
