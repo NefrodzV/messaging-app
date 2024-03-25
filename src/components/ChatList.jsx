@@ -1,9 +1,9 @@
 import ChatCard from "./ChatCard";
 import chatListStyle from '../stylesheets/chatlist.module.css'
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, memo } from "react";
 import { UserContext } from '../contexts/UserContext'
 import { useQuery } from "@tanstack/react-query";
-export default function ChatList() {
+const ChatList =  memo(function ChatList() {
 
     const { token } = useContext(UserContext)
     const [ chats, setChats ] = useState([])
@@ -44,4 +44,5 @@ export default function ChatList() {
         </>
         
     )
-}
+})
+export default ChatList
