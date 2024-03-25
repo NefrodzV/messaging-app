@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import userIcon from '../assets/user.svg'
 import style from '../stylesheets/chatcard.module.css'
-export default function ChatCard({ chat }) {
+import { memo } from 'react'
+const ChatCard = memo( function ChatCard({ chat }) {
     // The user that's chatting with the logged in user
     const user = chat.users[0]
     function imageHandler(image) {
@@ -43,4 +44,5 @@ export default function ChatCard({ chat }) {
             
         </li>
     )
-}
+})
+export default ChatCard
