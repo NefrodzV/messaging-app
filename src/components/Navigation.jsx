@@ -1,19 +1,18 @@
 import Cookie from 'js-cookie'
 import { UserContext } from '../contexts/UserContext'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext,  useState, memo } from 'react'
 import style from '../stylesheets/navigation.module.css'
 import logoutIcon from '../assets/logout.svg'
 import hamburgerIcon from '../assets/hamburger.svg'
 import { Link } from 'react-router-dom'
 import userIcon from '../assets/user.svg'
-import useUser from '../hooks/useUser'
-export default function Navigation({isMobileNavigation}) {
+
+const Navigation = memo(function Navigation() {
 
     const [isOpen, setOpen] = useState(false)
 
-    const { setIsLoggedIn } = useContext(UserContext)
-    const { user, loading } = useUser()
-
+    const { setIsLoggedIn, user } = useContext(UserContext)
+    
     function logoutHandler() {
         Cookie.remove("token")
         setIsLoggedIn(false)
@@ -34,7 +33,7 @@ export default function Navigation({isMobileNavigation}) {
 
     
     return (
-        <nav className={isMobileNavigation ? style.mobile : style.primary}>
+        <nav>
                 
                 <button className={style.toggle} onClick={toggleHandler}>
                     <img className={style.icon} src={hamburgerIcon}  alt='menu icon'/>
@@ -53,7 +52,7 @@ export default function Navigation({isMobileNavigation}) {
                         </Link>
                         <img 
                         className={style.img}
-                        src={user.image ? imageHandler(user.image) : userIcon} 
+                        src={user ? imageHandler(user.image) : userIcon} 
                         alt="My profile image"/>
                         <h2>{user?.username}</h2>
                     </li>        
@@ -76,4 +75,6 @@ export default function Navigation({isMobileNavigation}) {
                 </ul>
         </nav>
     )
-}
+})
+
+export default Navigation

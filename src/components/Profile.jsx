@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import userIcon from '../assets/user.svg'
-import useUser from '../hooks/useUser'
 import PasswordForm from './PasswordForm'
 import ImageForm from './ImageForm'
+import { UserContext } from '../contexts/UserContext'
 export default function Profile() {
-    const { user , loading } = useUser()
+    const { user } = useContext(UserContext)
     const [show, setShow] = useState(null)
 
     function imageHandler(image) {
@@ -22,7 +22,8 @@ export default function Profile() {
     return(
         <>
             {
-                loading ? <div>Loading...</div> :
+                // If for some reason user is null show loading screen
+                user ? 
                 <div>
                     <h3>My profile</h3>
                     {/* Remove this later */}
@@ -30,7 +31,7 @@ export default function Profile() {
                         width: '200px',
                         height: '200px'
                     }}
-                        src={user.image ? imageHandler(user.image) : userIcon} 
+                        src={user ? imageHandler(user.image) : userIcon} 
                         alt="My profile image" />
                     <h3>{user?.username}</h3>
                     <button 
@@ -40,6 +41,7 @@ export default function Profile() {
                     <PasswordForm  show={show} close={closeHander}/>
                     <ImageForm show={show} close={closeHander} />
                 </div>
+                : <div>Loading...</div>
             }
         </>
     )
