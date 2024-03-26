@@ -32,6 +32,7 @@ const ChatList =  memo(function ChatList() {
                 setLoading(false)
             }
         }
+        if(!token) return
         getChats()
     },[token])
 
