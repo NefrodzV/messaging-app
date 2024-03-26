@@ -5,6 +5,7 @@ import {UserContext} from '../contexts/UserContext'
 import MessageCard from './MessageCard'
 import ChatHeader from './ChatHeader'
 import useChat from '../hooks/useChat'
+import Loader from './Loader'
 
 export default function Chat() {
 
@@ -64,24 +65,27 @@ export default function Chat() {
         e.target.reset()
     }
 
-    if(loading) return <div>Loading...</div> 
     if(error) return <div>Whoops something went wrong</div>
     
     return(
         <div className={chatStyle.chat}>
-            <ChatHeader user={data.chat.users[0]} />
-            <ul className={chatStyle.messagelist}>     
-            {
-                data.messages?.map((message) => 
-                    <MessageCard key={message._id} message={message} />)
+            <ChatHeader user={data?.chat?.users[0]} />
+            { loading ? <Loader /> :  
+                <>
+                    <ul className={chatStyle.messagelist}>     
+                    {
+                        data?.messages?.map((message) => 
+                            <MessageCard key={message._id} message={message} />)
+                    }
+                    </ul>
+                    <form noValidate={true} onSubmit={sendMessageHandler}>
+                        <div className={chatStyle.control}>
+                            <input type="text" name="message" id="message" />
+                            <button>send</button>
+                        </div>
+                    </form>
+                </>
             }
-            </ul>
-            <form noValidate={true} onSubmit={sendMessageHandler}>
-                <div className={chatStyle.control}>
-                    <input type="text" name="message" id="message" />
-                    <button>send</button>
-                </div>
-            </form>
         </div>  
     )
 }
