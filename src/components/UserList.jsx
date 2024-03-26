@@ -2,32 +2,39 @@ import UserCard from "./UserCard";
 import { UserContext } from '../contexts/UserContext'
 import style from "../stylesheets/userlist.module.css"
 import { useContext, useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 export default function UserList() {
 
     const { token } = useContext(UserContext)
-    const { data, status } = useQuery({
-        queryKey: ['users'],
-        queryFn : async() => {
-            const response = await fetch('http://localhost:3000/api/users', {
-                headers:{
-                    "authorization" : "Bearer " + token
-                }
-            })
-            
-            return await response.json()
-        },
-    })
-
+    const [users, setUsers] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
 
     useEffect(() => {
-        if(status === "success") {
-            setLoading(false)
-        } else {
-            setLoading(true)
+        async function getUsers() {
+            try {
+                const response = await fetch('http://localhost:3000/api/users', 
+                {
+                    headers:{
+                        "authorization" : "Bearer " + token
+                    }
+                })
+
+                const json = await response.json()
+                if(!response.ok) {
+                    setError(json.errors)
+                    return
+                }
+                setUsers(json.users)
+            } catch(e) {
+                setError("Something failed getting users list data" + e)
+            } finally {
+                setLoading(false)
+            }
         }
-    },[status])
+        if(!token) return
+        getUsers()
+
+    },[token])
     
     return(
         <>  
@@ -36,7 +43,7 @@ export default function UserList() {
                 {
                     loading ? 
                     <div>Loading...</div> : 
-                    data?.users?.map(user => <UserCard key={user._id} user={user} />)
+                    users?.map(user => <UserCard key={user._id} user={user} />)
                 }
             </ul>
         </>
