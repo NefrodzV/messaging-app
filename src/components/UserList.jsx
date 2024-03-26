@@ -2,6 +2,7 @@ import UserCard from "./UserCard";
 import { UserContext } from '../contexts/UserContext'
 import style from "../stylesheets/userlist.module.css"
 import { useContext, useEffect, useState } from "react";
+import Loader from "./Loader";
 export default function UserList() {
 
     const { token } = useContext(UserContext)
@@ -39,10 +40,12 @@ export default function UserList() {
     return(
         <>  
             <h1>Users</h1>
-            <ul className={style.wrapper}>
+            <ul className={
+                loading ? null : style.wrapper
+            }>
                 {
                     loading ? 
-                    <div>Loading...</div> : 
+                    <Loader /> : 
                     users?.map(user => <UserCard key={user._id} user={user} />)
                 }
             </ul>
