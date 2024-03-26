@@ -4,40 +4,39 @@ import { useContext, useEffect, useState, memo } from "react";
 import { UserContext } from '../contexts/UserContext'
 import { useQuery } from "@tanstack/react-query";
 import Loader from "./Loader";
+import { json } from "react-router-dom";
 const ChatList =  memo(function ChatList() {
 
     const { token } = useContext(UserContext)
     const [ chats, setChats ] = useState(null)
     const [ loading , setLoading ] = useState(true)
-    // TODO: A bug occurred when because tokken is null when this runs
-    const { data, status } = useQuery({
-        queryKey: ["chats"],
-        queryFn: async () => {
-            console.log('token in chat list is')
-            console.log(token)
-            const response = await fetch(
-                'http://localhost:3000/api/chats',
-                {
-                    headers: {
-                        'authorization': "Bearer "+ token
-                    }
-                }
-            )  
-
-            return await response.json()
-        }
-    })
+    const [ error, setError] = useState(null)
 
     useEffect(() => {
-        if(status === "success" && data.chats !== undefined) {
-            console.log(data.chats)
-            setChats(data.chats)
-            setLoading(false)
-        } else {
-            setLoading(true)
+        async function getChats() {
+            try {
+                const response = await fetch('http://localhost:3000/api/chats',
+                    {
+                        headers: {
+                            'authorization': "Bearer "+ token
+                        }
+                    }
+                ) 
+                const json = await response.json()
+                if(!response.ok) {
+                    setError(json.errors)
+                    return
+                }
+                setChats(json.chats)
+            } catch(e) {
+                setError('Some error happened fetching the data ' + e) 
+            } finally {
+                setLoading(false)
+            }
         }
-
-    },[data, status])
+        getChats()
+    },[token])
+    
     return (
         <>
             <h1>Chats</h1>
