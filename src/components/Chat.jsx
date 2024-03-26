@@ -69,7 +69,9 @@ export default function Chat() {
     
     return(
         <div className={chatStyle.chat}>
-            <ChatHeader user={data?.chat?.users[0]} />
+            <ChatHeader 
+                username={data?.chat?.users[0].profile?.username}
+                image={data?.chat?.users[0].profile?.image}/>
             { loading ? <Loader /> :  
                 <>
                     <ul className={chatStyle.messagelist}>     
