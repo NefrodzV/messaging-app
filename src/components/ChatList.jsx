@@ -2,9 +2,7 @@ import ChatCard from "./ChatCard";
 import chatListStyle from '../stylesheets/chatlist.module.css'
 import { useContext, useEffect, useState, memo } from "react";
 import { UserContext } from '../contexts/UserContext'
-import { useQuery } from "@tanstack/react-query";
 import Loader from "./Loader";
-import { json } from "react-router-dom";
 const ChatList =  memo(function ChatList() {
 
     const { token } = useContext(UserContext)
@@ -36,7 +34,7 @@ const ChatList =  memo(function ChatList() {
         }
         getChats()
     },[token])
-    
+
     return (
         <>
             <h1>Chats</h1>
