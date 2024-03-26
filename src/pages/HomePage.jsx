@@ -19,12 +19,11 @@ export default function HomePage() {
             navigate('/login')
             return
         }
-        setLoading(false)
+        // setLoading(false)
     },[isLoggedIn])
 
     return (
         <>
-            { loading ? <h1>Loading...</h1> : 
                 <div className={homeStyle.wrapper}>
                     <Header />
                     <main>
@@ -32,7 +31,7 @@ export default function HomePage() {
                         <Outlet />
                     </main>
                 </div> 
-            }
+            
         </>
     )
 }
