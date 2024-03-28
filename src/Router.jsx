@@ -19,20 +19,21 @@ const router = createBrowserRouter([
             {
                 index:true,
                 path:'chats',
-                element: <ChatList/>,
+                element: <ChatList/>
+            },
+            {
+                path: "chats/:id",
+                element: <Chat />, 
+            },
+            {
+                path:'chats/create',
+                element: <Chat/>
             },
             {
                 path:'users',
                 element: <UserList />
             },
-            {
-                path: "chats/:id",
-                element: <Chat />
-            },
-            {
-                path:'chats/create',
-                element: <CreateChat />
-            }, 
+             
             {
                 path: 'profile',
                 element: <Profile />
