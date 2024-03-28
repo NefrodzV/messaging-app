@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import chatStyle from '../stylesheets/chat.module.css'
 import { useContext, useState, useEffect } from 'react'
 import {UserContext} from '../contexts/UserContext'
@@ -6,28 +6,44 @@ import MessageCard from './MessageCard'
 import ChatHeader from './ChatHeader'
 import useChat from '../hooks/useChat'
 import Loader from './Loader'
-
+import Input from './Input'
 export default function Chat() {
 
+    const { state } = useLocation()
     const { id } = useParams()
     const { token } = useContext(UserContext)
-    const { data, loading, error, update } = useChat(id)
-    // TODO: MOVE ALL LOGIC FOR SENDING A MESSAGE TO ITS OWN CUSTOM HOOK
-    // loading state when sending a message
-    const [sentMessageIsLoading, setSentMessageIsLoading] = useState(false)
-    // data of the response of the message sent
+    const [user, setUser] = useState(null)
+    const { data, loading, error, update, create } = useChat(id, user)
+    const [messages, setMessages] = useState([])
     const [sentMessage, setSentMessage] =  useState(null)
+    // const [sentMessageIsLoading, setSentMessageIsLoading] = useState(false)
+    // data of the response of the message sent
     // errors of the response when sending the message
-    const [sentMessageError, setSentMessageError] = useState(null)
-
+    // const [sentMessageError, setSentMessageError] = useState(null)
+    // State from a location changed example /chats/create
+    useEffect(() =>{
+        if(!state) return
+        setUser({...state.user})
+    },[state])
+    
     useEffect(() => {
-        update()
-    },[sentMessage, update])
+        if(!data) return
+        setMessages([ ...data.messages ])
+        // If the user is not defined the set it
+        if(!user) setUser({...data.user })
+        console.log('data is')
+        console.log(data)
+    },[data])
+
+    // useEffect(() => {
+    //     if(!id) return
+    //     update()
+    // },[id,sentMessage, update])
 
     // Sends message to api
     async function sendMessage(message) {
         try {
-            setSentMessageIsLoading(true)
+            // setSentMessageIsLoading(true)
             const body = {
                 message: message
             }
@@ -44,14 +60,14 @@ export default function Chat() {
             )
             const json = await response.json()
             if(!response.ok) {
-                setSentMessageError(json.errors)
+                // setSentMessageError(json.errors)
                 return
             }
             setSentMessage(json)
         } catch(e) {
-            setSentMessageError("Some error happened sending message:" + e)
+            // setSentMessageError("Some error happened sending message:" + e)
         } finally {
-            setSentMessageIsLoading(false)
+            // setSentMessageIsLoading(false)
         }
     }
 
@@ -61,7 +77,14 @@ export default function Chat() {
         if(!message.trim()) {
             return
         }
-        sendMessage(message)
+        /** If there is id param send a message if not 
+         * create a chat with a message sent*/
+        if(!id) {
+            create(message)
+        } else {
+            sendMessage(message)
+            update()
+        }
         e.target.reset()
     }
 
@@ -70,19 +93,24 @@ export default function Chat() {
     return(
         <div className={chatStyle.chat}>
             <ChatHeader 
-                username={data?.chat?.users[0].profile?.username}
-                image={data?.chat?.users[0].profile?.image}/>
+                username={user?.profile?.username}
+                image={user?.profile?.image}/>
             { loading ? <Loader /> :  
                 <>
                     <ul className={chatStyle.messagelist}>     
                     {
-                        data?.messages?.map((message) => 
-                            <MessageCard key={message._id} message={message} />)
+                        messages.map((message) => 
+                            <MessageCard key={message._id} message={message} />) 
                     }
                     </ul>
                     <form noValidate={true} onSubmit={sendMessageHandler}>
                         <div className={chatStyle.control}>
-                            <input type="text" name="message" id="message" />
+                            <Input 
+                                type={'text'}
+                                name={'message'}
+                                id={'message'}
+                                placeholder={
+                                    `Message ${user?.profile?.username}`}/>
                             <button>send</button>
                         </div>
                     </form>
