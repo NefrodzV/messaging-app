@@ -15,7 +15,8 @@ export default function UserCard({ user }) {
                     userIcon
                 } />
             <p className={style.text}>{user?.profile?.username}</p>
-            <Link to={`/chat?userId=${user._id}&username=${user?.profile?.username}`}>Chat</Link>
+            <Link to={'/chats/create'} state={{user: user}} >chat</Link>
+            {/* <Link to={`/chat?userId=${user._id}&username=${user?.profile?.username}`}>Chat</Link> */}
         </div>
     )
 }
