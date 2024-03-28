@@ -26,7 +26,7 @@ const ChatCard = memo( function ChatCard({ chat }) {
     }
     return (
         <li className={style.chat}> 
-            <Link className={style.link} to={`/chat/${chat._id}`}>
+            <Link className={style.link} to={`/chats/${chat._id}`}>
                 Go to chat with user
             </Link>
             <img 
