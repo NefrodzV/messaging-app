@@ -17,11 +17,7 @@ export default function useChat(id, user) {
     useEffect(() => {
         // No need to get this if data was return for checking with user id
         if(data) return
-        if(!id) {
-            
-            return
-        }
-        
+        if(!id) return
         getChatHandler()
     },[id, data, getChatHandler])
 
