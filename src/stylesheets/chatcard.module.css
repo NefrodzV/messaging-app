@@ -5,6 +5,7 @@
     padding: 16px;
     box-sizing: content-box;
     cursor: pointer;
+    align-items: center;
 }
 /* Hover doesnt work because link is on top of the elements */
 .chat:hover {
