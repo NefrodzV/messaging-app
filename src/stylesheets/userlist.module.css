@@ -9,3 +9,9 @@
     grid-template-columns: repeat(2, 50%);
     grid-row: span 2;
 }
+
+@media(max-width: 768px) {
+    .wrapper {
+        grid-template-columns: none;
+    }
+}
