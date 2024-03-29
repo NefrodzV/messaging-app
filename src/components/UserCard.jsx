@@ -9,13 +9,14 @@ export default function UserCard({ user }) {
     }
     return (
         <div className={style.card}>
+            <Link className={style.link}to={'/chats/create'} state={{user: user}} >chat</Link>
             <img className={style.profile} 
                 src={
                     user?.profile?.image ? imageHandler(user?.profile.image) :
                     userIcon
                 } />
             <p className={style.text}>{user?.profile?.username}</p>
-            <Link to={'/chats/create'} state={{user: user}} >chat</Link>
+            
             {/* <Link to={`/chat?userId=${user._id}&username=${user?.profile?.username}`}>Chat</Link> */}
         </div>
     )

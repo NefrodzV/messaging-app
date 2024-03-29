@@ -4,6 +4,7 @@
     /* box-shadow: 0px 0px 3px  rgb(0, 0, 0,.4); */
     /* border: 1px solid black; */
     flex: 1;
+    position: relative;
     align-items: center;
 }
 
@@ -20,7 +21,7 @@
 .text {
     white-space: no-wrap;
     text-overflow: ellipsis;
-    font-size: clamp(1rem, 1rem + 1vw, 1.2rem);
+    font-size: clamp(1rem, 1rem + 1vw, 1.5rem);
     padding: 16px;
     flex: 1;
     font-weight: bold;
@@ -28,4 +29,13 @@
 .button {
     margin: 0;
     box-shadow: none;
+}
+
+.link {
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    opacity: 0;
 }
