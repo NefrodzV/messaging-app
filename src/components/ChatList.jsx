@@ -38,7 +38,7 @@ const ChatList =  memo(function ChatList() {
 
     return (
         <>
-            <h1>Chats</h1>
+            <h1 className="bg-secondary">Chats</h1>
             <ul className={chatListStyle.list}>
                 {
                     loading ? 
