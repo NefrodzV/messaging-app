@@ -39,7 +39,7 @@ export default function UserList() {
     
     return(
         <>  
-            <h1>Users</h1>
+            <h1 className="bg-secondary">Users</h1>
             <ul className={
                 loading ? null : style.wrapper
             }>

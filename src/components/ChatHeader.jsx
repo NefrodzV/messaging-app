@@ -10,7 +10,7 @@ export default function ChatHeader({ username , image }) {
     }
     
     return (
-        <div className={style.header} >
+        <div className={`${style.header} bg-secondary`} >
             <img 
                 src={
                     image ? imageHandler(image) : userIcon
