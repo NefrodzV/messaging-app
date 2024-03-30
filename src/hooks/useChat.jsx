@@ -75,7 +75,7 @@ export default function useChat(id, user) {
                 // If there inst an already made chat get the selected user with id
                 return
             }
-            navigate('/chats/' + data.chat._id)
+            navigate('/chats/' + data.chat._id, {replace: true})
         } catch(e) {
             setError('Some error happened' + e)
             throw new Error("Something went wrong checking chat existence: " + e)
