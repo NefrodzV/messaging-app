@@ -58,7 +58,9 @@ h1 {
   font-size: clamp(1rem, .9vw + 1rem, 1.5rem);
   padding: 1rem;
 }
-
+.bg-secondary {
+  background-color: var(--secondary-color);
+}
 .secondary-button {
   box-shadow: none;
 }
