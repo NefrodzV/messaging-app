@@ -54,7 +54,6 @@
     align-items: center;
     box-shadow: none;
     gap: 8px;
-    
 }
 
 .icon {
@@ -72,8 +71,10 @@
 }
 
 .toggle {
+    background-color: var(--accent-color);
     margin: 0;
-    box-shadow: none;
+    box-shadow: 0px 0px 3px rgb(0, 0, 0,0.3);
+    /* border: 1px solid black; */
     display: none;
 }
 
@@ -100,8 +101,8 @@ nav {
         position: fixed;
         z-index: 1;
         transform: translateX(-110%);
-        
         transition: transform .5s;
+        box-shadow: 0 0 6px rgb(0,0,0, 0.5) ;
     }
 
     .navlist[open] {
