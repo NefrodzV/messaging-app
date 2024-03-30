@@ -9,7 +9,7 @@
 }
 /* Hover doesnt work because link is on top of the elements */
 .chat:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--accent-color);
 }
 
 .chat:not(:last-child) {
