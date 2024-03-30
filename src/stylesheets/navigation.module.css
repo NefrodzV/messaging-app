@@ -24,7 +24,7 @@
 }
 .navitem:not(:first-child) {
     text-transform: uppercase;
-    background-color: var(--secondary-color);
+    background-color: var(--accent-color);
 }
 
 .navitem:nth-child(1) {
@@ -45,7 +45,7 @@
 }
 
 .button {
-    background-color: var(--secondary-color);
+    background-color: var(--accent-color);
     justify-content: center;
     width: 100%;
     margin:0;
