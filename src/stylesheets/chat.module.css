@@ -45,6 +45,7 @@ input[name="message"] {
 }
 .header {
     padding-left: 16px;
+    padding-block: 8px;
     font-size: 2rem;
     display: flex;
     gap: 1rem;
