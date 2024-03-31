@@ -64,3 +64,9 @@ h1 {
 .secondary-button {
   box-shadow: none;
 }
+.l-top-margin {
+  margin-top: 1rem;
+}
+.m-top-margin {
+  margin-top: .8rem;
+}
