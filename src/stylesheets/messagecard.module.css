@@ -9,7 +9,11 @@
     background-color: var(--secondary-color);
 }
 
-.card::before {
+.left{
+
+}
+
+.left::before {
     z-index: -1;
     position: absolute;
     top: 10%;
@@ -21,7 +25,10 @@
     transform: rotate(45deg);
 }
 
-.card::after {
+.right {
+
+}
+.right::after {
     z-index: -1;
     position: absolute;
     top: 10%;

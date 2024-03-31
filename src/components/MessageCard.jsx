@@ -1,5 +1,5 @@
 import style from '../stylesheets/messagecard.module.css'
-export default function MessageCard({ message }) {
+export default function MessageCard({ message, mine }) {
     function formatDate(data) {
         const msgDate = new Date(data)
         const today = new Date()
@@ -15,7 +15,9 @@ export default function MessageCard({ message }) {
         return formattedDate + " " + formattedTime
     }
     return (
-        <li className={style.card}>
+        <li className={
+            `${style.card} ${mine ? (style.left) : (style.right)}`
+            }>
             {/*If you implement profile pics for group chats you need a 
             condition to show it */}
             {/* <img className={style.pic} src={icon}/>  */}
@@ -25,5 +27,4 @@ export default function MessageCard({ message }) {
             </div>
         </li>
     )
-
 }
