@@ -1,5 +1,23 @@
 import style from '../stylesheets/messagecard.module.css'
-export default function MessageCard({ message, mine }) {
+import { memo, useEffect, useRef } from 'react'
+const MessageCard = memo(function MessageCard({ message, mine }) {
+    const messageRef = useRef(null)
+    
+    useEffect(() => {
+        const id = setTimeout(() => {
+            const message = messageRef.current
+            if(mine) {
+                message.classList.add(style.left)
+            } else {
+                message.classList.add(style.right)
+            }
+        },50)
+
+        return () => {
+            clearTimeout(id)
+        }
+    },[])
+
     function formatDate(data) {
         const msgDate = new Date(data)
         const today = new Date()
@@ -14,10 +32,9 @@ export default function MessageCard({ message, mine }) {
         const formattedDate =  msgDate.toLocaleDateString('en-Us')
         return formattedDate + " " + formattedTime
     }
+    
     return (
-        <li className={
-            `${style.card} ${mine ? (style.left) : (style.right)}`
-            }>
+        <li ref={messageRef} className={style.card}>
             {/*If you implement profile pics for group chats you need a 
             condition to show it */}
             {/* <img className={style.pic} src={icon}/>  */}
@@ -27,4 +44,5 @@ export default function MessageCard({ message, mine }) {
             </div>
         </li>
     )
-}
+})
+export default MessageCard

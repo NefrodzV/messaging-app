@@ -7,10 +7,13 @@
     box-sizing: border-box;
     position: relative;
     background-color: var(--secondary-color);
+    transform: scale(0);
+    transition: transform 500ms ease;
 }
 
 .left{
-
+    transform: scale(1);
+    transform-origin: left;
 }
 
 .left::before {
@@ -26,7 +29,8 @@
 }
 
 .right {
-
+    transform: scale(1);
+    transform-origin: right;
 }
 .right::after {
     z-index: -1;
