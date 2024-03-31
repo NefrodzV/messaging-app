@@ -6,16 +6,24 @@
     flex: 1;
     position: relative;
     align-items: center;
+    border-bottom: 1px solid black;
 }
 
-/* .card:not(:last-child) {
-    border-bottom: 1px solid black;
-} */
+.card:nth-child(odd) {
+    border-right: 1px solid black;
+}
 
+.card:hover {
+    background-color: var(--accent-color);
+}
+
+.card:last-child, .card:nth-last-child(-1) {
+    border-bottom: none;
+}
 .profile {
     border-radius: 25%;
     height: 75px;
-    background-color: gray;
+    
 }
 
 .text {
@@ -38,4 +46,11 @@
     bottom: 0;
     position: absolute;
     opacity: 0;
+}
+
+@media(max-width: 768px) {
+    .card:nth-child(odd) {
+        border-right: none;
+    }
+    
 }
