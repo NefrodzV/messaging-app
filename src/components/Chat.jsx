@@ -89,7 +89,6 @@ export default function Chat() {
     }
 
     if(error) return <div>Whoops something went wrong</div>
-    
     return(
         <div className={chatStyle.chat}>
             <ChatHeader 
@@ -100,7 +99,10 @@ export default function Chat() {
                     <ul className={chatStyle.messagelist}>     
                     {
                         messages.map((message) => 
-                            <MessageCard key={message._id} message={message} />) 
+                            <MessageCard 
+                                key={message._id} 
+                                message={message} 
+                                mine={message.myself} />) 
                     }
                     </ul>
                     <form noValidate={true} onSubmit={sendMessageHandler}>
