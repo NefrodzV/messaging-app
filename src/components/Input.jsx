@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
-export default function Input({type, name, id, label, placeholder}) {
+export default function Input({type, name, id, label, placeholder, style}) {
     return(
         <>
             <label htmlFor={id}>{label}</label>
             <input 
-                className='primary-outline'
+                className={`primary-outline ${style}`} 
                 type={type} 
                 placeholder={placeholder} 
                 name={name} 
