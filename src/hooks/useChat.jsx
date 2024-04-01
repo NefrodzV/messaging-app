@@ -72,6 +72,7 @@ export default function useChat(id, user) {
             const data = await response.json()
 
             if(!response.ok) {
+                setLoading(false)
                 // If there inst an already made chat get the selected user with id
                 return
             }
