@@ -25,7 +25,6 @@ export default function useLogin() {
             // Handle request errors
             if(!request.ok) {
                 setErrors(() => response.errors)
-                console.log(response)
                 return
             }
 
