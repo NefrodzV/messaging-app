@@ -79,13 +79,9 @@ export default function useChat(id, user) {
         } catch(e) {
             setError('Some error happened' + e)
             throw new Error("Something went wrong checking chat existence: " + e)
-        } finally {
-            setLoading(false)
         }
-
     }
     async function createChat(message) {
-        console.log(user)
         const body = {
             userId:user._id,
             message: message
