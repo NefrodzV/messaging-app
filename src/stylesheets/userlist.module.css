@@ -1,4 +1,5 @@
-.wrapper {
+.container {
+    box-sizing: border-box;
     margin: 0;
     min-height: 0;
     padding: 0;
@@ -10,8 +11,17 @@
     grid-row: span 2;
 }
 
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* height: 100%; */
+    text-transform: uppercase;
+    color: red;
+}
+
 @media(max-width: 768px) {
-    .wrapper {
+    .container {
         grid-template-columns: none;
     }
 }

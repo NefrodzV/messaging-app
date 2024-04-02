@@ -6,7 +6,7 @@ import Loader from "./Loader";
 export default function UserList() {
 
     const { token } = useContext(UserContext)
-    const [users, setUsers] = useState(null)
+    const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
@@ -38,16 +38,26 @@ export default function UserList() {
 
     },[token])
     
+    function load() {
+        if(users.length === 0) {
+            return (
+                <div className={style.wrapper}>
+                    <h2>No users available. Try again later.</h2>
+                </div>
+            )
+        }
+
+        return users?.map(user => <UserCard key={user._id} user={user} />)
+    }
+
     return(
         <>  
             <h1 className="bg-secondary">Users</h1>
             <ul className={
-                loading ? null : style.wrapper
+                loading ? null : style.container
             }>
                 {
-                    loading ? 
-                    <Loader /> : 
-                    users?.map(user => <UserCard key={user._id} user={user} />)
+                    loading ? <Loader /> : load()
                 }
             </ul>
         </>
