@@ -4,14 +4,11 @@ import PasswordForm from './PasswordForm'
 import ImageForm from './ImageForm'
 import { UserContext } from '../contexts/UserContext'
 import style from '../stylesheets/profile.module.css'
+import useUtils from '../hooks/useUtils'
 export default function Profile() {
     const { user } = useContext(UserContext)
     const [show, setShow] = useState(null)
-
-    function imageHandler(image) {
-        const url = `data:${image.mimeType};base64,${image.data}`
-        return url
-    }
+    const { imageHandler }  = useUtils()
 
     function showHandler(id) {
         setShow(id)

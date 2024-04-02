@@ -2,14 +2,11 @@ import { Link } from "react-router-dom"
 import style from '../stylesheets/profilecard.module.css'
 import userIcon from "../assets/user.svg"
 import useUser from "../hooks/useUser"
+import useUtils from "../hooks/useUtils"
 export default function ProfileCard() {
 
     const { user, loading } = useUser()
-    
-    function imageHandler(image) {
-        const url = `data:${image.mimeType};base64,${image.data}`
-        return url
-    }
+    const { imageHandler }  = useUtils()
     
     return (
         <>

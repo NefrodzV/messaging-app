@@ -1,13 +1,9 @@
 
 import userIcon from '../assets/user.svg'
+import useUtils from '../hooks/useUtils'
 import style from '../stylesheets/chat.module.css'
-
 export default function ChatHeader({ username , image }) {
-
-    function imageHandler(image) {
-        const url = `data:${image.mimeType};base64,${image.data}`
-        return url
-    }
+    const { imageHandler }  = useUtils()
     
     return (
         <div className={`${style.header} bg-secondary`} >

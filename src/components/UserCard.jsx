@@ -2,9 +2,12 @@ import PropTypes from 'prop-types'
 import style from '../stylesheets/usercard.module.css'
 import { Link } from 'react-router-dom'
 import userIcon from '../assets/user.svg'
+import { Buffer } from 'buffer'
 export default function UserCard({ user }) {
+    
     function imageHandler(image) {
-        const url = `data:${image.mimeType};base64,${image.data}`
+        const buff = Buffer.from(image.binData.data)
+        const url = `data:${image.mimeType};base64,${buff.toString('base64')}`
         return url
     }
     return (

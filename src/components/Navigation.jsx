@@ -7,7 +7,7 @@ import hamburgerIcon from '../assets/hamburger.svg'
 import { Link } from 'react-router-dom'
 import useDimen from '../hooks/useDimen'
 import userIcon from '../assets/user.svg'
-
+import useUtils from '../hooks/useUtils'
 const Navigation = memo(function Navigation() {
 
     const [isOpen, setOpen] = useState(false)
@@ -15,6 +15,7 @@ const Navigation = memo(function Navigation() {
     const { deviceType } = useDimen() 
 
     const { setIsLoggedIn, user } = useContext(UserContext)
+    const { imageHandler }  = useUtils()
 
     // Making the state of mobile menu close when device width changes
     useEffect(() => {
@@ -26,11 +27,6 @@ const Navigation = memo(function Navigation() {
     function logoutHandler() {
         Cookie.remove("token")
         setIsLoggedIn(false)
-    }
-
-    function imageHandler(image) {
-        const url = `data:${image.mimeType};base64,${image.data}`
-        return url
     }
 
     function toggleHandler(e) {
