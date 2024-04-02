@@ -13,4 +13,12 @@
     padding-left: 16px;
 }
 
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-transform: uppercase;
+    color: red;
+}
 
