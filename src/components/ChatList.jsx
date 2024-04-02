@@ -6,14 +6,14 @@ import Loader from "./Loader";
 const ChatList =  memo(function ChatList() {
 
     const { token } = useContext(UserContext)
-    const [ chats, setChats ] = useState(null)
+    const [ chats, setChats ] = useState([])
     const [ loading , setLoading ] = useState(true)
     const [ error, setError] = useState(null)
 
     useEffect(() => {
         async function getChats() {
             try {
-                const response = await fetch('http://localhost:3000/api/chats',
+                const response = await fetch('https://messaging-api.adaptable.app/api/chats',
                     {
                         headers: {
                             'authorization': "Bearer "+ token

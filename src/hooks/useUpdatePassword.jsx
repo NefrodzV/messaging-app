@@ -10,13 +10,14 @@ export default function useUpdatePassword() {
         try {
             setStatus("Pending")
             const response = await fetch(
-                "http://localhost:3000/api/users/me/password",
+                "https://messaging-api.adaptable.app/api/users/me/password",
                 {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
                         "authorization": "Bearer " + token
                     },
+                    mode:'cors',
                     body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
                 }
             )

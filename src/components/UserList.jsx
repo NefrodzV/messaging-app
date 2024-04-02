@@ -13,7 +13,8 @@ export default function UserList() {
     useEffect(() => {
         async function getUsers() {
             try {
-                const response = await fetch('http://localhost:3000/api/users', 
+                const response = await fetch(
+                    'https://messaging-api.adaptable.app/api/users', 
                 {
                     headers:{
                         "authorization" : "Bearer " + token

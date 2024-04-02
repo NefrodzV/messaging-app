@@ -12,11 +12,12 @@ export default function useLogin() {
     async function login(data) {
         try {
             const request = await fetch(
-                "http://localhost:3000/api/session/login",
+                "https://messaging-api.adaptable.app/api/session/login",
                 {
-                    method: "post",
+                    method: "POST",
                     headers: { "Content-Type" : "application/json" },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(data),
+                    mode: 'cors'
                 }
             )
 

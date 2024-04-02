@@ -31,8 +31,6 @@ export default function Chat() {
         setMessages([ ...data.messages ])
         // If the user is not defined the set it
         if(!user) setUser({...data.user })
-        console.log('data is')
-        console.log(data)
     },[data])
 
     // useEffect(() => {
@@ -48,7 +46,7 @@ export default function Chat() {
                 message: message
             }
             const response = await fetch(
-                `http://localhost:3000/api/messages?chatId=${id}`,
+                `https://messaging-api.adaptable.app/api/messages?chatId=${id}`,
                 {
                     method: "POST",
                     headers:{

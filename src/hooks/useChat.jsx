@@ -32,7 +32,7 @@ export default function useChat(id, user) {
     async function getChat() {
         try {
             const response = await fetch(
-                'http://localhost:3000/api/chats/'+ id,{
+                'https://messaging-api.adaptable.app/api/chats/'+ id,{
                     headers: {
                         "authorization": "Bearer " + token,
                     }
@@ -62,7 +62,7 @@ export default function useChat(id, user) {
     async function checkChatExistence() {
         try {
             const response = await fetch(
-            `http://localhost:3000/api/chats?userId=${user._id}`,
+            `https://messaging-api.adaptable.app/api/chats?userId=${user._id}`,
             {
                 headers: {
                     "authorization": "Bearer " + token
@@ -87,7 +87,7 @@ export default function useChat(id, user) {
             userId:user._id,
             message: message
         }
-        const response = await fetch('http://localhost:3000/api/chats',{
+        const response = await fetch('https://messaging-api.adaptable.app/api/chats',{
             method: 'POST',
             headers:{
                 "authorization": "Bearer " + token,

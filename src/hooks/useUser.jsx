@@ -9,17 +9,18 @@ export default function useUser(){
     async function getUser() {
         try {
             const response = await fetch(
-                'http://localhost:3000/api/users/me',
+                'https://messaging-api.adaptable.app/api/users/me',
                 {
                     headers: {
                         'authorization': 'Bearer ' + token
-                    }
+                    },
+                    mode:'cors'
                 }
             )
     
             const data = await response.json()
             if(!response.ok) {
-                console.log(data)
+                
                 return console.error("error getting user", data.errors)
             }
             setUser(data.user)

@@ -8,7 +8,7 @@ export default function  useSignup() {
     async function signup(data) {
         try {
             const request = await fetch(
-            'http://localhost:3000/api/session/register',
+            'https://messaging-api.adaptable.app/api/session/register',
             {
                 method: 'POST',
                 headers: {

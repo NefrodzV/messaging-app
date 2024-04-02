@@ -29,7 +29,7 @@ function App() {
   async function getUser() {
     try {
         const response = await fetch(
-            'http://localhost:3000/api/users/me',
+            'https://messaging-api.adaptable.app/api/users/me',
             {
                 headers: {
                     'authorization': 'Bearer ' + token
@@ -57,9 +57,7 @@ function App() {
         setToken,
         setIsLoggedIn, 
         }} >
-          <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
-          </QueryClientProvider>
+          <RouterProvider router={router} />
       </UserContext.Provider>
     </>
   )

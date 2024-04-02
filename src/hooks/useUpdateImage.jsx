@@ -14,13 +14,14 @@ export default function useUpdateImage() {
             const formData = new FormData()
             formData.append("image", image)
             const response = await fetch(
-                "http://localhost:3000/api/users/me/image",
+                "https://messaging-api.adaptable.app/api/users/me/image",
                 {
                     method: "PUT",
                     headers: {
                         "authorization": "Bearer " + token,
                     },
-                    body: formData
+                    body: formData,
+                    mode:'cors'
                     
                 }
             )
