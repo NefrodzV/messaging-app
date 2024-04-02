@@ -5,6 +5,7 @@ import ImageForm from './ImageForm'
 import { UserContext } from '../contexts/UserContext'
 import style from '../stylesheets/profile.module.css'
 import useUtils from '../hooks/useUtils'
+import Loader from '../components/Loader'
 export default function Profile() {
     const { user } = useContext(UserContext)
     const [show, setShow] = useState(null)
@@ -18,11 +19,11 @@ export default function Profile() {
         setShow(null)
     }
     return(
-        <>
+        <div className={style.container} >
             {
                 // If for some reason user is null show loading screen
                 user ? 
-                <div className={style.container} >
+                <>
                     <h1 className='bg-secondary'>My profile</h1>
                     {/* Remove this later */}
                     <div className={style.wrapper} >
@@ -40,9 +41,9 @@ export default function Profile() {
                         <PasswordForm show={show} close={closeHander}/>
                         <ImageForm show={show} close={closeHander} />
                     </div>
-                </div>
-                : <div>Loading...</div>
+                </>
+                : <Loader />
             }
-        </>
+        </div>
     )
 }
