@@ -7,6 +7,8 @@
     position: relative;
     align-items: center;
     border-bottom: 1px solid black;
+    width: auto;
+    aspect-ratio: 1 / .25;
 }
 
 .card:nth-child(odd) {
@@ -19,6 +21,10 @@
 
 .card:last-child, .card:nth-last-child(-1) {
     border-bottom: none;
+}
+
+.card:only-child {
+    border-bottom: 1px solid black;
 }
 .profile {
     border-radius: 25%;
