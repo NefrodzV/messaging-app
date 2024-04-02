@@ -1,5 +1,5 @@
 import ChatCard from "./ChatCard";
-import chatListStyle from '../stylesheets/chatlist.module.css'
+import style from '../stylesheets/chatlist.module.css'
 import { useContext, useEffect, useState, memo } from "react";
 import { UserContext } from '../contexts/UserContext'
 import Loader from "./Loader";
@@ -19,7 +19,7 @@ const ChatList =  memo(function ChatList() {
                             'authorization': "Bearer "+ token
                         }
                     }
-                ) 
+                )
                 const json = await response.json()
                 if(!response.ok) {
                     setError(json.errors)
@@ -36,14 +36,23 @@ const ChatList =  memo(function ChatList() {
         getChats()
     },[token])
 
+    function loadData() {
+        if(chats.length === 0) {
+            return (
+            <div className={style.wrapper}>
+                <h2>You have no chats started</h2>
+            </div>)
+        }
+
+        return chats?.map(chat => <ChatCard key={chat._id} chat={chat} />)
+    }
+
     return (
         <>
             <h1 className="bg-secondary">Chats</h1>
-            <ul className={chatListStyle.list}>
+            <ul className={style.list}>
                 {
-                    loading ? 
-                    <Loader /> :
-                    chats?.map(chat => <ChatCard key={chat._id} chat={chat} />)
+                    loading ? <Loader /> : loadData()
                 }
             </ul>
         </>
