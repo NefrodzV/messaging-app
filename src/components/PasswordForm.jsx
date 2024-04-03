@@ -1,21 +1,32 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Input from '../components/Input'
 import useUpdatePassword from '../hooks/useUpdatePassword'
 import Error from '../components/Error'
 import style from '../stylesheets/dialog.module.css'
+import Notification from './Notification'
 export default function PasswordForm ({show, close}) {
 
-    const { updatePassword, status, errors } = useUpdatePassword()
-
+    const formRef = useRef()
+    const { updatePassword, status, errors, reset } = useUpdatePassword()
     useEffect(() => {
+        // let id;
         if(status === "success") {
-            console.log("Update password done")
+            reset()
+            const form = formRef.current
+            form.reset()
+            // console.log("Update password done")
+            // setNotify(true)
         } else if(status === "error") {
             console.log("Some error happened")
         } else {
             console.log("Status is pending")
         }
+
+        return () => {
+            // clearTimeout(id)
+        }
     }, [status])
+
 
     function submitHandler(e) {
         e.preventDefault()
@@ -23,7 +34,7 @@ export default function PasswordForm ({show, close}) {
     }
     return (
         <dialog open={show === "password"}>
-            <form method="POST" onSubmit={submitHandler} >
+            <form  ref={formRef}method="POST" onSubmit={submitHandler} >
                 <div className={style.head}>
                     <h3>Change password</h3>
                     {/* <button type ="button" onClick={close} >close</button> */}
@@ -63,7 +74,7 @@ export default function PasswordForm ({show, close}) {
                     }
                 }>cancel</button>
             </div>
-           
+           <Notification text={'Password updated!'} notify={status === 'success'} />
         </form>
 
         </dialog>
