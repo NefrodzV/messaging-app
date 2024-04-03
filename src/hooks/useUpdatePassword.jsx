@@ -30,6 +30,7 @@ export default function useUpdatePassword() {
                 setErrors(data.errors)
                 return
             }
+            setErrors({})
             setStatus("success")
         } catch(e) {
             console.log(e)
