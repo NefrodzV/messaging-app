@@ -24,7 +24,7 @@ export default function LoginPage() {
             // TODO IMPLEMENT LOADING ELEMENT
             loading ? <h1>Loading...</h1> :
                 <div className={loginStyles.page}>
-                    <div className='brand'>Logo</div>
+                    <div className='logo-primary'>MSGR</div>
                     <LoginForm />
                 </div>
         }
