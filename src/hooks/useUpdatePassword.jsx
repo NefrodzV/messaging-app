@@ -25,7 +25,6 @@ export default function useUpdatePassword() {
             const data = await response.json()
 
             if(!response.ok) {
-        
                 setStatus("error")
                 setErrors(data.errors)
                 return
@@ -39,5 +38,10 @@ export default function useUpdatePassword() {
         
     }
 
-    return { status, errors, updatePassword }
+    function reset() {
+        setStatus(null)
+    }
+    
+
+    return { status, errors, updatePassword, reset }
 }
