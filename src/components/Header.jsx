@@ -8,7 +8,7 @@ export default function Header() {
     return(
         <header className={headerStyles.wrapper}>
             { deviceType === 'mobile' ? <Navigation /> : null }
-            <span>Logo</span>
+            <span className='logo-secondary'>MSGR</span>
         </header>
     )
 }
