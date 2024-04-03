@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef } from "react";
 const Notification = memo(function Notification({ text, notify }) {
 
     const notificationRef = useRef()
@@ -11,9 +11,9 @@ const Notification = memo(function Notification({ text, notify }) {
             notification.removeAttribute('show')
         },2000)
 
-        return () => {
-            clearTimeout(id)
-        }
+        // return () => {
+        //     clearTimeout(id)
+        // }
     }, [notify])
     return (
         <div ref={notificationRef} className="notification m-top-margin" >
