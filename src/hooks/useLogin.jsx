@@ -9,8 +9,10 @@ export default function useLogin() {
 
     const [ errors, setErrors ] = useState({})
 
+    const [ status, setStatus ] = useState(null)
     async function login(data) {
         try {
+            setStatus('pending')
             const request = await fetch(
                 "https://messaging-api.adaptable.app/api/session/login",
                 {
@@ -26,16 +28,19 @@ export default function useLogin() {
             // Handle request errors
             if(!request.ok) {
                 setErrors(() => response.errors)
+                setStatus('error')
                 return
             }
 
             Cookies.set('token', response.token , { expires: 1 })
             setToken(response.token)
             setErrors({})
+            setStatus('success')
             
         } catch(e) {
             console.log("Something happened when login: " + e)
+            setStatus('error')
         }
     }
-    return [login, errors]
+    return { login, errors }
 }

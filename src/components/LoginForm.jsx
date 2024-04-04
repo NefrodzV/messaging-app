@@ -6,7 +6,7 @@ import useLogin from '../hooks/useLogin'
 
 
 export default function LoginForm() {
-    const [login, errors] = useLogin()
+    const {login, errors, status } = useLogin()
     
     function loginHandler(e) {
         e.preventDefault()
@@ -29,7 +29,7 @@ export default function LoginForm() {
                 <Error name={'auth'} errors={errors} />
             </div>
                 
-            <button> log in</button>
+            <button disabled={status === 'pending'}> log in</button>
             <Link to='/signup'>No account? Sign up</Link>
         </form>
     )
