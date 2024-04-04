@@ -46,13 +46,16 @@ function App() {
     } catch(e) {
         throw new Error("Error getting user from api: " + e)
     }
-}
+  }
+
+  const updateUser = () => getUser()
   
   return (
     <>
       <UserContext.Provider value={{
         token, 
         user,
+        updateUser,
         isLoggedIn,
         setToken,
         setIsLoggedIn, 

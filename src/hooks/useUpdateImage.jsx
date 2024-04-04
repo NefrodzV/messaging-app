@@ -3,7 +3,7 @@ import { UserContext } from "../contexts/UserContext";
 
 export default function useUpdateImage() {
 
-    const { token } = useContext(UserContext)
+    const { token, updateUser } = useContext(UserContext)
     const [status, setStatus]  = useState()
     const [errors, setErrors] = useState(null)
 
@@ -34,10 +34,15 @@ export default function useUpdateImage() {
 
             setStatus("success")
             setErrors({})
+            updateUser()
         } catch(e) {
             console.log(e)
             setStatus("error")
         }
     }
-    return { status, errors, upload }
+
+    function reset() {
+        setStatus(null)
+    }
+    return { status, errors, upload, reset }
 }
