@@ -35,5 +35,9 @@ export default function  useSignup() {
             console.log("Something went with signup" + e)
         } 
     }
-    return { signup, status, errors }
+
+    function reset() {
+        setStatus(null)
+    }
+    return { signup, reset, status, errors }
 }

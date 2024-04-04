@@ -8,7 +8,11 @@ import { useEffect } from "react"
 
 export default function SignupForm() {
     
-    const { signup, status, errors } = useSignup()
+    const { signup, status, errors, reset } = useSignup()
+
+    useEffect(() => {
+        if(status === 'success') reset()
+    },[status])
     
     function signupHandler(e) {
         e.preventDefault()
