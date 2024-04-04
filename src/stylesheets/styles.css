@@ -90,11 +90,10 @@ h1 {
 }
 
 .notification {
-  box-shadow: 0 0 3px rgb(0,0,0,.3);
+  box-shadow: 0 0 4px rgb(0,0,0,.3);
   border-radius: 5px;
-  border: 1px solid black;
   justify-content: center;
-  width: 100%;
+  width: 90%;
   display: flex;
   opacity: 0;
   transform: scale(0);
