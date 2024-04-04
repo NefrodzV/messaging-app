@@ -30,7 +30,10 @@ export default function LoginForm() {
             </div>
                 
             <button disabled={status === 'pending'}> log in</button>
-            <Link to='/signup'>No account? Sign up</Link>
+            <Link 
+                to={status === 'pending' ? 'javascript:void(0)' : '/signup'}>
+                    No account? Sign up
+            </Link>
         </form>
     )
 }

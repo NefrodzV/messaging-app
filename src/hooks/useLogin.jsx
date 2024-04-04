@@ -6,10 +6,9 @@ import Cookies from "js-cookie"
 export default function useLogin() {
 
     const { setToken } = useContext(UserContext)
-
     const [ errors, setErrors ] = useState({})
-
     const [ status, setStatus ] = useState(null)
+
     async function login(data) {
         try {
             setStatus('pending')
@@ -42,5 +41,5 @@ export default function useLogin() {
             setStatus('error')
         }
     }
-    return { login, errors }
+    return { login, errors, status }
 }

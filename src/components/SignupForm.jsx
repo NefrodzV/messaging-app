@@ -57,7 +57,10 @@ export default function SignupForm() {
                 <Error name={'confirmPassword'} errors={errors} />
             </div>
             <button> sign up </button>
-            <Link to="/login">Already got an account?</Link>
+            <Link 
+                to={status === 'pending' ? 'javascript:void(0)' :  "/login"}
+                >Already got an account?
+            </Link>
             <Notification 
                 text={'Sign up successful!'}
                 notify={status === 'success'} />
