@@ -8,7 +8,7 @@ export default function useUpdatePassword() {
 
     async function updatePassword(e) {
         try {
-            setStatus("Pending")
+            setStatus("pending")
             const response = await fetch(
                 "https://messaging-api.adaptable.app/api/users/me/password",
                 {
