@@ -3,10 +3,11 @@ import { useState } from "react";
 export default function  useSignup() {
 
     const [errors, setErrors] = useState({})
-    const [success, setSuccess] = useState(false)
+    const [status, setStatus] = useState(null)
 
     async function signup(data) {
         try {
+            setStatus('pending')
             const request = await fetch(
             'https://messaging-api.adaptable.app/api/session/register',
             {
@@ -23,14 +24,16 @@ export default function  useSignup() {
             
             if(!request.ok) {
                 setErrors(response.errors)
+                setStatus('error')
                 return
             }
-            setSuccess(true)
+            setStatus('success')
             setErrors({})
 
         } catch(e) {
+            setStatus('error')
             console.log("Something went with signup" + e)
         } 
     }
-    return { signup, setSuccess, success, errors }
+    return { signup, status, errors }
 }

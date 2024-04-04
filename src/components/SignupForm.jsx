@@ -3,22 +3,13 @@ import Input from "./Input"
 import { Link } from "react-router-dom"
 import signUpStyles from '../stylesheets/signup-form.module.css'
 import useSignup from "../hooks/useSignup"
-import Toast from "./Toast"
+import Notification from '../components/Notification'
 import { useEffect } from "react"
 
 export default function SignupForm() {
     
-    const { signup, setSuccess, success, errors } = useSignup()
+    const { signup, status, errors } = useSignup()
     
-    useEffect(() => {
-        // If success not true not need for a timer just re
-        if(!success) return
-        setTimeout(() => {
-            //Reset success after two seconds
-            setSuccess(false) 
-        }, 2000);
-    },[success])
-
     function signupHandler(e) {
         e.preventDefault()
         const data = Object.fromEntries(
@@ -63,7 +54,9 @@ export default function SignupForm() {
             </div>
             <button> sign up </button>
             <Link to="/login">Already got an account?</Link>
-            <Toast message={"successful sign up"}  isActive={success}/>
+            <Notification 
+                text={'Sign up successful!'}
+                notify={status === 'success'} />
         </form>
     )
 }
