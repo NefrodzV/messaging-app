@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Input from '../components/Input'
 import useUpdatePassword from '../hooks/useUpdatePassword'
 import Error from '../components/Error'
 import style from '../stylesheets/dialog.module.css'
 import Notification from './Notification'
-export default function PasswordForm ({show, close}) {
+import Loader from '../components/Loader'
+export default function PasswordForm ({ show, close }) {
 
     const formRef = useRef()
     const { updatePassword, status, errors, reset } = useUpdatePassword()
@@ -14,20 +15,16 @@ export default function PasswordForm ({show, close}) {
             reset()
             const form = formRef.current
             form.reset()
-            // console.log("Update password done")
-            // setNotify(true)
-        } else if(status === "error") {
-            console.log("Some error happened")
-        } else {
-            console.log("Status is pending")
-        }
-
-        return () => {
-            // clearTimeout(id)
         }
     }, [status])
 
 
+    useEffect(() => {
+        if(close !== 'password') {
+            const form = formRef.current
+            form.reset()
+        }
+    },[close])
     function submitHandler(e) {
         e.preventDefault()
         updatePassword(e)
@@ -67,14 +64,20 @@ export default function PasswordForm ({show, close}) {
                 </div>
             
             <div className={style.controls}>
-                <button>Update</button> 
-                <button type='button' onClick={close} style={
+                <button disabled={status === 'pending'}>Update</button> 
+                <button 
+                disabled={status === 'pending'} 
+                type='button' onClick={close} style={
                     {
                         marginLeft: 8
                     }
                 }>cancel</button>
             </div>
-           <Notification text={'Password updated!'} notify={status === 'success'} />
+            {status === 'pending' ? 
+            <Loader  width={10} height={10} marginTop={12}/> : null}
+           <Notification 
+                text={'Password updated!'} 
+                notify={status === 'success'} />
         </form>
 
         </dialog>
