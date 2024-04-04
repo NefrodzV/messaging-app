@@ -10,10 +10,6 @@ const Notification = memo(function Notification({ text, notify }) {
         const id = setTimeout(() => {
             notification.removeAttribute('show')
         },2000)
-
-        // return () => {
-        //     clearTimeout(id)
-        // }
     }, [notify])
     return (
         <div ref={notificationRef} className="notification m-top-margin" >
