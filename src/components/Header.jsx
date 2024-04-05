@@ -1,13 +1,10 @@
-import useDimen from '../hooks/useDimen'
 import headerStyles from '../stylesheets/header.module.css'
-import Navigation from './Navigation'
+import MobileNavigation from './MobileNavigation'
 export default function Header() {
-
-    const { deviceType } = useDimen()
 
     return(
         <header className={headerStyles.wrapper}>
-            { deviceType === 'mobile' ? <Navigation /> : null }
+            <MobileNavigation />
             <span className='logo-secondary'>MSGR</span>
         </header>
     )
