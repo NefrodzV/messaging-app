@@ -5,10 +5,11 @@ import Header from "../components/Header"
 import homeStyle from '../stylesheets/homepage.module.css'
 import Navigation from "../components/Navigation"
 import useDimen from "../hooks/useDimen"
+import Loader from "../components/Loader"
 export default function HomePage() {
 
     const [ loading, setLoading ] = useState(true)
-    const { isLoggedIn } = useContext(UserContext)
+    const { user, isLoggedIn } = useContext(UserContext)
     
     const navigate = useNavigate()
 
@@ -19,17 +20,23 @@ export default function HomePage() {
             navigate('/login')
             return
         }
-        // setLoading(false)
     },[isLoggedIn])
+
+    useEffect(() => {
+        if(user) setLoading(false)
+    },[user])
 
     return (
         <>
                 <div className={homeStyle.wrapper}>
                     <Header />
-                    <main>
-                        { deviceType === 'desktop' ? <Navigation /> : false }
-                        <Outlet />
-                    </main>
+                    {
+                        loading ? <Loader /> : 
+                        <main>
+                            { deviceType === 'desktop' ? <Navigation /> : false }
+                            <Outlet />
+                        </main>
+                    }
                 </div> 
             
         </>

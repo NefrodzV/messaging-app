@@ -3,31 +3,33 @@ import LoginForm from '../components/LoginForm'
 import { useContext, useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../contexts/UserContext'
+import Loader from '../components/Loader'
 
 export default function LoginPage() {
     const navigate = useNavigate()
-    const { isLoggedIn } = useContext(UserContext)
+    const { isLoggedIn, user } = useContext(UserContext)
     const [loading, setLoading] = useState(true)
     
     useEffect(() => {
-        if(isLoggedIn)  {
+        if(isLoggedIn && user)  {
             navigate('/chats')
             return
+        } else if(isLoggedIn) {
+            setLoading(true)
         } else {
             setLoading(false)
         }
-    },[isLoggedIn])
+    },[isLoggedIn, user])
 
     return (
         <>
-        {
-            // TODO IMPLEMENT LOADING ELEMENT
-            loading ? <h1>Loading...</h1> :
-                <div className={loginStyles.page}>
+            <div className={loginStyles.page}>
                     <div className='logo-primary'>MSGR</div>
-                    <LoginForm />
-                </div>
-        }
+                    { loading ? 
+                        <Loader containerHeight={'auto'}  /> : 
+                        <LoginForm />
+                    }
+            </div>
         </> 
     )
 }
