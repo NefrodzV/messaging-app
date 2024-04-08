@@ -5,7 +5,6 @@ export default function useSessionStorage() {
     const { pathname, state } = useLocation()
     const sessionStorage = window.sessionStorage
     sessionStorage
-    console.log(sessionStorage)
 
     useEffect(() => {
         return () => {
