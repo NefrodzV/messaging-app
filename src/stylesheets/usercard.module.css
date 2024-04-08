@@ -19,9 +19,9 @@
     background-color: var(--accent-color);
 }
 
-.card:last-child, .card:nth-last-child(-1) {
+/* .card:last-child, .card:nth-last-child(-1) {
     border-bottom: none;
-}
+} */
 
 .card:only-child {
     border-bottom: 1px solid black;
