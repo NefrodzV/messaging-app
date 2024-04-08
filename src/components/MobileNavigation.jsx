@@ -7,15 +7,18 @@ import logoutIcon from '../assets/logout.svg'
 import useUtils from "../hooks/useUtils"
 import Cookie from 'js-cookie'
 import style from '../stylesheets/navigation.module.css'
+import useSessionStorage from "../hooks/useSessionStorage"
 
 export default function MobileNavigation() {
     const [isOpen, setOpen] = useState(false)
     const { setIsLoggedIn, user } = useContext(UserContext)
     const { imageHandler }  = useUtils()
+    const { removeSavedLocation } = useSessionStorage()
 
     function logoutHandler() {
         Cookie.remove("token")
         setIsLoggedIn(false)
+        removeSavedLocation()
     }
     function toggleHandler() {
         if(isOpen) {

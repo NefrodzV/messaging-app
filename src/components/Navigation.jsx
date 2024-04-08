@@ -6,14 +6,17 @@ import logoutIcon from '../assets/logout.svg'
 import { Link } from 'react-router-dom'
 import userIcon from '../assets/user.svg'
 import useUtils from '../hooks/useUtils'
+import useSessionStorage from '../hooks/useSessionStorage'
 const Navigation = memo(function Navigation() {
 
     const { setIsLoggedIn, user } = useContext(UserContext)
     const { imageHandler }  = useUtils()
+    const { removeSavedLocation } = useSessionStorage()
 
     
     function logoutHandler() {
         Cookie.remove("token")
+        removeSavedLocation()
         setIsLoggedIn(false)
     }
 
