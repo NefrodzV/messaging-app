@@ -9,6 +9,7 @@ export default function useSessionStorage() {
 
     useEffect(() => {
         return () => {
+            if(pathname === "/") return
             const savedLocation = {
                 pathname: pathname,
                 state: state
@@ -20,7 +21,7 @@ export default function useSessionStorage() {
 
     return {
         savedLocation: JSON.parse(sessionStorage.getItem('savedLocation')),
-        removedSavedLocation: () => {
+        removeSavedLocation: () => {
             sessionStorage.removeItem('savedLocation')
         }
     }
