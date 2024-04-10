@@ -17,7 +17,8 @@ export default function useUpdatePassword() {
                         "Content-Type": "application/json",
                         "authorization": "Bearer " + token
                     },
-                    mode:'cors',
+                    mode: 'cors',
+                    credentials: 'same-origin',
                     body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
                 }
             )

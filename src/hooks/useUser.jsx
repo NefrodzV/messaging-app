@@ -14,8 +14,8 @@ export default function useUser(){
                     headers: {
                         'authorization': 'Bearer ' + token
                     },
-                    mode:'cors'
-                }
+                    mode: 'cors',
+                    credentials: 'same-origin'
             )
     
             const data = await response.json()

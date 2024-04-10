@@ -35,7 +35,9 @@ export default function useChat(id, user) {
                 'https://messaging-api.adaptable.app/api/chats/'+ id,{
                     headers: {
                         "authorization": "Bearer " + token,
-                    }
+                    },
+                    mode: 'cors',
+                    credentials: 'same-origin'
                 }
             )
     
@@ -66,7 +68,9 @@ export default function useChat(id, user) {
             {
                 headers: {
                     "authorization": "Bearer " + token
-                }
+                },
+                mode: 'cors',
+                credentials: 'same-origin'
             })
 
             const data = await response.json()
@@ -93,6 +97,8 @@ export default function useChat(id, user) {
                 "authorization": "Bearer " + token,
                 "content-type": "application/json"
             },
+            mode: 'cors',
+            credentials: 'same-origin',
             body: JSON.stringify(body)
         })
 

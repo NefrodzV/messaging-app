@@ -28,15 +28,16 @@ function App() {
 
   async function getUser() {
     try {
-        const response = await fetch(
-            'https://messaging-api.adaptable.app/api/users/me',
-            {
-                headers: {
-                    'authorization': 'Bearer ' + token
-                }
-            }
-        )
-
+      const response = await fetch(
+        'https://messaging-api.adaptable.app/api/users/me',
+        {
+          headers: {
+            'authorization': 'Bearer ' + token
+          },
+          mode: 'cors',
+          credentials: 'same-origin'
+        }
+      )
         const data = await response.json()
         if(!response.ok) {
             console.log(data)

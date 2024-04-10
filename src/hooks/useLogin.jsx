@@ -18,7 +18,8 @@ export default function useLogin() {
                     method: "POST",
                     headers: { "Content-Type" : "application/json" },
                     body: JSON.stringify(data),
-                    mode: 'cors'
+                    mode: 'cors',
+                    credentials: 'same-origin'
                 }
             )
 
