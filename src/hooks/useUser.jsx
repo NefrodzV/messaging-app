@@ -16,6 +16,7 @@ export default function useUser(){
                     },
                     mode: 'cors',
                     credentials: 'same-origin'
+                }
             )
     
             const data = await response.json()
