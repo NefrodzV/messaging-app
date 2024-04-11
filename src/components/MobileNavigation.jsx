@@ -1,7 +1,6 @@
 import { useState, useContext } from "react"
 import { Link } from "react-router-dom"
 import hamburgerIcon from '../assets/hamburger.svg'
-import userIcon from '../assets/user.svg'
 import { UserContext } from "../contexts/UserContext"
 import logoutIcon from '../assets/logout.svg'
 import useUtils from "../hooks/useUtils"
@@ -47,7 +46,7 @@ export default function MobileNavigation() {
                         </Link>
                         <img 
                         className={style.img}
-                        src={user ? imageHandler(user.image) : userIcon} 
+                        src={imageHandler(user.image)} 
                         alt="My profile image"/>
                         <h2>{user?.username}</h2>
                     </li>        

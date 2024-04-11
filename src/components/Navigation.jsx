@@ -4,7 +4,6 @@ import { useContext, memo} from 'react'
 import style from '../stylesheets/navigation.module.css'
 import logoutIcon from '../assets/logout.svg'
 import { Link } from 'react-router-dom'
-import userIcon from '../assets/user.svg'
 import useUtils from '../hooks/useUtils'
 import useSessionStorage from '../hooks/useSessionStorage'
 const Navigation = memo(function Navigation() {
@@ -34,7 +33,7 @@ const Navigation = memo(function Navigation() {
                     </Link>
                     <img 
                     className={style.img}
-                    src={user ? imageHandler(user.image) : userIcon} 
+                    src={imageHandler(user.image)} 
                     alt="My profile image"/>
                     <h2>{user?.username}</h2>
                 </li>        

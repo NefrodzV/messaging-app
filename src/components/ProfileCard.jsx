@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
 import style from '../stylesheets/profilecard.module.css'
-import userIcon from "../assets/user.svg"
 import useUser from "../hooks/useUser"
 import useUtils from "../hooks/useUtils"
 export default function ProfileCard() {
@@ -16,7 +15,7 @@ export default function ProfileCard() {
                 <Link className={style.link} to="/profile">Go to my profile</Link>
                 <img 
                 className={style.img}
-                src={user.image ? imageHandler(user.image) : userIcon} 
+                src={imageHandler(user.image)} 
                 alt="My profile image"/>
                 <h2>{user?.username}</h2>
                 </div>
