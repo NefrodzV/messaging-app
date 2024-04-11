@@ -2,13 +2,11 @@ import { Link } from 'react-router-dom'
 import userIcon from '../assets/user.svg'
 import style from '../stylesheets/chatcard.module.css'
 import { memo } from 'react'
+import useUtils from '../hooks/useUtils'
 const ChatCard = memo( function ChatCard({ chat }) {
     // The user that's chatting with the logged in user
     const user = chat.users[0]
-    function imageHandler(image) {
-        const url = `data:${image.mimeType};base64,${image.data}`
-        return url
-    }
+    const { imageHandler } = useUtils()
 
     function formatDate(data) {
         const msgDate = new Date(data)
@@ -31,8 +29,7 @@ const ChatCard = memo( function ChatCard({ chat }) {
             </Link>
             <img 
                 className={style.image}
-                src={user.profile.image ? 
-                imageHandler(user.profile.image) : userIcon} 
+                src={imageHandler(user?.profile?.image)} 
                 alt='User profile image I am chatting with'/>
             <div className={style.content}>
                 <p className={style.user}>
