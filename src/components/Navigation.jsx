@@ -33,7 +33,7 @@ const Navigation = memo(function Navigation() {
                     </Link>
                     <img 
                     className={style.img}
-                    src={imageHandler(user.image)} 
+                    src={imageHandler(user?.image)} 
                     alt="My profile image"/>
                     <h2>{user?.username}</h2>
                 </li>        

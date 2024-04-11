@@ -28,7 +28,7 @@ export default function Profile() {
                     {/* Remove this later */}
                     <div className={style.wrapper} >
                         <img className={style.img}
-                            src={user ? imageHandler(user.image) : userIcon} 
+                            src={imageHandler(user?.image)} 
                             alt="My profile image" />
                         <h2>{user?.username}</h2>
                         <button

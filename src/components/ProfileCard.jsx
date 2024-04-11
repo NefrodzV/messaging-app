@@ -15,7 +15,7 @@ export default function ProfileCard() {
                 <Link className={style.link} to="/profile">Go to my profile</Link>
                 <img 
                 className={style.img}
-                src={imageHandler(user.image)} 
+                src={imageHandler(user?.image)} 
                 alt="My profile image"/>
                 <h2>{user?.username}</h2>
                 </div>

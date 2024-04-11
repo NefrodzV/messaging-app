@@ -9,7 +9,7 @@ export default function ChatHeader({ username , image }) {
         <div className={`${style.header} bg-secondary`} >
             <img 
                 src={
-                    image ? imageHandler(image) : userIcon
+                    imageHandler(image)
                 }
                 alt="Image of user I am chatting with" />
             {username ? <h2>{username}</h2> :
