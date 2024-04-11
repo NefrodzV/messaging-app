@@ -4,8 +4,7 @@ import { useLocation } from "react-router-dom";
 export default function useSessionStorage() {
     const { pathname, state } = useLocation()
     const sessionStorage = window.sessionStorage
-    sessionStorage
-
+    
     useEffect(() => {
         return () => {
             if(pathname === "/") return
