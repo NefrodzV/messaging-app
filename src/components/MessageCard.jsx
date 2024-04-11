@@ -5,11 +5,11 @@ const MessageCard = memo(function MessageCard({ message, mine }) {
     
     useEffect(() => {
         const id = setTimeout(() => {
-            const message = messageRef.current
+            const messageEl = messageRef.current
             if(mine) {
-                message.classList.add(style.left)
+                messageEl.classList.add(style.left)
             } else {
-                message.classList.add(style.right)
+                messageEl.classList.add(style.right)
             }
         },50)
 
