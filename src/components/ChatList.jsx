@@ -17,7 +17,9 @@ const ChatList =  memo(function ChatList() {
                     {
                         headers: {
                             'authorization': "Bearer "+ token
-                        }
+                        },
+                        mode: 'cors',
+                        credentials: 'same-origin'
                     }
                 )
                 const json = await response.json()

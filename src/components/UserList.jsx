@@ -18,7 +18,9 @@ export default function UserList() {
                 {
                     headers:{
                         "authorization" : "Bearer " + token
-                    }
+                    },
+                    mode: 'cors',
+                    credentials: 'same-origin'
                 })
 
                 const json = await response.json()
