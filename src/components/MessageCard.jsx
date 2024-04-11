@@ -35,12 +35,9 @@ const MessageCard = memo(function MessageCard({ message, mine }) {
     
     return (
         <li ref={messageRef} className={style.card}>
-            {/*If you implement profile pics for group chats you need a 
-            condition to show it */}
-            {/* <img className={style.pic} src={icon}/>  */}
             <div>
-                <h3>{formatDate(message.date)}</h3>
-                <p>{message.text}</p>
+                <h3>{formatDate(message?.date)}</h3>
+                <p>{message?.text}</p>
             </div>
         </li>
     )
