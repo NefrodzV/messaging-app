@@ -17,10 +17,11 @@ export default function useSessionStorage() {
         }
     },[])
 
+    function removeSavedLocation() {
+        sessionStorage.removeItem('savedLocation')
+    }
     return {
         savedLocation: JSON.parse(sessionStorage.getItem('savedLocation')),
-        removeSavedLocation: () => {
-            sessionStorage.removeItem('savedLocation')
-        }
+        removeSavedLocation
     }
 }
