@@ -8,7 +8,7 @@
     scrollbar-width: none;
     display: grid;
     grid-template-columns: repeat(2, 50%);
-    grid-template-rows: min-content;
+    grid-auto-rows: min-content;
     /* grid-row: span 2; */
 }
 
