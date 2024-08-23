@@ -1,16 +1,22 @@
 import PropTypes from 'prop-types'
-export default function Input({type, name, id, label, placeholder, style}) {
+import Error from './Error'
+import { useEffect, useState } from 'react'
+export default function Input({ type, name, id, label, placeholder, style, error }) {
     return(
-        <>
+        <div className='input-container'>
             <label htmlFor={id}>{label}</label>
             <input 
-                className={`primary-outline ${style}`} 
+                
                 type={type} 
                 placeholder={placeholder} 
                 name={name} 
                 id={id} 
             />
-        </>
+            <Error 
+                message={error} 
+                />
+
+        </div>
     )
 }
 
