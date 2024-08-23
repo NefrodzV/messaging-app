@@ -6,102 +6,36 @@
   --text-color:#070C09;
 }
 
-html, body, #root {
-  height: 100%;
-}
-
-/* A little reset */
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-}
-
 body {
-  color: var(--text-color);
   margin: 0;
 }
 
-input {
-  box-sizing: border-box;
-  font-size: clamp(1rem, .8vw + 1rem, 1.4rem);
-  outline-color: var(--primary-color);
-}
-
-button {
-  font-size: clamp(1rem, .9vw + 1rem, 1.5rem);
-  padding: min(8px, 1vw) 16px  ;
-  text-transform: capitalize;
-  font-weight: bold;
-  width: max-content;
-  align-self: center;
-  cursor: pointer;
-  border-radius: 5px;
-  border: none;
-  background-color: var(--accent-color);
-}
-
-button {
-  box-shadow: 2px 3px rgb(0,0,0, 0.5);
-}
-
-button:active {
-  box-shadow: 1px 1.5px rgb(0,0,0, 0.5);
-  transform: translateY(2px);
-}
-
-hr {
-  outline-color: var(--secondary-color);
-  width: 100%;
-}
-
-h1 {
-  text-transform: uppercase;
-  font-size: clamp(1rem, .9vw + 1rem, 1.5rem);
-  padding: 1rem;
-}
-.bg-secondary {
-  background-color: var(--secondary-color);
-}
-.secondary-button {
-  box-shadow: none;
-}
-.l-top-margin {
-  margin-top: 1rem;
-}
-.m-top-margin {
-  margin-top: .8rem;
-}
-
-.logo-primary {
-  text-shadow: 0px 0px 1px #070C09;
-  font-size: 2rem;
-  font-weight: bold;
-  color: var(--primary-color);
-  text-transform: uppercase;
-  text-shadow: #070C09;
-}
-
-.logo-secondary {
-  text-shadow: 0px 0px 1px #070C09;
-  font-size: 2rem;
-  font-weight: bold;
-  color: var(--background-color);
-  text-transform: uppercase;
-  text-shadow: #070C09;
-}
-
-.notification {
-  box-shadow: 0 0 4px rgb(0,0,0,.3);
-  border-radius: 5px;
-  justify-content: center;
-  width: 90%;
+.input-container {
   display: flex;
-  opacity: 0;
-  transform: scale(0);
-  transition: all .5s ease;
-  font-weight: bold;
+  flex-direction: column;
+  transition: opacity 1s;
 }
 
-.notification[show="true"] {
-  opacity: 1;
-  transform: scale(1)
+label {
+  text-transform: capitalize;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
 }

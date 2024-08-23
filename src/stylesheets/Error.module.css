@@ -1,0 +1,43 @@
+.error {
+    font-size: clamp(.9rem, .5vw + .5rem,  1.2rem);
+    padding: 2px;
+    color: red;
+    opacity: 0;
+    display: none;
+    box-sizing: border-box;
+}
+
+.error[data-active='true'] {
+    display: block;
+    animation: fade-in .5s forwards; 
+}
+
+.error[data-deactive='true'] {
+    display: block;
+    animation: fade-out .5s forwards;
+}
+
+@keyframes fade-in {
+    from {
+        
+        opacity: 0;
+    }
+  
+    to {
+        
+        opacity: 1;
+    }
+  }
+  
+  @keyframes fade-out {
+    from {
+        
+        opacity: 1;
+    }
+  
+    to {
+        
+        opacity: 0;
+    }
+  }
+

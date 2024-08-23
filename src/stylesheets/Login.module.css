@@ -1,0 +1,22 @@
+.page {
+    height: 100dvh;
+    display: flex;
+}
+
+.hero {
+    flex: 1;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    flex: 1;
+}
+
+
+
