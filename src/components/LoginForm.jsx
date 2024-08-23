@@ -1,70 +1,138 @@
-import loginFormStyles from '../stylesheets/login-form.module.css'
-import Error from './Error'
-import Input from './Input'
-import { Link } from 'react-router-dom'
-import useLogin from '../hooks/useLogin'
-import { useState } from 'react'
+import style from '../stylesheets/login-form.module.css';
+import Input from './Input';
+import useLogin from '../hooks/useLogin';
+import { useEffect, useState } from 'react';
+import useValidator from '../hooks/useValidator';
 
-useState
+useState;
 export default function LoginForm() {
+    const [data, setData] = useState({
+        email: {
+            value: '',
+            error: '',
+        },
+        password: {
+            value: '',
+            error: '',
+        },
+    });
+    const { login, errors, status } = useLogin();
 
-    const [errors, setErrors] = useState(null)
-    
-    const handleErrors = (name) => {
-        if(!errors || errors == undefined) return ''
-        if(Object.hasOwn(errors, name)) return errors[name]
-        return ''
-    }
-    // const {login, errors, status } = useLogin()
-    // 
-    // function loginHandler(e) {
-    //     e.preventDefault()
-    //     const data = Object.fromEntries(
-    //         new FormData(e.target)
-    //     )
-    //     login(data)
-    // }
+    const updateDataText = (name, text) => {
+        if (Object.hasOwn(name, data)) {
+            throw new Error('There no property in data with the name:' + name);
+        }
+        const dataCopy = structuredClone(data);
+        dataCopy[name].value = text;
+        setData(dataCopy);
+    };
+
+    const resetErrors = () => {
+        const dataCopy = structuredClone(data);
+        for (const property in dataCopy) {
+            dataCopy[property].error = '';
+        }
+
+        setData(dataCopy);
+    };
+
+    const onChangeHandler = (e) => {
+        const name = e.target.name;
+        const text = e.target.value;
+        updateDataText(name, text);
+    };
+
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+        const dataCopy = structuredClone(data);
+        let hasErrors = false;
+        const email = dataCopy.email.value;
+        const password = dataCopy.password.value;
+        if (!email) {
+            dataCopy.email.error = 'Please enter your email!';
+            hasErrors = true;
+        }
+
+        if (email) {
+            const emailReg = /^[^@]+@[^@]+\.[^@]+$/;
+            if (!emailReg.test(email)) {
+                dataCopy.email.error = 'Invalid email address!';
+                hasErrors = true;
+            }
+        }
+
+        if (!password) {
+            dataCopy.password.error = 'Please enter your password!';
+        }
+
+        if (hasErrors) {
+            setData(dataCopy);
+            return;
+        }
+
+        resetErrors();
+
+        const loginData = {
+            email: data.email.value,
+            password: data.password.value,
+        };
+
+        login(loginData);
+    };
+
+    useEffect(() => {
+        const copyData = structuredClone(data);
+
+        console.log(errors);
+        if (status === 'error') {
+            if (errors) {
+                if (errors?.auth) {
+                    copyData.email.error = errors.auth;
+                    copyData.password.error = errors.auth;
+                }
+
+                if (errors.password) {
+                    copyData.password.error = errors.password;
+                }
+
+                if (errors.email) {
+                    copyData.password.error = errors.email;
+                }
+            }
+
+            setData(copyData);
+        }
+    }, [errors]);
 
     return (
-
-        <form action="">
+        <form action="POST" noValidate onSubmit={onSubmitHandler}>
             <h1>Welcome back</h1>
             <h2>Enter your account details to login.</h2>
-            <Input 
-                type={'text'} 
-                name={'email'} 
-                placeholder={'Enter your email'} 
-                label={'email'} 
-                error={handleErrors('email')}/>
-            <button onClick={(e) => {
-               e.preventDefault()
-                if(errors) {
-                    setErrors(null)
-                    return
-                }
-                console.log('setting errors')
-                setErrors({
-                    email: 'Please enter a valid email!'
-                })
-            }}>Log in</button>
+            <div>
+                <Input
+                    type={'email'}
+                    name={'email'}
+                    placeholder={'Enter your email'}
+                    label={'email'}
+                    error={data.email.error}
+                    id={'email'}
+                    value={data.email.value}
+                    onChange={onChangeHandler}
+                />
+
+                <Input
+                    type={'password'}
+                    name={'password'}
+                    placeholder={'Enter your password'}
+                    label={'password'}
+                    id={'password'}
+                    value={data.password.value}
+                    error={data.password.error}
+                    onChange={onChangeHandler}
+                />
+            </div>
+
+            <button>Log in</button>
         </form>
-        // <form className={loginFormStyles.wrapper} onSubmit={loginHandler}>
-        //     <h1>Login</h1>
-        //     <div className="group">
-        //         <Input type={"email"} name={"email"} placeholder={"Email"}/>
-        //         <Error name={"email"} errors={errors}/>
-        //     </div>
-        //     <div className="group">
-        //         <Input type={"password"} name={"password"} placeholder={"Password"}/>
-        //         <Error name={"password"} errors={errors} />
-        //         <Error name={'auth'} errors={errors} />
-        //     </div>
-        //         
-        //     <button disabled={status === 'pending'}> log in</button>
-        //     <Link 
-        //         to={status === 'pending' ? 'javascript:void(0)' : '/signup'}>
-        //             No account? Sign up
-        //     </Link>
-        // </form>
-    )
+    );
 }
