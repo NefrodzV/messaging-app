@@ -1,4 +1,4 @@
-import loginStyles from '../stylesheets/login.module.css'
+import style from '../stylesheets/Login.module.css'
 import LoginForm from '../components/LoginForm'
 import { useContext, useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -22,14 +22,22 @@ export default function LoginPage() {
     },[isLoggedIn, user])
 
     return (
-        <>
-            <div className={loginStyles.page}>
-                    <div className='logo-primary'>MSGR</div>
-                    { loading ? 
-                        <Loader containerHeight={'auto'}  /> : 
-                        <LoginForm />
-                    }
+        <main className={style.page}>
+            <img className={style.hero} src="" alt="" />
+
+            <div className={style.container}>
+               <LoginForm />
             </div>
-        </> 
+            
+        </main>
+        // <>
+        //     <div className={loginStyles.page}>
+        //             <div className='logo-primary'>MSGR</div>
+        //             { loading ? 
+        //                 <Loader containerHeight={'auto'}  /> : 
+        //                 <LoginForm />
+        //             }
+        //     </div>
+        // </> 
     )
 }
