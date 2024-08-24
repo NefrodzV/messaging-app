@@ -2,7 +2,7 @@ import Input from './Input';
 import { Link } from 'react-router-dom';
 import style from '../stylesheets/SignupForm.module.css';
 import useSignup from '../hooks/useSignup';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 export default function SignupForm() {
     const [data, setData] = useState({
         username: {
@@ -22,7 +22,7 @@ export default function SignupForm() {
             error: '',
         },
     });
-    const { signup, status, errors, reset } = useSignup();
+    const { signup, status, errors } = useSignup();
 
     const onChangeHandler = (e) => {
         const name = e.target.name;
@@ -37,7 +37,76 @@ export default function SignupForm() {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
+        const copyData = structuredClone(data);
+        const { username, password, email, confirmPassword } = copyData;
+        let hasErrors = false;
+        if (!username.value) {
+            username.error = 'Please enter your username';
+            hasErrors = true;
+        }
+
+        if (!email.value) {
+            email.error = 'Please enter your email';
+            hasErrors = true;
+        }
+
+        if (!password.value) {
+            password.error = 'Please enter your password';
+            hasErrors = true;
+        }
+
+        if (!confirmPassword.value) {
+            confirmPassword.error = 'Please  Confirm Password';
+            hasErrors = true;
+        }
+
+        if (email.value) {
+            const emailReg = /^[^@]+@[^@]+\.[^@]+$/;
+            if (!emailReg.test(email.value)) {
+                email.error = 'Invalid email address';
+                hasErrors = true;
+            }
+        }
+
+        if (password.value) {
+            if (password.value.length < 8) {
+                password.error = 'Password must be at least 8  characters';
+                return;
+            }
+        }
+
+        if (confirmPassword.value) {
+            if (confirmPassword.value !== password.value) {
+                confirmPassword.error =
+                    'Confirm Password is not equal password';
+                hasErrors = true;
+            }
+        }
+
+        // if (hasErrors) {
+        //     setData(copyData);
+        //     return;
+        // }
+
+        signup({
+            email: data.email.value,
+            username: data.username.value,
+            password: data.password.value,
+            confirmPassword: data.confirmPassword.value,
+        });
     };
+
+    useEffect(() => {
+        if (errors) {
+            const copyData = structuredClone(data);
+            for (const property in data) {
+                if (Object.hasOwn(data, property)) {
+                    copyData[property].error = errors[property];
+                }
+            }
+            setData(copyData);
+        }
+    }, [errors]);
 
     return (
         <form
@@ -84,7 +153,7 @@ export default function SignupForm() {
                 <Input
                     name={'confirmPassword'}
                     id={'confirmPassword'}
-                    placeholder={'Enter your Confirm Password'}
+                    placeholder={'Enter Confirm Password'}
                     label={'confirm password'}
                     isRequired={true}
                     onChange={onChangeHandler}
@@ -92,7 +161,7 @@ export default function SignupForm() {
                     value={data.confirmPassword.value}
                 />
             </div>
-            <button className="primary">signup</button>
+            <button className="primary">sign up</button>
             <Link
                 className={style.link}
                 to={status === 'pending' ? 'javascript:void(0)' : '/login'}
