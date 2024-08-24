@@ -1,11 +1,10 @@
-import SignupForm from "../components/SignupForm";
-import signUpStyles from '../stylesheets/signup.module.css'
+import SignupForm from '../components/SignupForm';
+import style from '../stylesheets/SignupPage.module.css';
 
 export default function SignUpPage() {
-    return(
-        <div className={signUpStyles.page}>
-            <div className="logo-primary">MSGR</div>
+    return (
+        <main className={style.page}>
             <SignupForm />
-        </div>
-    )
+        </main>
+    );
 }

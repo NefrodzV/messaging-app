@@ -1,68 +1,104 @@
-import ErrorMessage from './ErrorMessage'
-import Input from './Input'
-import { Link } from 'react-router-dom'
-import signUpStyles from '../stylesheets/signup-form.module.css'
-import useSignup from '../hooks/useSignup'
-import Notification from '../components/Notification'
-import { useEffect } from 'react'
-
+import Input from './Input';
+import { Link } from 'react-router-dom';
+import style from '../stylesheets/SignupForm.module.css';
+import useSignup from '../hooks/useSignup';
+import { useState } from 'react';
 export default function SignupForm() {
-    const { signup, status, errors, reset } = useSignup()
+    const [data, setData] = useState({
+        username: {
+            value: '',
+            error: '',
+        },
+        email: {
+            value: '',
+            error: '',
+        },
+        password: {
+            value: '',
+            error: '',
+        },
+        confirmPassword: {
+            value: '',
+            error: '',
+        },
+    });
+    const { signup, status, errors, reset } = useSignup();
 
-    useEffect(() => {
-        if (status === 'success') reset()
-    }, [status])
+    const onChangeHandler = (e) => {
+        const name = e.target.name;
+        const text = e.target.value;
+        if (Object.hasOwn(name, data)) {
+            throw new Error('There no property in data with the name:' + name);
+        }
+        const dataCopy = structuredClone(data);
+        dataCopy[name].value = text;
+        setData(dataCopy);
+    };
 
-    function signupHandler(e) {
-        e.preventDefault()
-        const data = Object.fromEntries(new FormData(e.target))
-        signup(data)
-    }
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+    };
 
     return (
         <form
-            className={signUpStyles.wrapper}
-            onSubmit={signupHandler}
-            noValidate={false}
+            className={style.form}
+            onSubmit={onSubmitHandler}
+            noValidate={true}
         >
-            <h1>Create account</h1>
-            <hr />
-            <div className={signUpStyles.group}>
+            <div>
+                <h1 className={style.title}>Create account</h1>
+                <h2 className={style.subtitle}>Enter account information</h2>
+            </div>
+            <div className={style.content}>
                 <Input
-                    type={'text'}
-                    placeholder={'Username'}
                     name={'username'}
+                    id={'username'}
+                    placeholder={'Enter your username'}
+                    label={'username'}
+                    isRequired={true}
+                    onChange={onChangeHandler}
+                    error={data.username.error}
+                    value={data.username.value}
                 />
-                <ErrorMessage name={'username'} errors={errors} />
-            </div>
-            <div className={signUpStyles.group}>
-                <Input type={'email'} placeholder={'E-mail'} name={'email'} />
-                <ErrorMessage name={'email'} errors={errors} />
-            </div>
-            <div className={signUpStyles.group}>
                 <Input
-                    type={'password'}
-                    placeholder={'Password'}
+                    name={'email'}
+                    id={'email'}
+                    placeholder={'Enter your email'}
+                    label={'email'}
+                    isRequired={true}
+                    onChange={onChangeHandler}
+                    error={data.email.error}
+                    value={data.email.value}
+                />
+                <Input
                     name={'password'}
+                    id={'password'}
+                    placeholder={'Enter your password'}
+                    label={'password'}
+                    isRequired={true}
+                    onChange={onChangeHandler}
+                    error={data.password.error}
+                    value={data.password.value}
                 />
-                <ErrorMessage name={'password'} errors={errors} />
-            </div>
-            <div className={signUpStyles.group}>
+
                 <Input
-                    type={'password'}
-                    placeholder={'Confirm password'}
                     name={'confirmPassword'}
+                    id={'confirmPassword'}
+                    placeholder={'Enter your Confirm Password'}
+                    label={'confirm password'}
+                    isRequired={true}
+                    onChange={onChangeHandler}
+                    error={data.confirmPassword.error}
+                    value={data.confirmPassword.value}
                 />
-                <ErrorMessage name={'confirmPassword'} errors={errors} />
             </div>
-            <button> sign up </button>
-            <Link to={status === 'pending' ? 'javascript:void(0)' : '/login'}>
-                Already got an account?
+            <button className="primary">signup</button>
+            <Link
+                className={style.link}
+                to={status === 'pending' ? 'javascript:void(0)' : '/login'}
+            >
+                Already got an account? Login here.
             </Link>
-            <Notification
-                text={'Sign up successful!'}
-                notify={status === 'success'}
-            />
         </form>
-    )
+    );
 }
