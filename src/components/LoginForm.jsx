@@ -2,8 +2,8 @@ import style from '../stylesheets/LoginForm.module.css';
 import Input from './Input';
 import useLogin from '../hooks/useLogin';
 import { useEffect, useState } from 'react';
-import useValidator from '../hooks/useValidator';
 import Loader from './Loader';
+import { Link } from 'react-router-dom';
 
 useState;
 export default function LoginForm() {
@@ -113,7 +113,7 @@ export default function LoginForm() {
                 <h2 className={style.subtitle}>Enter your account details.</h2>
             </div>
 
-            <div>
+            <div className={style.content}>
                 <Input
                     type={'email'}
                     name={'email'}
@@ -140,6 +140,9 @@ export default function LoginForm() {
                 <button className="primary">Log in</button>
             )}
             {status === 'pending' && <Loader />}
+            <Link className={style.link} to={'/signup'}>
+                No account? Sign up here.
+            </Link>
         </form>
     );
 }

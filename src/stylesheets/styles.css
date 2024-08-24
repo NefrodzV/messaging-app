@@ -83,6 +83,10 @@ button.primary:hover {
   background-color: var(--primary80);
 }
 
+a {
+  color: var(--primary);
+}
+
 @keyframes shake {
   20% {
     transform: translateX(-2px);
