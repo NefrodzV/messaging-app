@@ -19,15 +19,6 @@ export default function LoginForm() {
     });
     const { login, errors, status } = useLogin();
 
-    const updateDataText = (name, text) => {
-        if (Object.hasOwn(name, data)) {
-            throw new Error('There no property in data with the name:' + name);
-        }
-        const dataCopy = structuredClone(data);
-        dataCopy[name].value = text;
-        setData(dataCopy);
-    };
-
     const resetErrors = () => {
         const dataCopy = structuredClone(data);
         for (const property in dataCopy) {
@@ -40,7 +31,12 @@ export default function LoginForm() {
     const onChangeHandler = (e) => {
         const name = e.target.name;
         const text = e.target.value;
-        updateDataText(name, text);
+        if (Object.hasOwn(name, data)) {
+            throw new Error('There no property in data with the name:' + name);
+        }
+        const dataCopy = structuredClone(data);
+        dataCopy[name].value = text;
+        setData(dataCopy);
     };
 
     const onSubmitHandler = (e) => {
