@@ -1,15 +1,16 @@
 .wrapper {
+    height: 2.8rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
 }
 .loader {
-    border: 16px solid #f3f3f3; 
-    border-top: 16px solid var(--accent-color);
+    height: calc(2.8rem / 2);
+    aspect-ratio: 1 / 1;
+    border: 16px solid hwb(192 96% 16); 
+    border-top: 16px solid var(--primary); 
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    border-width: 3px;
     animation: spin 2s linear infinite;
 }
   
