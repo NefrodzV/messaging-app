@@ -1,8 +1,9 @@
-import style from '../stylesheets/login-form.module.css';
+import style from '../stylesheets/LoginForm.module.css';
 import Input from './Input';
 import useLogin from '../hooks/useLogin';
 import { useEffect, useState } from 'react';
 import useValidator from '../hooks/useValidator';
+import Loader from './Loader';
 
 useState;
 export default function LoginForm() {
@@ -82,13 +83,11 @@ export default function LoginForm() {
 
     useEffect(() => {
         const copyData = structuredClone(data);
-
-        console.log(errors);
         if (status === 'error') {
             if (errors) {
                 if (errors?.auth) {
                     copyData.email.error = errors.auth;
-                    copyData.password.error = errors.auth;
+                    // copyData.password.error = errors.auth;
                 }
 
                 if (errors.password) {
@@ -99,15 +98,21 @@ export default function LoginForm() {
                     copyData.password.error = errors.email;
                 }
             }
-
             setData(copyData);
         }
     }, [errors]);
-
     return (
-        <form action="POST" noValidate onSubmit={onSubmitHandler}>
-            <h1>Welcome back</h1>
-            <h2>Enter your account details to login.</h2>
+        <form
+            className={style.form}
+            action="POST"
+            noValidate
+            onSubmit={onSubmitHandler}
+        >
+            <div>
+                <h1 className={style.title}>Welcome back</h1>
+                <h2 className={style.subtitle}>Enter your account details.</h2>
+            </div>
+
             <div>
                 <Input
                     type={'email'}
@@ -131,8 +136,10 @@ export default function LoginForm() {
                     onChange={onChangeHandler}
                 />
             </div>
-
-            <button>Log in</button>
+            {status !== 'pending' && (
+                <button className="primary">Log in</button>
+            )}
+            {status === 'pending' && <Loader />}
         </form>
     );
 }
