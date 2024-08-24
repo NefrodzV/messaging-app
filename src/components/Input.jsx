@@ -17,6 +17,7 @@ export default function Input({
         <div className="input-container">
             <label htmlFor={id}>{label}</label>
             <input
+                data-error={error ? true : false}
                 className={className}
                 type={type}
                 placeholder={placeholder}

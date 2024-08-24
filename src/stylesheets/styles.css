@@ -56,6 +56,11 @@ input.primary:focus, input.primary:focus-visible  {
   outline-color: var(--primary);
   
 }
+input[data-error='true']:focus, input[data-error='true']:not(:focus) {
+  outline-color: red;
+  border-color: red;
+  animation: shake .2s;
+}
 
 button {
   font-size: inherit;
@@ -78,6 +83,21 @@ button.primary:hover {
   background-color: var(--primary80);
 }
 
+@keyframes shake {
+  20% {
+    transform: translateX(-2px);
+  }
+  40%{
+    transform: translateX(2px);
+  }
+
+  60%{
+    transform: translateX(-2px);
+  }
+  80%{
+    transform: translateX(2px);
+  }
+}
 @keyframes fade-in {
   from {
     opacity: 0;
