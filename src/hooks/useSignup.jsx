@@ -7,15 +7,18 @@ export default function useSignup() {
     async function signup(data) {
         try {
             setStatus('pending');
-            const request = await fetch(import.meta.env.VITE_API, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-                mode: 'cors',
-                // credentials: 'same-origin',
-            });
+            const request = await fetch(
+                import.meta.env.VITE_API + '/session/signup',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                    mode: 'cors',
+                    // credentials: 'same-origin',
+                }
+            );
 
             const response = await request.json();
 
