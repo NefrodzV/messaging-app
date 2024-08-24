@@ -16,11 +16,14 @@
   --accent30: hsl(197, 84%, 61%, 30%);
   --shadow: rgba(0,0,0, 0.125); 
   --border-radius: .2rem;
+  --control-height: 2.8rem;
+  --font-size: clamp(1rem, 1rem + .5vw , 1.3rem)
 }
 
 body {
   font-family: 'CustomFont','Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   margin: 0;
+  font-size: var(--font-size);
 }
 
 .input-container {
@@ -30,13 +33,14 @@ body {
 }
 
 label {
+  font-size: inherit;
   text-transform: capitalize;
 }
 
 input {
+  height: var(--control-height);
   padding-inline: .4rem;
   font-family: inherit;
-  height: 2.8rem;
   font-size: 100%;
   border-radius: var(--border-radius);
   border-style: none;
@@ -51,15 +55,15 @@ input.primary:focus, input.primary:focus-visible  {
   border-radius: inherit;
   outline-color: var(--primary);
   
-  /* border-radius: var(--border-radius); */
 }
 
 button {
+  font-size: inherit;
   border-radius: var(--border-radius);
   text-transform: capitalize;
   font-family: inherit;
   cursor: pointer;
-  height: 2.8rem;
+  height: var(--control-height);
 }
 
 button.primary {
@@ -68,7 +72,6 @@ button.primary {
   padding:0;
   background: var(--primary);
   border: none;
-  font-size: 100%;
 }
 
 button.primary:hover {
