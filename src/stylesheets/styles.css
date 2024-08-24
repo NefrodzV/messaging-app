@@ -1,12 +1,25 @@
+@font-face {
+  font-family: 'CustomFont';
+  src: url(../assets/fonts/Fira_Sans/FiraSans-Regular.ttf);
+}
 :root {
-  --primary-color: rgb(86, 176, 132);
-  --secondary-color: #A2DABF;
-  --accent-color: #6ACE9D;
-  --background-color: #F9FCFB;
-  --text-color:#070C09;
+  --text: #090c0d;
+  --text50: hsl(195, 18%, 4%, 50%);
+  --background: #f5f9fa;
+  --background30: hsl(192, 33%, 97%, 30%);
+  --primary: #48a1c3;
+  --primary30: hsl(197, 51%, 52%, 30%);
+  --primary80: hsl(197, 51%, 52%, 80%);
+  --secondary: #8bcee8;
+  --secondary30: hsl(197, 67%, 73%, 30%);
+  --accent: #49c0ef;
+  --accent30: hsl(197, 84%, 61%, 30%);
+  --shadow: rgba(0,0,0, 0.125); 
+  --border-radius: .2rem;
 }
 
 body {
+  font-family: 'CustomFont','Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   margin: 0;
 }
 
@@ -18,6 +31,48 @@ body {
 
 label {
   text-transform: capitalize;
+}
+
+input {
+  padding-inline: .4rem;
+  font-family: inherit;
+  height: 2.8rem;
+  font-size: 100%;
+  border-radius: var(--border-radius);
+  border-style: none;
+}
+
+input.primary {
+  border: 1px solid black;
+  border-radius: var(--border-radius);
+}
+
+input.primary:focus, input.primary:focus-visible  {
+  border-radius: inherit;
+  outline-color: var(--primary);
+  
+  /* border-radius: var(--border-radius); */
+}
+
+button {
+  border-radius: var(--border-radius);
+  text-transform: capitalize;
+  font-family: inherit;
+  cursor: pointer;
+  height: 2.8rem;
+}
+
+button.primary {
+  font-weight: bold;
+  color: var(--background);
+  padding:0;
+  background: var(--primary);
+  border: none;
+  font-size: 100%;
+}
+
+button.primary:hover {
+  background-color: var(--primary80);
 }
 
 @keyframes fade-in {
