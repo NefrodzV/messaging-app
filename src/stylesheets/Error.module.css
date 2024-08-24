@@ -1,10 +1,45 @@
+
 .error {
+    margin-top: .1rem;
     font-size: clamp(.9rem, .5vw + .5rem,  1.2rem);
     padding: 2px;
     color: red;
     opacity: 0;
     display: none;
     box-sizing: border-box;
+    position: relative;
+    border: .1rem solid red;
+    background-color: var(--background);
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 3px hsl(0, 0%, 0%, .5);
+
+}
+
+.error::before , .error::after {
+    top: 0; left: 1%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.error::before {
+    transform: rotate(-45deg);
+    border-color: rgba(0, 0, 0, 0);
+    border-top-color: red;
+    border-width: 12px 0px 0px 12px;
+    margin-top: -6px;
+
+}
+.error::after {
+    transform: rotate(-45deg);
+    border-color: rgba(255, 255, 255, 0);
+    border-top-color: var(--background);
+    border-width: 12px 0 0 12px; 
+    margin-top: -4px;
+
 }
 
 .error[data-active='true'] {
