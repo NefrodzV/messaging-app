@@ -29,3 +29,19 @@
 .link {
     align-self: center;
 }
+
+@media(max-width: 600px) {
+    .title {
+        
+        font-size: clamp(1.1rem, 1rem + .5vw, 1.3rem);
+    }
+    
+    .subtitle {
+        font-size: clamp(1rem, 1rem + .2vw, 1.075rem);
+        
+    }
+    .form {
+        padding: 1rem;
+        gap: .7rem;
+    }
+}

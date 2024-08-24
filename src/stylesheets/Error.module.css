@@ -52,6 +52,12 @@
     animation: fade-out .5s forwards;
 }
 
+@media(max-width: 600px) {
+    .error{
+        font-size: clamp(.7rem, .5vw + .5rem,  .9rem);
+    }
+}
+
 @keyframes fade-in {
     from {
         

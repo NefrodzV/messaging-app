@@ -87,6 +87,13 @@ a {
   color: var(--primary);
 }
 
+
+@media(max-width: 600px) {
+  body {
+    --font-size: clamp(.8rem, .8rem + .5vw , 1rem)
+  }
+  
+}
 @keyframes shake {
   20% {
     transform: translateX(-2px);
