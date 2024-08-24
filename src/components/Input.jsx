@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types'
-import ErrorMessage from './ErrorMessage'
-import { useEffect, useState } from 'react'
+import PropTypes from 'prop-types';
+import ErrorMessage from './ErrorMessage';
+import { useEffect, useState } from 'react';
 export default function Input({
     value,
     type,
@@ -8,7 +8,7 @@ export default function Input({
     id,
     label,
     placeholder,
-    style,
+    className = 'primary',
     error,
     onChange,
     isRequired,
@@ -17,6 +17,7 @@ export default function Input({
         <div className="input-container">
             <label htmlFor={id}>{label}</label>
             <input
+                className={className}
                 type={type}
                 placeholder={placeholder}
                 name={name}
@@ -27,7 +28,7 @@ export default function Input({
             />
             <ErrorMessage message={error} />
         </div>
-    )
+    );
 }
 
 Input.propTypes = {
@@ -37,4 +38,4 @@ Input.propTypes = {
     label: PropTypes.string,
     placeholder: PropTypes.string,
     isRequired: PropTypes.bool,
-}
+};
