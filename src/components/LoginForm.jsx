@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import Loader from './Loader';
 import { Link } from 'react-router-dom';
 
-useState;
 export default function LoginForm() {
     const [data, setData] = useState({
         email: {
