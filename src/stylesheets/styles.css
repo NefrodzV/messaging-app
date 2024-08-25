@@ -5,8 +5,11 @@
 :root {
   --text: #090c0d;
   --text50: hsl(195, 18%, 4%, 50%);
+  --text70: hsl(195, 18%, 4%, 70%);
   --background: #f5f9fa;
-  --background30: hsl(192, 33%, 97%, 30%);
+  --background30: hwb(192 96% 15%);
+  --backgroundb5:hwb(192 96% 5%);
+  --backgroundb10: hwb(192 96% 10%);
   --primary: #48a1c3;
   --primary30: hsl(197, 51%, 52%, 30%);
   --primary80: hsl(197, 51%, 52%, 80%);
@@ -17,10 +20,11 @@
   --shadow: rgba(0,0,0, 0.125); 
   --border-radius: .2rem;
   --control-height: 2.8rem;
-  --font-size: clamp(1rem, 1rem + .5vw , 1.3rem)
+  --font-size: clamp(.8rem, .8rem + .5vw , 1.3rem)
 }
 
 body {
+  color: var(--text);
   font-family: 'CustomFont','Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   margin: 0;
   font-size: var(--font-size);
@@ -80,6 +84,7 @@ button.primary {
 }
 
 button.primary:hover {
+  
   background-color: var(--primary80);
 }
 
@@ -87,13 +92,12 @@ a {
   color: var(--primary);
 }
 
-
-@media(max-width: 600px) {
+/* @media(max-width: 600px) {
   body {
     --font-size: clamp(.8rem, .8rem + .5vw , 1rem)
   }
   
-}
+} */
 @keyframes shake {
   20% {
     transform: translateX(-2px);
