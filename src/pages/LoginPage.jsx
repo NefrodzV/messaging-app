@@ -5,20 +5,20 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
 
 export default function LoginPage() {
-    const navigate = useNavigate();
-    const { isLoggedIn, user } = useContext(UserContext);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        if (isLoggedIn && user) {
-            navigate('/chats');
-            return;
-        } else if (isLoggedIn) {
-            setLoading(true);
-        } else {
-            setLoading(false);
-        }
-    }, [isLoggedIn, user]);
+    //     const navigate = useNavigate();
+    //     const { isLoggedIn, user } = useContext(UserContext);
+    //     const [loading, setLoading] = useState(true);
+    //
+    //     useEffect(() => {
+    //         if (isLoggedIn && user) {
+    //             navigate('/chats');
+    //             return;
+    //         } else if (isLoggedIn) {
+    //             setLoading(true);
+    //         } else {
+    //             setLoading(false);
+    //         }
+    //     }, [isLoggedIn, user]);
 
     return (
         <main className={style.page}>
