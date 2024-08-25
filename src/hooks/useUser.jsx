@@ -1,44 +1,39 @@
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from '../contexts/UserContext'
-export default function useUser(){
-    const { token } = useContext(UserContext)
+import { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../contexts/UserContext';
+export default function useUser() {
+    const { user, setUser } = UserContext;
 
-    const [user, setUser] = useState({})
-    const [loading, setLoading] = useState(true)
-    
     async function getUser() {
         try {
             const response = await fetch(
                 'https://messaging-api.adaptable.app/api/users/me',
                 {
                     headers: {
-                        'authorization': 'Bearer ' + token
+                        authorization: 'Bearer ' + token,
                     },
                     mode: 'cors',
-                    credentials: 'same-origin'
                 }
-            )
-    
-            const data = await response.json()
-            if(!response.ok) {
-                
-                return console.error("error getting user", data.errors)
+            );
+
+            const data = await response.json();
+            if (!response.ok) {
+                return console.error('error getting user', data.errors);
             }
-            setUser(data.user)
-        } catch(e) {
-            throw new Error("Error getting user from api: " + e)
+            setUser(data.user);
+        } catch (e) {
+            throw new Error('Error getting user from api: ' + e);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     }
 
     useEffect(() => {
-        getUser()
-    },[])
+        getUser();
+    }, []);
 
     return {
         user,
-        loading
-    }
-
+        setUser,
+        loading,
+    };
 }
