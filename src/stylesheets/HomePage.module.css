@@ -28,6 +28,7 @@
     display: flex;
     flex-direction: column;
     gap: 1px;
+    
 }
 .navLink {
     font-size: clamp(1rem, 1rem + .5vw, 1.5rem);
@@ -55,7 +56,7 @@
     border-bottom: 1px solid var(--background);
 }
 
-.navLink:hover {
+.navLink:hover{
     background-color: var(--primary80);
 }
 
@@ -77,56 +78,6 @@
     width: 450px;
     /* background-color: aquamarine; */
     height: inherit;
-}
-
-.chatItem {
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    border-radius: var(--border-radius);
-    box-shadow: 0 0 6px var(--shadow);
-    overflow: hidden;
-    padding: 1rem .8rem;
-    
-    margin: .5rem;
-    background-color: var(--background);
-}
-
-.chatItem header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.username {
-    font-weight: bold;
-}
-.time {
-    margin-inline: auto 0;
-    color: var(--text70);
-}
-.message {
-    display: flex;
-    overflow: hidden;
-    gap: .4rem;
-}
-
-.message p {
-    overflow: hidden;
-    margin: 0;
-    flex: 1;
-    text-overflow: ellipsis;
-    text-wrap: nowrap;
-    
-}
-.messageIcon {
-    opacity: .7;
-    height: 24px;
-    aspect-ratio: 1 / 1;
-}
-.chatItem .user {
-    height: 2.8rem;
 }
 
 .chat {
