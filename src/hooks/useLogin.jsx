@@ -1,14 +1,13 @@
 import { useContext, useState } from 'react';
 import { UserContext } from '../contexts/UserContext.jsx';
-import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 export default function useLogin() {
-    const { setToken } = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
     const [errors, setErrors] = useState(null);
     const [status, setStatus] = useState(null);
 
     async function login(data) {
-        console.log(data);
         try {
             setStatus('pending');
             const request = await fetch(
@@ -29,11 +28,12 @@ export default function useLogin() {
                 setStatus('error');
                 return;
             }
-
-            // Cookies.set('token', response.token, { expires: 1 });
-            // setToken(response.token);
-            // setErrors({});
-            // setStatus('success');
+            setUser(response);
+            setStatus('success');
+            const token = {
+                token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Y…IxMX0.w5mWAhqkNwiDBFUnkvBdV_zHCb0__9bl7JxDzvOrS5E',
+            };
+            navigate('/' + token);
         } catch (e) {
             console.error(e);
         }
