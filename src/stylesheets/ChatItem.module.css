@@ -4,7 +4,6 @@
     gap: 1.5rem;
     border-radius: var(--border-radius);
     box-shadow: 0 0 6px var(--shadow);
-    overflow: hidden;
     display: flex;
     padding: 1rem .8rem;
     margin: .5rem;
@@ -31,16 +30,17 @@
 }
 
 .message p {
+    width:30ch;
     overflow: hidden;
     margin: 0;
-    flex: 1;
+    /* Causing issues with overflow*/
     text-overflow: ellipsis;
-    text-wrap: nowrap;
+    white-space: nowrap;
     
 }
 .messageIcon {
-    opacity: .7;
-    height: 24px;
+    
+    height: clamp(1rem, .8rem + .5vw, 1.5rem);
     aspect-ratio: 1 / 1;
 }
 .chatItem .user {
