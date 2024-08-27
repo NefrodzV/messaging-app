@@ -105,22 +105,50 @@ export default function HomePage() {
                             Rose Vargas Hernandez
                         </h2>
                     </header>
-                    <article className={style.message}>
-                        <p className={style.text}>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Incidunt tenetur quaerat consequatur eaque
-                            eligendi excepturi atque beatae, modi officiis
-                            distinctio voluptate similique recusandae temporibus
-                            nihil sint dolores quod nostrum totam.
-                        </p>
-                        <img
-                            className={style.userImage}
-                            src={userSvg}
-                            alt="User image"
-                        />
-                    </article>
+                    <section className={style.messageList}>
+                        <article className={style.message}>
+                            <div className={style.bubble}>
+                                <p className={style.text}>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit. Incidunt tenetur quaerat
+                                    consequatur eaque eligendi excepturi atque
+                                    beatae, modi officiis distinctio voluptate
+                                    similique recusandae temporibus nihil sint
+                                    dolores quod nostrum totam.
+                                </p>
+                            </div>
 
-                    <div className={style.shape}></div>
+                            <img
+                                className={style.userImage}
+                                src={userSvg}
+                                alt="User image"
+                            />
+                        </article>
+                        <article data-reverse={true} className={style.message}>
+                            <div className={style.bubble}>
+                                <p className={style.text}>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit. Incidunt tenetur quaerat
+                                    consequatur eaque eligendi excepturi atque
+                                    beatae, modi officiis distinctio voluptate
+                                    similique recusandae temporibus nihil sint
+                                    dolores quod nostrum totam.
+                                </p>
+                            </div>
+                            <img
+                                className={style.userImage}
+                                src={userSvg}
+                                alt="User image"
+                            />
+                        </article>
+                    </section>
+                    <section className={style.sendMessage}>
+                        <textarea
+                            className={'primary'}
+                            name="text"
+                            id="text"
+                        ></textarea>
+                    </section>
                 </section>
             </main>
         </div>

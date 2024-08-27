@@ -17,7 +17,7 @@
   --secondary30: hsl(197, 67%, 73%, 30%);
   --accent: #49c0ef;
   --accent30: hsl(197, 84%, 61%, 30%);
-  --shadow: rgba(0,0,0, 0.125); 
+  --shadow: rgba(0,0,0, 1.125); 
   --border-radius: .2rem;
   --control-height: 2.8rem;
   --font-size: clamp(.8rem, .8rem + .5vw , 1.3rem)
@@ -72,6 +72,27 @@ input[data-error='true']:focus, input[data-error='true']:not(:focus) {
   animation: shake .2s;
 }
 
+textarea {
+  width: 100%;
+  height: var(--control-height);
+  padding-inline: .4rem;
+  font-family: inherit;
+  font-size: 100%;
+  border-radius: var(--border-radius);
+  border-style: none;
+}
+
+textarea.primary {
+  resize: none;
+  border: 1px solid black;
+  border-radius: var(--border-radius);
+}
+
+textarea.primary:focus, textarea.primary:focus-visible  {
+  border-radius: inherit;
+  outline-color: var(--primary);
+  
+}
 button {
   font-size: inherit;
   border-radius: var(--border-radius);
