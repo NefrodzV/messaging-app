@@ -1,6 +1,7 @@
 .page {
     display: flex;
     height: inherit;
+    background-color: var(--background30);
     
 }
 .header {
@@ -107,20 +108,22 @@
 }
 
 .message {
-    padding: 1rem;
+    width: 75%;
+    padding: .4rem;
     display: flex;  
     gap: .8rem;
+    overflow: visible;
 }
 
 .userImage {
     background-color: black;
     order: 0;
-    height: 50px;
-    width: 50px;
+    height: 3rem;
     border-radius: 50%;
 }
 
 .text {
+    z-index: 1;
     box-sizing: border-box;
     padding: .4rem;
     position: relative;
@@ -129,9 +132,12 @@
     background-color: var(--background);
     border-radius: var(--border-radius);
     box-shadow: 0 0 3px var(--shadow);
+    overflow: visible;
+   
+   
 }
 
-.text::after, text::before {
+.text::after, .text::before {
     top: 10%; left: 0;
     border: solid transparent;
     width: 0;
@@ -139,11 +145,8 @@
     content: " ";
     position: absolute;
     pointer-events: none;
-}
-.text::before {
-    transform: rotate(-45deg);
-    border-top-color: red;
-    border-width: 12px 12px 0px 0px;
+    
+   
 }
 
 .text::after {
@@ -152,7 +155,23 @@
     border-top-color: var(--background);
     border-width: 12px 12px 0px 0px;
     margin-left: -5px;
+    filter: drop-shadow(-1px 0 .5px  var(--shadow));
 }
+
+/** When the message is not the  logged in user*/
+
+.message[data-reverse=true] .userImage {
+    order: 3;
+}
+
+.message[data-reverse=true] .text:after {
+    left: auto;
+    right: 0;
+    transform: rotate(135deg);
+    margin-right: -5px;
+    filter: drop-shadow(0 -1px .5px var(--shadow));
+}
+
 /* .shape {
     width: 0;
     height: 0;
