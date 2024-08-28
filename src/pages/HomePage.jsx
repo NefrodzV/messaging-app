@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
 import style from '../stylesheets/HomePage.module.css';
@@ -8,31 +8,61 @@ import hamburgerSvg from '../assets/svgs/hamburger.svg';
 import userSvg from '../assets/svgs/user.svg';
 import { NavLink } from 'react-router-dom';
 import ChatItem from '../components/ChatItem';
+import planeSvg from '../assets/svgs/paperplane.svg';
 export default function HomePage() {
-    const [loading, setLoading] = useState(true);
-    //     const { user, isLoggedIn } = useContext(UserContext)
-    //     const { savedLocation } = useSessionStorage()
-    //     const navigate = useNavigate()
-    //
-    //     const { deviceType } = useDimen()
-    //
-    //     useEffect(() => {
-    //         if(!isLoggedIn) {
-    //             navigate('/login')
-    //             return
-    //         } else {
-    //             // Navigate to the last location the user was in
-    //             if(savedLocation) {
-    //                 navigate(
-    //                     savedLocation.pathname, { state: savedLocation.state})
-    //             }
-    //         }
-    //     },[isLoggedIn])
-    //
-    //     useEffect(() => {
-    //         if(user) setLoading(false)
-    //     },[user])
+    const [text, setText] = useState('');
+    const [rows, setRows] = useState(1);
+    const spanRef = useRef(null);
+    const textareaRef = useRef(null);
+    const [span, setSpan] = useState({ width: '0', fontSize: 0, height: 0 });
+    const [dimen, setDimen] = useState({
+        offsetHeight: 0,
+        scrollheight: 0,
+    });
+    useEffect(() => {
+        const ta = textareaRef?.current;
+        const spanClone = structuredClone(span);
+        span.width = window
+            .getComputedStyle(ta, null)
+            .getPropertyValue('width');
 
+        console.log(
+            window.getComputedStyle(ta, null).getPropertyValue('width')
+        );
+        setSpan(span);
+        setDimen({
+            offsetHeight: ta.offsetHeight,
+            scrollHeight: ta.scrollHeight,
+        });
+    }, []);
+
+    useEffect(() => {
+        const virutalTextarea = spanRef?.current;
+        const lineHeight = window
+            .getComputedStyle(virutalTextarea, null)
+            .getPropertyValue('line-height');
+        console.log('total lines or rows');
+        const lines =
+            Math.ceil(virutalTextarea.scrollHeight / parseInt(lineHeight)) - 1;
+        console.log(
+            Math.ceil(virutalTextarea.scrollHeight / parseInt(lineHeight) - 1)
+        );
+        // TODO: Need to adapt this so when screen changes it recalculates the lines again
+        // and adjusts the rows depending on the change
+        if (lines !== rows) {
+            setRows(lines);
+            console.log('lines  are not are not equal');
+        }
+    }, [text]);
+
+    useEffect(() => {
+        // const ta = textareaRef?.current;
+        // console.log('offsetHeight');
+        // console.log(ta.offsetHeight);
+        // console.log('scrollheight');
+        // console.log(ta.scrollHeight / 24);
+        // setRows(3);
+    }, [rows]);
     return (
         <div className={style.page}>
             <header className={style.header}>
@@ -141,14 +171,216 @@ export default function HomePage() {
                                 alt="User image"
                             />
                         </article>
+                        <article className={style.message}>
+                            <div className={style.bubble}>
+                                <p className={style.text}>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit. Incidunt tenetur quaerat
+                                    consequatur eaque eligendi excepturi atque
+                                    beatae, modi officiis distinctio voluptate
+                                    similique recusandae temporibus nihil sint
+                                    dolores quod nostrum totam.
+                                </p>
+                            </div>
+
+                            <img
+                                className={style.userImage}
+                                src={userSvg}
+                                alt="User image"
+                            />
+                        </article>
+                        <article data-reverse={true} className={style.message}>
+                            <div className={style.bubble}>
+                                <p className={style.text}>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit. Incidunt tenetur quaerat
+                                    consequatur eaque eligendi excepturi atque
+                                    beatae, modi officiis distinctio voluptate
+                                    similique recusandae temporibus nihil sint
+                                    dolores quod nostrum totam.
+                                </p>
+                            </div>
+                            <img
+                                className={style.userImage}
+                                src={userSvg}
+                                alt="User image"
+                            />
+                        </article>
+                        <article className={style.message}>
+                            <div className={style.bubble}>
+                                <p className={style.text}>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit. Incidunt tenetur quaerat
+                                    consequatur eaque eligendi excepturi atque
+                                    beatae, modi officiis distinctio voluptate
+                                    similique recusandae temporibus nihil sint
+                                    dolores quod nostrum totam.
+                                </p>
+                            </div>
+
+                            <img
+                                className={style.userImage}
+                                src={userSvg}
+                                alt="User image"
+                            />
+                        </article>
+                        <article data-reverse={true} className={style.message}>
+                            <div className={style.bubble}>
+                                <p className={style.text}>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit. Incidunt tenetur quaerat
+                                    consequatur eaque eligendi excepturi atque
+                                    beatae, modi officiis distinctio voluptate
+                                    similique recusandae temporibus nihil sint
+                                    dolores quod nostrum totam.
+                                </p>
+                            </div>
+                            <img
+                                className={style.userImage}
+                                src={userSvg}
+                                alt="User image"
+                            />
+                        </article>
                     </section>
-                    <section className={style.sendMessage}>
+                    <form
+                        className={style.sendMessage}
+                        style={{
+                            position: 'relative',
+                        }}
+                    >
                         <textarea
+                            ref={textareaRef}
+                            rows={rows}
+                            value={text}
+                            aria-label="Enter message"
                             className={'primary'}
                             name="text"
                             id="text"
+                            placeholder="Enter message to Rose"
+                            onChange={(e) => {
+                                setText(e.target.value);
+                                const ta = e.target;
+                                ta.style.rows = 1;
+
+                                console.log('offsetHeight');
+                                console.log(ta.offsetHeight);
+                                console.log('scrollheight');
+                                console.log(ta.scrollHeight);
+                                // setRows(1);
+                                // const defaultHeight = parseInt(
+                                //     window
+                                //         .getComputedStyle(textarea, null)
+                                //         .getPropertyValue('height')
+                                // );
+                                // console.log(defaultHeight);
+                                // let height = textarea.offsetHeight;
+                                // const textareaScrollHeight =
+                                //     textarea.scrollHeight;
+                                // const lineHeight = window
+                                //     .getComputedStyle(textarea, null)
+                                //     .getPropertyValue('line-height');
+                                // console.log(
+                                //     window
+                                //         .getComputedStyle(textarea, null)
+                                //         .getPropertyValue('height')
+                                // );
+
+                                // setRows(
+                                //     () =>
+                                //         parseInt(
+                                //             Math.ceil(
+                                //                 textareaScrollHeight /
+                                //                     parseInt(lineHeight)
+                                //             )
+                                //         ) - 1
+                                // );
+                                // console.log(textareaHeight);
+                                // console.log(textareaScrollHeight);
+                                //                                 console.log(
+                                //                                     parseInt(
+                                //                                         Math.ceil(
+                                //                                             textareaScrollHeight /
+                                //                                                 parseInt(lineHeight)
+                                //                                         )
+                                //                                     ) - 1
+                                //                                 );
+                                //                                 if (height >= textareaScrollHeight) {
+                                //                                     textarea.style.height =
+                                //                                         height + parseInt(lineHeight) + 'px';
+                                //
+                                //                                     console.log('height is greater ');
+                                //                                     if (
+                                //                                         textareaScrollHeight <
+                                //                                         textarea.scrollHeight
+                                //                                     ) {
+                                //                                         console.log('inner if');
+                                //                                         while (
+                                //                                             textarea.offsetHeight >=
+                                //                                             textarea.scrollHeight
+                                //                                         ) {
+                                //                                             console.log('running first while');
+                                //                                             textarea.style.height =
+                                //                                                 (height -=
+                                //                                                     parseInt(lineHeight)) +
+                                //                                                 'px';
+                                //                                         }
+                                //                                         while (
+                                //                                             textarea.offsetHeight <
+                                //                                             textarea.scrollHeight
+                                //                                         ) {
+                                //                                             console.log('running second while');
+                                //                                             textarea.style.height =
+                                //                                                 height++ + 'px';
+                                //                                         }
+                                //
+                                //                                         // console.log(textareaHeight);
+                                //
+                                //                                         setRows(
+                                //                                             Math.ceil(
+                                //                                                 height / parseInt(lineHeight)
+                                //                                             )
+                                //                                         );
+                                //                                     }
+                                //                                 } else {
+                                //                                     console.log('else running');
+                                //                                     console.log(
+                                //                                         'total lines are: ' +
+                                //                                             Math.ceil(height / 24)
+                                //                                     );
+                                //                                 }
+                            }}
                         ></textarea>
-                    </section>
+                        <button
+                            title="Send message button"
+                            aria-label="Send message"
+                        >
+                            <svg
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <g id="Paper_Plane" data-name="Paper Plane">
+                                    <path d="M21.061,11.077,3.741,4.157a.994.994,0,0,0-1.17.32,1,1,0,0,0-.01,1.22l4.49,6a.525.525,0,0,1-.01.62L2.511,18.3a1.02,1.02,0,0,0,0,1.22,1,1,0,0,0,.8.4,1.021,1.021,0,0,0,.38-.07l17.36-6.9a1.006,1.006,0,0,0,.01-1.87ZM3.371,5.087l16.06,6.42H8.061a1.329,1.329,0,0,0-.21-.41Zm-.06,13.82,4.53-5.98a1.212,1.212,0,0,0,.22-.42h11.38Z" />
+                                </g>
+                            </svg>
+                        </button>
+
+                        <textarea
+                            ref={spanRef}
+                            className="primary"
+                            aria-hidden={true}
+                            rows={1}
+                            style={{
+                                visibility: 'hidden',
+                                zIndex: -1,
+                                width: span.width,
+                                position: 'absolute',
+                                top: '-250px',
+                            }}
+                            value={text}
+                            readOnly
+                        ></textarea>
+                    </form>
                 </section>
             </main>
         </div>
