@@ -71,10 +71,10 @@
 
 .main {
     flex: 1;
-    background-color: var(--background30);
+    background-color: var(--background);
     display: flex;
     min-height: 0;
-    gap: .2rem;
+   
 }
 
 .chats {
@@ -82,10 +82,12 @@
     flex-direction: column;
     overflow-y:  scroll;
     scrollbar-width: none;
-    width: min(450px, 100%);
-    background-color: var(--background);
+    width: min(400px, 100%);
+    background-color: var(--background30);
     height: inherit;
     min-height: 0;
+    padding: .5rem;
+    gap: .5rem;
 }
 
 .chat {
@@ -93,16 +95,19 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    background-color: var(--background);
+    
 }
 
 .chat header {
+    position: relative;
     display: flex;
     align-items: center;
     box-sizing: border-box;
     gap: .5rem;
     padding: 1rem .8rem;
-    border-bottom: .2rem solid var(--background30);
+    box-shadow:  0 3px 6px var(--background30);
+    z-index: 2;
+    
 }
 
 .chat header .user {
@@ -117,6 +122,7 @@
 
 .messageList {
     overflow-y: scroll;
+    scrollbar-width: none;
     flex: 1;
     padding: .8rem;
     display: flex;
@@ -124,12 +130,35 @@
     gap: 1rem;
 }
 
+.sendButton {
+    display: flex;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary);
+    height: 40px;
+    
+    
+    color: var(--background);
+}
+
+
 .sendMessage {
+    gap: .4rem;
     max-height: 400px;
     display: flex;
     padding: .8rem;
     box-sizing: border-box;
     align-items: center;
+}
+
+.sendMessage > .container {
+    border-radius: var(--border-radius);
+    padding: .4rem;
+    background-color: var(--background30);
+    height: inherit;
+    flex: 1;
+    display: flex;
 }
 
 .message {
@@ -138,7 +167,7 @@
     display: flex;  
     gap: .8rem;
     overflow: visible;
-    filter: drop-shadow(0 0 1px  var(--shadow));
+    /* filter: drop-shadow(0 0 1px  var(--shadow)); */
 }
 
 .userImage {
@@ -157,7 +186,7 @@
     position: relative;
     margin: 0;
     order: 1;
-    background-color: var(--background);
+    background-color: var(--background30);
     overflow: visible;
     clip-path: polygon(0 12px, 12px 6px, 12px 0, 100% 0, 100% 100%, 12px 100%, 12px 20px) ;
 }
