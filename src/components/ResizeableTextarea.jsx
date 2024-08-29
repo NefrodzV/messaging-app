@@ -13,6 +13,8 @@ export default function ResizeableTextarea({
     cols,
     ariaLabel,
 }) {
+    // TODO: MAKE THE WIDTH CHANGE IF viewport width changed
+
     const [defaultRows, setDefaultRows] = useState(1);
     const [hiddenTextareaDimen, setHiddenTextareaDimen] = useState({
         width: 0,
@@ -21,6 +23,14 @@ export default function ResizeableTextarea({
     const textareaRef = useRef(null);
 
     useEffect(() => {
+        /* Function for screen size changes */
+        const onResize = () => {
+            setHiddenTextareaDimen({
+                width: window
+                    .getComputedStyle(textarea, null)
+                    .getPropertyValue('width'),
+            });
+        };
         /** Set the width for the hidden textarea and check
          * if there is different row change*/
         if (rows) setDefaultRows(rows);
@@ -31,6 +41,12 @@ export default function ResizeableTextarea({
                 .getComputedStyle(textarea, null)
                 .getPropertyValue('width'),
         });
+
+        window.addEventListener('resize', onResize);
+        return () => {
+            // Removing event listener if needed
+            window.removeEventListener('resize', onResize);
+        };
     }, []);
 
     useEffect(() => {
