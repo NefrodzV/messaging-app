@@ -204,6 +204,7 @@ export default function HomePage() {
                             name={text}
                             id={text}
                             placeholder={'Enter message to Rose'}
+                            maxRows={5}
                             onChangeHandler={(e) => {
                                 setText(e.target.value);
                             }}
