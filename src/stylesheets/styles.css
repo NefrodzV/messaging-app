@@ -4,8 +4,8 @@
 }
 :root {
   --text: #090c0d;
-  --text50: hsl(195, 18%, 4%, 50%);
-  --text70: hsl(195, 18%, 4%, 70%);
+  --text50: hwb(195 3% 95% / 0.5);
+  --text70: hwb(195 3% 80%);
   --background: #f5f9fa;
   --background30: hwb(192 96% 15%);
   --backgroundb5:hwb(192 96% 5%);
