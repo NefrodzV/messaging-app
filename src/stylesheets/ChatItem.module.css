@@ -3,10 +3,10 @@
     flex-direction: column;
     gap: 1.5rem;
     border-radius: var(--border-radius);
-    box-shadow: 0 0 6px var(--shadow);
+    
     display: flex;
     padding: 1rem .8rem;
-    margin: .5rem;
+
     background-color: var(--background);
 }
 
