@@ -3,10 +3,8 @@
     flex-direction: column;
     gap: 1.5rem;
     border-radius: var(--border-radius);
-    
     display: flex;
     padding: 1rem .8rem;
-
     background-color: var(--background);
 }
 

@@ -1,0 +1,14 @@
+.chatList {
+    display: flex;
+    flex-direction: column;
+    overflow-y:  scroll;
+    scrollbar-width: none;
+    width: min(400px, 100%);
+    background-color: var(--background30);
+    height: inherit;
+    min-height: 0;
+    padding: .5rem;
+    gap: .5rem;
+}
+
+
