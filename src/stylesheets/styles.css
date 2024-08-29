@@ -72,18 +72,29 @@ input[data-error='true']:focus, input[data-error='true']:not(:focus) {
 }
 
 textarea {
+  box-sizing: border-box;
   width: 100%;
   font-family: inherit;
   font-size: inherit;
   border-radius: var(--border-radius);
-  line-height: 1.5rem; 
+  padding: .5rem .8rem;
+  line-height: 1.5rem;
 }
-
 
 textarea.primary {
   resize: none;
   border: 1px solid black;
   border-radius: var(--border-radius);
+}
+
+textarea.primary >  * {
+  margin-block: auto;
+}
+
+
+
+textarea::placeholder {
+  line-height: 1.5rem;
 }
 
 textarea.primary:focus, textarea.primary:focus-visible  {
