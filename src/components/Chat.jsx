@@ -1,9 +1,12 @@
 import { useParams, useLocation } from 'react-router-dom';
-import chatStyle from '../stylesheets/Chat.module.css';
+import style from '../stylesheets/Chat.module.css';
 import { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../contexts/UserContext';
 import ResizeableTextarea from '../components/ResizeableTextarea';
+import userSvg from '../assets/svgs/user.svg';
+
 export default function Chat() {
+    const [text, setText] = useState('');
     // const { state } = useLocation()
     // const { id } = useParams()
     // const { token } = useContext(UserContext)
@@ -80,8 +83,8 @@ export default function Chat() {
     //     }
     //     e.target.reset()
     // }
-
-    if (error) return <div>Whoops something went wrong</div>;
+    //
+    //     if (error) return <div>Whoops something went wrong</div>;
     return (
         <section className={style.chat} aria-label="Chat">
             <header>

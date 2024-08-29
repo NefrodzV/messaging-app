@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import userIcon from '../assets/svgs/user.svg';
-import style from '../stylesheets/chatcard.module.css';
+// import style from '../stylesheets/chatcard.module.css';
 import { memo } from 'react';
 import useUtils from '../hooks/useUtils';
 const ChatCard = memo(function ChatCard({ chat }) {
