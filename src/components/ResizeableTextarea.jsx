@@ -64,6 +64,8 @@ export default function ResizeableTextarea({
             then if lines is not equal to rows then the textarea should
             increase or decrease
         */
+
+        if (defaultRows == maxRows) return;
         const defaultSubstract = 1;
         const hiddenTextarea = hiddenTextareaRef?.current;
         const lineHeight = window
@@ -102,11 +104,11 @@ export default function ResizeableTextarea({
                 aria-hidden={true}
                 rows={1}
                 style={{
-                    // visibility: 'hidden',
-                    // zIndex: -1,
+                    pointerEvents: 'none',
+                    visibility: 'hidden',
+                    zIndex: -1,
                     width: hiddenTextareaDimen.width,
                     position: 'absolute',
-                    top: '-250px',
                 }}
                 value={value}
                 readOnly
