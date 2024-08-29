@@ -117,3 +117,10 @@
 .message[data-reverse=true] .userImage {
     order: 3;
 }
+
+@media(max-width: 600px) {
+    .chat {
+        flex: 1;
+        /* display: none; */
+    }
+}

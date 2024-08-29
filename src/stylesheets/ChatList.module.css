@@ -3,12 +3,22 @@
     flex-direction: column;
     overflow-y:  scroll;
     scrollbar-width: none;
-    width: min(400px, 100%);
+    width: clamp(300px, 1vw + 150px, 400px);
     background-color: var(--background30);
     height: inherit;
     min-height: 0;
     padding: .5rem;
     gap: .5rem;
+}
+
+@media(max-width: 1024px) {
+    
+}
+@media(max-width: 768px) {
+    .chatList {
+        /* flex: 1; */
+        display: none;
+    }
 }
 
 

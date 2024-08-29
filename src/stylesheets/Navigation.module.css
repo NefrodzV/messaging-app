@@ -44,3 +44,18 @@
 .navIcon {
     height: 1.5rem;
 }
+
+
+.text {
+
+}
+
+@media(max-width: 1024px) {
+
+    .navLink {
+        justify-content: center;
+    }
+    .text {
+        display: none;
+    }
+}
