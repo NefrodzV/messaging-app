@@ -7,7 +7,8 @@ import Loader from '../components/Loader';
 import hamburgerSvg from '../assets/svgs/hamburger.svg';
 import userSvg from '../assets/svgs/user.svg';
 import { NavLink } from 'react-router-dom';
-import ChatItem from '../components/ChatItem';
+import ChatList from '../components/ChatList';
+import Chat from '../components/Chat';
 import ResizeableTextarea from '../components/ResizeableTextarea';
 import planeSvg from '../assets/svgs/paperplane.svg';
 export default function HomePage() {
@@ -19,18 +20,7 @@ export default function HomePage() {
                 <Navigation />
             </header>
             <main className={style.main}>
-                <section className={style.chats} aria-label="Chats">
-                    <ChatItem delayAnim={'.2s'}></ChatItem>
-                    <ChatItem delayAnim={'.4s'}></ChatItem>
-                    <ChatItem delayAnim={'.8s'}></ChatItem>
-                    <ChatItem delayAnim={'1.2s'}></ChatItem>
-                    <ChatItem delayAnim={'1.6s'}></ChatItem>
-                    <ChatItem delayAnim={'2s'}></ChatItem>
-                    <ChatItem delayAnim={'2.4s'}></ChatItem>
-                    <ChatItem delayAnim={'2.8s'}></ChatItem>
-                    <ChatItem delayAnim={'3.2s'}></ChatItem>
-                    <ChatItem delayAnim={'3.6s'}></ChatItem>
-                </section>
+                <ChatList />
                 <section className={style.chat} aria-label="Chat">
                     <header>
                         <img className={style.user} src={userSvg} alt="" />

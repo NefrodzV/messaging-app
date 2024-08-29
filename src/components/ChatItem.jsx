@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import style from '../stylesheets/ChatItem.module.css';
 import userSvg from '../assets/svgs/user.svg';
+
 export default function ChatItem({ text, user, imgUrl, time, delayAnim }) {
     const [mounted, setMounted] = useState(false);
     const [show, setShow] = useState(false);
