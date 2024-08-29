@@ -27,17 +27,17 @@
 .navigation {
     --item-lines: .1rem;
     box-sizing: border-box;
-    background-color: var(--background);
     margin-top: 5rem;
     display: flex;
     flex-direction: column;
     gap: var(--item-lines);
+    padding: .5rem;
+    
 }
 .navLink {
     font-size: clamp(1rem, 1rem + .5vw, 1.5rem);
     margin-block: auto;
     padding: .5rem 1rem;
-    background-color: var(--primary);
     text-decoration: none;
     height: var(--control-height);
     display: flex;
@@ -51,18 +51,23 @@
     position: relative;
     display: flex;
     gap: 1rem;
-    align-items: baseline;
+    
 }
 
-.navLink:first-child  {
+/* .navLink:first-child  {
     border-top: var(--item-lines) solid var(--background);
 }
 .navLink:last-child  {
     border-bottom: var(--item-lines) solid var(--background);
-}
+} */
 
 .navLink:hover{
-    background-color: var(--primary80);
+    border-radius: 50px;
+    background-color: var(--secondary);
+}
+
+.navLink[data-active=true] {
+    
 }
 
 .navIcon {
@@ -99,14 +104,14 @@
 }
 
 .chat header {
-    position: relative;
+    
     display: flex;
     align-items: center;
     box-sizing: border-box;
     gap: .5rem;
     padding: 1rem .8rem;
-    box-shadow:  0 3px 6px var(--background30);
-    z-index: 2;
+    box-shadow:  0 3px 3px var(--background30);
+    
     
 }
 
