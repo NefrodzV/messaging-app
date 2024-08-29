@@ -97,7 +97,6 @@ button {
   text-transform: capitalize;
   font-family: inherit;
   cursor: pointer;
-  height: var(--control-height);
 }
 
 button img, button svg {
