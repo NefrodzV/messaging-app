@@ -13,8 +13,16 @@ export default function HomePage() {
     return (
         <div className={style.page}>
             <header className={style.header}>
-                <div>Chatia</div>
+                <div>Logo</div>
                 <Navigation />
+                <button
+                    className={style.hamburger}
+                    type="button"
+                    aria-label="Open or Close menu"
+                    aria-expanded={false}
+                >
+                    <img className="icon" src={hamburgerSvg} alt="Menu icon" />
+                </button>
             </header>
             <main className={style.main}>
                 <ChatList />

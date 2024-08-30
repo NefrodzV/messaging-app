@@ -70,7 +70,9 @@ input[data-error='true']:focus, input[data-error='true']:not(:focus) {
   border-color: red;
   animation: shake .2s;
 }
-
+.icon {
+  height: clamp(2rem, 1.8rem + .5vw, 2.8rem);
+}
 textarea {
   box-sizing: border-box;
   width: 100%;
