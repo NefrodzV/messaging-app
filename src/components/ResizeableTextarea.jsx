@@ -74,7 +74,7 @@ export default function ResizeableTextarea({
         const lines =
             Math.ceil(hiddenTextarea.scrollHeight / parseInt(lineHeight)) -
             defaultSubstract;
-        if (lines === maxRows) return;
+        if (lines > maxRows) return;
         if (lines !== defaultRows) {
             setDefaultRows(lines);
         }
