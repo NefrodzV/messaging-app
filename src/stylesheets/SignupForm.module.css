@@ -34,16 +34,7 @@
     :root {
         --font-size: var
     }
-    .title {
-        
-        font-size: calc(var(--font-size) * 1.6);
-    }
     
-    .subtitle {
-        
-        font-size: calc(var(--font-size) * 1.2);
-        
-    }
     .form {
         padding: 1rem;
         gap: .7rem;
