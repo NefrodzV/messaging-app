@@ -1,6 +1,6 @@
 .chat {
     box-sizing: border-box;
-    flex: 1;
+    flex: 2 0 0;
     display: flex;
     flex-direction: column;
     

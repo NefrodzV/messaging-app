@@ -5,11 +5,12 @@
     
 }
 .header {
-    width: 300px;
+    flex: .4;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     background-color: var(--primary);
+    transition: .5s all ease-in-out;
 }
 
 .user {
@@ -25,7 +26,7 @@
 }
 
 .main {
-    flex: 1;
+    flex: 2 0 0;
     background-color: var(--background);
     display: flex;
     min-height: 0;
@@ -61,8 +62,6 @@
 } */
 
 @media(max-width: 1024px) {
-
-    
     .text {
         position: absolute;
         top: -100px;
@@ -76,6 +75,18 @@
 
 @media(max-width: 1024px) {
     .header{
-        width: min-content;
+        flex: .1;
+    }
+}
+
+@media(max-width: 768px) {
+    .page {
+        flex-direction: column;
+    }
+
+    .header {
+        padding: 0px 10%;
+        flex-direction: row;
+        align-items: center;
     }
 }
