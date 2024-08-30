@@ -7,25 +7,65 @@ import xMarkSvg from '../assets/svgs/xmark.svg';
 import { Link, NavLink } from 'react-router-dom';
 import useUtils from '../hooks/useUtils';
 import useSessionStorage from '../hooks/useSessionStorage';
-const Navigation = memo(function Navigation() {
-    const { setIsLoggedIn, user } = useContext(UserContext);
-    const { imageHandler } = useUtils();
-    const { removeSavedLocation } = useSessionStorage();
+import { useState, useEffect } from 'react';
+import propTypes from 'prop-types';
+export default function Navigation({ isOpen, openHandler }) {
+    //     const { setIsLoggedIn, user } = useContext(UserContext);
+    //     const { imageHandler } = useUtils();
+    //     const { removeSavedLocation } = useSessionStorage();
+    //
+    //     function logoutHandler() {
+    //         Cookie.remove('token');
+    //         removeSavedLocation();
+    //         setIsLoggedIn(false);
+    //     }
+    // const [mounted, setMounted] = useState(false);
+    // const [show, setShow] = useState(false);
+    // useEffect(() => {
+    //     setMounted(true);
+    //     setShow(true);
+    // }, []);
+    const [show, setShow] = useState(false);
+    const [isClosing, setIsClosing] = useState(false);
+    useEffect(() => {
+        if (isOpen && !show) {
+            setShow(true);
+        }
+        if (!isOpen && show) {
+            setIsClosing(true);
+        }
+    }, [isOpen]);
 
-    function logoutHandler() {
-        Cookie.remove('token');
-        removeSavedLocation();
-        setIsLoggedIn(false);
-    }
-
+    const onAnimationEndHandler = () => {
+        if (isClosing) {
+            setShow(false);
+            setIsClosing(false);
+        }
+    };
+    //     useEffect(() => {
+    //         if(isClosing) {
+    //             const onAnimationEnd = () => {
+    //                 setIsClosing(false)
+    //                 setShow(false)
+    //             }
+    //         }
+    //
+    //
+    //     }, [isClosing]);
     return (
-        <nav className={style.navList}>
+        <nav
+            className={style.navList}
+            data-show={show}
+            data-closing={isClosing}
+            onAnimationEnd={onAnimationEndHandler}
+        >
             <div className={style.logo}>Logo</div>
             <button
                 type="button"
                 className={style.close}
                 aria-label="Close menu button"
-                aria-expanded={false}
+                aria-expanded={isOpen}
+                onClick={openHandler}
             >
                 <img className={'icon'} src={xMarkSvg} alt="" />
             </button>
@@ -76,6 +116,8 @@ const Navigation = memo(function Navigation() {
             </NavLink>
         </nav>
     );
-});
-
-export default Navigation;
+}
+Navigation.propTypes = {
+    isOpen: propTypes.bool,
+    openHandler: propTypes.func,
+};
