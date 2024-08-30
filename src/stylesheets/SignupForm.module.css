@@ -16,13 +16,13 @@
 }
 .title {
     margin: 0;
-    font-size: clamp(1.5rem, 1rem + 1vw, 3rem);
+    
 }
 
 .subtitle {
     font-weight: 400;
     margin: 0;
-    font-size: clamp(1.1rem, 1rem + .5vw, 2rem);
+    
     color: var(--text50);
 }
 
@@ -31,13 +31,17 @@
 }
 
 @media(max-width: 600px) {
+    :root {
+        --font-size: var
+    }
     .title {
         
-        font-size: clamp(1.1rem, 1rem + .5vw, 1.3rem);
+        font-size: calc(var(--font-size) * 1.6);
     }
     
     .subtitle {
-        font-size: clamp(1rem, 1rem + .2vw, 1.075rem);
+        
+        font-size: calc(var(--font-size) * 1.2);
         
     }
     .form {
