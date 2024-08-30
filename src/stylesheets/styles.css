@@ -11,13 +11,14 @@
   --backgroundb5:hwb(192 96% 5%);
   --backgroundb10: hwb(192 96% 10%);
   --primary: #48a1c3;
+  --primaryb50: hwb(197 28% 50%);
   --primary30: hsl(197, 51%, 52%, 30%);
   --primary80: hsl(197, 51%, 52%, 80%);
   --secondary: #8bcee8;
   --secondary30: hsl(197, 67%, 73%, 30%);
   --accent: #49c0ef;
   --accent30: hsl(197, 84%, 61%, 30%);
-  --shadow: rgba(0,0,0, 1.125); 
+  --shadow: rgba(0,0,0, .125); 
   --border-radius: .2rem;
   --control-height: 2.8rem;
   --font-size: clamp(1rem, 1vw + .5rem, 1.5rem);
@@ -119,8 +120,6 @@ textarea.primary >  * {
   margin-block: auto;
 }
 
-
-
 textarea::placeholder {
   line-height: 1.5rem;
 }
@@ -144,19 +143,21 @@ button img, button svg {
 }
 
 button.primary {
+  
   font-weight: bold;
-  color: var(--background);
+  color: var(--text);
   background: var(--primary);
   border: none;
+  height: var(--control-height);
 }
 
 button.primary:hover {
   
-  background-color: var(--primary80);
+  background-color: var(--secondary);
 }
 
 a {
-  color: var(--primary);
+  color: var(--primaryb50);
 }
 
 /* @media(max-width: 600px) {
