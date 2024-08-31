@@ -9,26 +9,35 @@ import Chat from '../components/Chat';
 
 export default function HomePage() {
     const [menuIsOpen, setMenuIsOpen] = useState(false);
-    // const [isMobile, setIsMobile] = useState(false);
-    const pageRef = useRef(null);
+    const [isDesktop, setIsDesktop] = useState(null);
+
     const openHandler = () => {
         console.log('Opening menu');
         setMenuIsOpen(!menuIsOpen);
     };
-    // useEffect(() => {
-    //     const page = pageRef?.current;
-    //     const pageWidth = window
-    //         .getComputedStyle(page, null)
-    //         .getPropertyValue('width');
-    //     /**  On render get the page width if the device
-    //      * screen is lower than */
-    //     if (parseInt(pageWidth) < 768) {
-    //         setMenuIsOpen(false);
-    //     }
-    // }, []);
+
+    useEffect(() => {
+        const onResizeHandler = () => {
+            const viewportWidth = window.innerWidth;
+            if (viewportWidth >= 1024 && !isDesktop) {
+                setIsDesktop(true);
+            }
+
+            if (viewportWidth <= 768 && isDesktop) {
+                setIsDesktop(false);
+            }
+        };
+
+        onResizeHandler();
+        window.addEventListener('resize', onResizeHandler);
+
+        return () => {
+            window.removeEventListener('resize', onResizeHandler);
+        };
+    });
 
     return (
-        <div ref={pageRef} className={style.page}>
+        <div className={style.page}>
             <header className={style.header}>
                 <div>Logo</div>
                 <Navigation openHandler={openHandler} isOpen={menuIsOpen} />
