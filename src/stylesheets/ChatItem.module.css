@@ -1,17 +1,17 @@
 .chatItem {
     cursor: pointer;
     flex-direction: column;
-    gap: 1.5rem;
     border-radius: var(--border-radius);
     display: flex;
     padding: 1rem .8rem;
     background-color: var(--background);
+    gap: .4rem;
 }
 
 .chatItem header {
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    
+    gap: .2rem;
 }
 
 .username {
@@ -21,6 +21,7 @@
     white-space: nowrap;
 }
 .time {
+    font-size: .8rem;
     margin-inline: auto 0;
     color: var(--text70);
 }
@@ -31,7 +32,7 @@
 }
 
 .message p {
-    width:30ch;
+    width: 90%;
     overflow: hidden;
     margin: 0;
     /* Causing issues with overflow*/
@@ -41,11 +42,11 @@
 }
 .messageIcon {
     
-    height: clamp(1rem, .8rem + .5vw, 1.5rem);
+    height: 1rem;
     aspect-ratio: 1 / 1;
 }
 .chatItem .user {
-    height: 2rem;
+    height: 1.5rem;
 }
 
 .chatItem[data-show='true'] {
