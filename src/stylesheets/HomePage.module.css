@@ -78,7 +78,7 @@
         background-color: var(--secondary);
     }
     .header {
-        padding: 0px 10%;
+        padding: .5rem 10%;
         flex-direction: row;
         align-items: center;
     }

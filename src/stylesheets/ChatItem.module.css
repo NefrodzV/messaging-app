@@ -15,7 +15,10 @@
 }
 
 .username {
+    overflow: hidden;
     font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .time {
     margin-inline: auto 0;
@@ -42,7 +45,7 @@
     aspect-ratio: 1 / 1;
 }
 .chatItem .user {
-    height: 2.8rem;
+    height: 2rem;
 }
 
 .chatItem[data-show='true'] {
