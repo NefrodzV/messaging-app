@@ -43,6 +43,7 @@
 
 .hamburger {
     display: none;
+    height: var(--control-height);
     align-items: center;
     justify-content: center;
     border-radius: var(--border-radius);

@@ -58,6 +58,8 @@
 }
 
 .close {
+    height: var(--control-height);
+    width: var(--control-height);
     display: none;
     position: absolute;
     background-color: var(--secondary);
