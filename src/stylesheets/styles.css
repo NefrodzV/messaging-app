@@ -98,11 +98,10 @@ input[data-error='true']:focus, input[data-error='true']:not(:focus) {
   animation: shake .2s;
 }
 .icon {
-  height: clamp(2rem, 1.8rem + .5vw, 2.8rem);
+  height: 1.5rem;
 }
 textarea {
   box-sizing: border-box;
-  width: 100%;
   font-family: inherit;
   font-size: inherit;
   border-radius: var(--border-radius);
@@ -111,6 +110,7 @@ textarea {
 }
 
 textarea.primary {
+  flex: 1;
   background-color: var(--background30);
   border: none;
   resize: none;
