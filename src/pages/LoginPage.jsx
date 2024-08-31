@@ -2,24 +2,16 @@ import style from '../stylesheets/Login.module.css';
 import LoginForm from '../components/LoginForm';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../contexts/UserContext';
+import useUser from '../hooks/useUser';
 
 export default function LoginPage() {
-    //     const navigate = useNavigate();
-    //     const { isLoggedIn, user } = useContext(UserContext);
-    //     const [loading, setLoading] = useState(true);
-    //
-    //     useEffect(() => {
-    //         if (isLoggedIn && user) {
-    //             navigate('/chats');
-    //             return;
-    //         } else if (isLoggedIn) {
-    //             setLoading(true);
-    //         } else {
-    //             setLoading(false);
-    //         }
-    //     }, [isLoggedIn, user]);
+    const { user } = useUser();
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        console.log(user);
+        if (user) navigate('/' + user.username, { replace: true });
+    }, [user]);
     return (
         <main className={style.page}>
             {/* <img className={style.hero} src="" alt="" /> */}
