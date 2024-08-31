@@ -15,7 +15,7 @@
   --primary30: hsl(197, 51%, 52%, 30%);
   --primary80: hsl(197, 51%, 52%, 80%);
   --secondary: #8bcee8;
-  --secondary30: hsl(197, 67%, 73%, 30%);
+  --secondary20: hwb(197 55% 20%);
   --accent: #49c0ef;
   --accent30: hsl(197, 84%, 61%, 30%);
   --shadow: rgba(0,0,0, .125); 
