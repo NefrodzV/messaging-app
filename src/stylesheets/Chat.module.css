@@ -35,6 +35,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    box-sizing: border-box;
 }
 
 .sendButton {
@@ -51,20 +52,21 @@
 
 
 .sendMessage {
-    gap: .4rem;
+    box-sizing: border-box;
     max-height: 400px;
     display: flex;
-    padding: .8rem;
-    box-sizing: border-box;
+    padding: .4rem;
+    justify-content: center;
     align-items: center;
 }
 
 .sendMessage > .container {
     border-radius: var(--border-radius);
-    padding: .4rem;
+    flex: 1;
     background-color: var(--background30);
     height: inherit;
-    flex: 1;
+    
+    box-sizing: border-box;
     display: flex;
 }
 
