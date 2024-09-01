@@ -91,7 +91,7 @@
     }
 
     #chatsButton {
-        display: flex;
+        display: none;
     }
     
 }
