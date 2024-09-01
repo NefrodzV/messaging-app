@@ -13,7 +13,8 @@
     box-sizing: border-box;
     --border-radius: 50px;
     margin-block: auto;
-    
+    background-color: inherit;
+    border: none;
     padding: 0rem .8rem;
     text-decoration: none;
     height: var(--control-height);
@@ -74,13 +75,22 @@
 
 }
 
+#chatsButton {
+    display: none;
+}
+
 @media(max-width: 1024px) {
     .navLink {
         justify-content: center;
+        align-items: center;
     }
 
     .text {
         display: none;
+    }
+
+    #chatsButton {
+        display: flex;
     }
     
 }
