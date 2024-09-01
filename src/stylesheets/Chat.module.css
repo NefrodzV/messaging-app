@@ -126,9 +126,40 @@
         flex: 1;
         /* display: none; */
     }
+
+    .chat[data-show=true] {
+        animation: show .5s forwards;
+    }
+    
+    .chat[data-closing=true] {
+        display: none;
+        animation: close .1s forwards;
+    }
 }
 @media(max-width: 600px) {
    .message {
-    max-width: 95%;
+        max-width: 95%;
    }
+}
+
+@keyframes show {
+    from {
+        transform: translate(100%);
+        
+    }
+
+    to {
+        transform: translate(0);
+    }
+}
+
+@keyframes close {
+    from {
+        transform: translate(0);
+        
+    }
+
+    to {
+        transform: translate(100%);
+    }
 }

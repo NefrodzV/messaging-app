@@ -11,6 +11,8 @@ export default function HomePage() {
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const [isDesktop, setIsDesktop] = useState(null);
 
+    const [showChatList, setShowChatList] = useState(null);
+    const [showChat, setShowChat] = useState(false);
     const [chatHasFocus, setChatHasFocus] = useState(false);
 
     const focusHandler = () => setChatHasFocus(true);
@@ -32,15 +34,20 @@ export default function HomePage() {
     useEffect(() => {
         console.log('chat focus has changed ' + chatHasFocus);
     }, [chatHasFocus]);
+
     useEffect(() => {
         const onResizeHandler = () => {
             const viewportWidth = window.innerWidth;
             if (viewportWidth > 768) {
+                setShowChatList(true);
+                setShowChat(true);
                 setIsDesktop(true);
             }
 
             if (viewportWidth <= 768) {
+                setShowChatList(true);
                 setIsDesktop(false);
+                setShowChat(false);
             }
         };
 
@@ -75,29 +82,8 @@ export default function HomePage() {
                 </button>
             </header>
             <main className={style.main}>
-                {/* <ChatList />
-                <Chat /> */}
-                {isDesktop && (
-                    <>
-                        <ChatList />
-                        <Chat
-                            focusHandler={focusHandler}
-                            focusOutHandler={focusOutHandler}
-                        />
-                    </>
-                )}
-
-                {!isDesktop && (
-                    <>
-                        {!chatHasFocus && <ChatList />}
-                        {chatHasFocus && (
-                            <Chat
-                                focusHandler={focusHandler}
-                                focusOutHandler={focusOutHandler}
-                            />
-                        )}
-                    </>
-                )}
+                <ChatList render={showChatList} />
+                <Chat render={showChat} />
             </main>
         </div>
     );
