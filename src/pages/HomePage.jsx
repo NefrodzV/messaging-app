@@ -23,20 +23,23 @@ export default function HomePage() {
     };
 
     const clickHandler = (e) => {
+        setChatHasFocus(false);
         console.log('nav button clicked');
-        console.log(e.target.id);
+        console.log(e.target.textContent);
+        setMenuIsOpen(false);
     };
+
     useEffect(() => {
         console.log('chat focus has changed ' + chatHasFocus);
     }, [chatHasFocus]);
     useEffect(() => {
         const onResizeHandler = () => {
             const viewportWidth = window.innerWidth;
-            if (viewportWidth >= 1024 && !isDesktop) {
+            if (viewportWidth > 768) {
                 setIsDesktop(true);
             }
 
-            if (viewportWidth <= 768 && isDesktop) {
+            if (viewportWidth <= 768) {
                 setIsDesktop(false);
             }
         };
@@ -47,8 +50,11 @@ export default function HomePage() {
         return () => {
             window.removeEventListener('resize', onResizeHandler);
         };
-    });
+    }, []);
 
+    useEffect(() => {
+        console.log(' Is desktop has changed ' + isDesktop);
+    }, [isDesktop]);
     return (
         <div className={style.page}>
             <header className={style.header}>
@@ -69,11 +75,29 @@ export default function HomePage() {
                 </button>
             </header>
             <main className={style.main}>
-                <ChatList />
-                <Chat
-                    focusHandler={focusHandler}
-                    focusOutHandler={focusOutHandler}
-                />
+                {/* <ChatList />
+                <Chat /> */}
+                {isDesktop && (
+                    <>
+                        <ChatList />
+                        <Chat
+                            focusHandler={focusHandler}
+                            focusOutHandler={focusOutHandler}
+                        />
+                    </>
+                )}
+
+                {!isDesktop && (
+                    <>
+                        {!chatHasFocus && <ChatList />}
+                        {chatHasFocus && (
+                            <Chat
+                                focusHandler={focusHandler}
+                                focusOutHandler={focusOutHandler}
+                            />
+                        )}
+                    </>
+                )}
             </main>
         </div>
     );
