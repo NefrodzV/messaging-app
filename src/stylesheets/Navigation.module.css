@@ -104,6 +104,10 @@
     .close {
         display: flex;
     }
+
+    #chatsButton {
+        display: flex;
+    }
     .navList {
         overflow: hidden;
         display: none;

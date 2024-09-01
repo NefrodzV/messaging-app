@@ -19,13 +19,19 @@ export default function HomePage() {
 
     const focusOutHandler = () => setChatHasFocus(false);
 
+    const clickChatItemHandler = () => {
+        console.log('Chat item clicked');
+        setShowChat(true);
+        setShowChatList(false);
+    };
     const openHandler = () => {
         console.log('Opening menu');
         setMenuIsOpen(!menuIsOpen);
     };
 
     const clickHandler = (e) => {
-        setChatHasFocus(false);
+        setShowChat(false);
+        setShowChatList(true);
         console.log('nav button clicked');
         console.log(e.target.textContent);
         setMenuIsOpen(false);
@@ -82,7 +88,10 @@ export default function HomePage() {
                 </button>
             </header>
             <main className={style.main}>
-                <ChatList render={showChatList} />
+                <ChatList
+                    render={showChatList}
+                    clickHandler={clickChatItemHandler}
+                />
                 <Chat render={showChat} />
             </main>
         </div>

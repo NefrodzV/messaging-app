@@ -1,5 +1,4 @@
 .chatList {
-    
     display: flex;
     flex-direction: column;
     overflow-y:  scroll;
@@ -13,8 +12,10 @@
     
 }
 
+
  @media(max-width: 1024px) {
     .chatList {
+
     }
 } 
 @media(max-width: 768px) {
@@ -22,7 +23,37 @@
         max-width: none;
         /* display: none; */
     }
+
+    .chatList[data-show=true] {
+        animation: show  .5s forwards;
+    }
+
+    .chatList[data-closing=true] {
+        animation: close .1s forwards;
+    }
+
+
 } 
+@keyframes show {
+    from {
+        transform: translate(-100%);
+    }
+
+    to {
+        transform: translate(0);
+    }
+    
+}
+
+@keyframes close {
+    from {
+        transform: translate(0);
+    }
+
+    to {
+        transform: translate(-100%);
+    }
+}
 
 
 

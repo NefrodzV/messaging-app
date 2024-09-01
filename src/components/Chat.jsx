@@ -15,6 +15,7 @@ export default function Chat({ render, focusHandler, focusOutHandler }) {
         if (render) {
             setIsMounted(true);
             setShow(true);
+            setIsClosing(false);
             return;
         }
         if (!render && show) {
@@ -36,6 +37,7 @@ export default function Chat({ render, focusHandler, focusOutHandler }) {
                         if (isClosing) {
                             setIsMounted(false);
                             setShow(false);
+                            setIsClosing(false);
                         }
                     }}
                 >
