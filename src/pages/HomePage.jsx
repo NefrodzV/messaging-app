@@ -11,11 +11,24 @@ export default function HomePage() {
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const [isDesktop, setIsDesktop] = useState(null);
 
+    const [chatHasFocus, setChatHasFocus] = useState(false);
+
+    const focusHandler = () => setChatHasFocus(true);
+
+    const focusOutHandler = () => setChatHasFocus(false);
+
     const openHandler = () => {
         console.log('Opening menu');
         setMenuIsOpen(!menuIsOpen);
     };
 
+    const clickHandler = (e) => {
+        console.log('nav button clicked');
+        console.log(e.target.id);
+    };
+    useEffect(() => {
+        console.log('chat focus has changed ' + chatHasFocus);
+    }, [chatHasFocus]);
     useEffect(() => {
         const onResizeHandler = () => {
             const viewportWidth = window.innerWidth;
@@ -40,7 +53,11 @@ export default function HomePage() {
         <div className={style.page}>
             <header className={style.header}>
                 <div>Logo</div>
-                <Navigation openHandler={openHandler} isOpen={menuIsOpen} />
+                <Navigation
+                    clickHandler={clickHandler}
+                    openHandler={openHandler}
+                    isOpen={menuIsOpen}
+                />
                 <button
                     className={style.hamburger}
                     type="button"
@@ -53,7 +70,10 @@ export default function HomePage() {
             </header>
             <main className={style.main}>
                 <ChatList />
-                <Chat />
+                <Chat
+                    focusHandler={focusHandler}
+                    focusOutHandler={focusOutHandler}
+                />
             </main>
         </div>
     );

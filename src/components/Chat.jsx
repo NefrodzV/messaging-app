@@ -1,12 +1,13 @@
 import { useParams, useLocation } from 'react-router-dom';
 import style from '../stylesheets/Chat.module.css';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import { UserContext } from '../contexts/UserContext';
 import ResizeableTextarea from '../components/ResizeableTextarea';
 import userSvg from '../assets/svgs/user.svg';
-
-export default function Chat() {
+import propTypes from 'prop-types';
+export default function Chat({ focusHandler, focusOutHandler }) {
     const [text, setText] = useState('');
+
     // const { state } = useLocation()
     // const { id } = useParams()
     // const { token } = useContext(UserContext)
@@ -86,7 +87,13 @@ export default function Chat() {
     //
     //     if (error) return <div>Whoops something went wrong</div>;
     return (
-        <section className={style.chat} aria-label="Chat">
+        <section
+            className={style.chat}
+            aria-label="Chat"
+            onFocus={focusHandler}
+            onBlur={focusOutHandler}
+            tabIndex={0}
+        >
             <header>
                 <img className={style.user} src={userSvg} alt="" />
                 <h2 className={style.username}>Rose Vargas Hernandez</h2>
@@ -236,3 +243,7 @@ export default function Chat() {
         </section>
     );
 }
+
+Chat.propTypes = {
+    focusHandler: propTypes.func,
+};
