@@ -1,16 +1,17 @@
 .chatItem {
     cursor: pointer;
-    flex-direction: column;
     border-radius: var(--border-radius);
     display: flex;
     padding: 1rem .8rem;
     background-color: var(--background);
     gap: .4rem;
+    align-items: center;
 }
 
 .chatItem header {
     display: flex;
-    
+    justify-content: space-between;
+    align-items: center;
     gap: .2rem;
 }
 
@@ -22,16 +23,18 @@
 }
 .time {
     font-size: .8rem;
-    margin-inline: auto 0;
-    color: var(--text70);
+    
 }
 .message {
+    order: 1;
     display: flex;
     overflow: hidden;
     gap: .4rem;
+    flex-direction: column;
 }
 
 .message p {
+    font-size: calc(var(--font-size) * .8);
     width: 90%;
     overflow: hidden;
     margin: 0;
@@ -40,12 +43,9 @@
     white-space: nowrap;
     
 }
-.messageIcon {
-    
-    height: 1rem;
-    aspect-ratio: 1 / 1;
-}
+
 .chatItem .user {
+    order:0;
     height: 1.5rem;
 }
 
