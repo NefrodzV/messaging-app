@@ -57,6 +57,7 @@ body {
 
 #root {
   height: inherit;
+  overflow: hidden;
 }
 
 svg {

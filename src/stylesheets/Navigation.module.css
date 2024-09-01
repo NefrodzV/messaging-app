@@ -83,6 +83,7 @@
     .navLink {
         justify-content: center;
         align-items: center;
+        padding: 0;
     }
 
     .text {
@@ -128,6 +129,7 @@
         margin: 0;
         justify-content: flex-start;
         align-items: center;
+        padding: 0rem .8rem;
     }
 
     .navList[data-show=true] {
@@ -172,16 +174,6 @@
 
 @media(max-width: 600px) {
 
-    .navList {
-        
-    }
-
-     
-
-    
-    .navLink {
-        width: auto;
-    }
 
 
 @keyframes open {

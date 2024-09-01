@@ -1,6 +1,6 @@
 .chat {
     box-sizing: border-box;
-    flex: 2 0 0;
+    width: auto;
     display: flex;
     flex-direction: column;
     
@@ -71,7 +71,7 @@
 }
 
 .message {
-    width: fit-content;
+    
     max-width: 80%;
     display: flex;  
     gap: .8rem;
@@ -121,9 +121,14 @@
     order: 3;
 }
 
-@media(max-width: 600px) {
+@media(max-width: 768px) {
     .chat {
         flex: 1;
         /* display: none; */
     }
+}
+@media(max-width: 600px) {
+   .message {
+    max-width: 95%;
+   }
 }

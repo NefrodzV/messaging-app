@@ -1,5 +1,5 @@
 .chatList {
-    flex: 1 0;
+    
     display: flex;
     flex-direction: column;
     overflow-y:  scroll;
@@ -10,20 +10,19 @@
     padding: .5rem;
     gap: .5rem;
     max-width: 300px;
+    
 }
 
-@media(max-width: 1024px) {
+ @media(max-width: 1024px) {
     .chatList {
-        /* flex: 1; */
-        display: none;
     }
-}
+} 
 @media(max-width: 768px) {
     .chatList {
-        /* flex: 1; */
-        display: none;
+        max-width: none;
+        /* display: none; */
     }
-}
+} 
 
 
 
