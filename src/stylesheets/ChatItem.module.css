@@ -6,6 +6,7 @@
     background-color: var(--background);
     gap: .4rem;
     align-items: center;
+    
 }
 
 .chatItem header {
@@ -26,6 +27,7 @@
     
 }
 .message {
+    
     order: 1;
     display: flex;
     overflow: hidden;
@@ -34,7 +36,7 @@
 }
 
 .message p {
-    font-size: calc(var(--font-size) * .8);
+    font-size: .8rem;
     width: 90%;
     overflow: hidden;
     margin: 0;
