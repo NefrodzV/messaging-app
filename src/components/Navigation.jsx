@@ -9,7 +9,7 @@ import useUtils from '../hooks/useUtils';
 import useSessionStorage from '../hooks/useSessionStorage';
 import { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
-export default function Navigation({ isOpen, openHandler }) {
+export default function Navigation({ isOpen, openHandler, clickHandler }) {
     //     const { setIsLoggedIn, user } = useContext(UserContext);
     //     const { imageHandler } = useUtils();
     //     const { removeSavedLocation } = useSessionStorage();
@@ -69,7 +69,11 @@ export default function Navigation({ isOpen, openHandler }) {
             >
                 <img className={'icon'} src={xMarkSvg} alt="" />
             </button>
-            <NavLink className={style.navLink}>
+            <NavLink
+                className={style.navLink}
+                title="Go to home page"
+                aria-label="Go to home page"
+            >
                 <div className={style.content}>
                     <svg
                         className={style.navIcon}
@@ -84,7 +88,12 @@ export default function Navigation({ isOpen, openHandler }) {
                     <span className={style.text}>Home</span>
                 </div>
             </NavLink>
-            <NavLink data-current={true} className={style.navLink}>
+            <NavLink
+                data-current={true}
+                className={style.navLink}
+                title="Go to my profile"
+                aria-label="Go to my profile"
+            >
                 <div className={style.content}>
                     <svg
                         className={style.navIcon}
@@ -99,7 +108,11 @@ export default function Navigation({ isOpen, openHandler }) {
                     <span className={style.text}>Profile</span>
                 </div>
             </NavLink>
-            <NavLink className={style.navLink}>
+            <NavLink
+                className={style.navLink}
+                title="Go to users page"
+                aria-label="Go to users page"
+            >
                 <div className={style.content}>
                     <svg
                         className={style.navIcon}
@@ -114,6 +127,28 @@ export default function Navigation({ isOpen, openHandler }) {
                     <span className={style.text}>Users</span>
                 </div>
             </NavLink>
+            <button
+                type="button"
+                aria-label="View chats"
+                className={style.navLink}
+                id={style.chatsButton}
+                title="View chats button"
+                onClick={clickHandler}
+            >
+                <div className={style.content}>
+                    <svg
+                        className={style.navIcon}
+                        viewBox="0 0 8 8"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            fill="currentColor"
+                            d="m0 0v5l1-1h1v-3h3v-1zm3 2v4h4l1 1v-5z"
+                        />
+                    </svg>
+                    <span className={style.text}>Chats</span>
+                </div>
+            </button>
         </nav>
     );
 }
