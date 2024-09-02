@@ -92,7 +92,7 @@ export default function HomePage() {
                     render={showChatList}
                     clickHandler={clickChatItemHandler}
                 />
-                <Chat render={showChat} />
+                <Outlet />
             </main>
         </div>
     );

@@ -15,8 +15,14 @@ const router = createBrowserRouter([
         element: <Navigate to="/login" replace={true} />,
     },
     {
-        path: '/:username',
+        path: '/chats',
         element: <HomePage />,
+        children: [
+            {
+                path: ':chatId',
+                element: <Chat />,
+            },
+        ],
     },
     {
         path: '/login',
