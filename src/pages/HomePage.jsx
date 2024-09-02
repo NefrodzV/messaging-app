@@ -77,7 +77,7 @@ export default function HomePage() {
                     openHandler={openHandler}
                     isOpen={menuIsOpen}
                 />
-                <button
+                {/* <button
                     className={style.hamburger}
                     type="button"
                     aria-label="Open or Close menu"
@@ -85,7 +85,7 @@ export default function HomePage() {
                     onClick={openHandler}
                 >
                     <img className="icon" src={hamburgerSvg} alt="Menu icon" />
-                </button>
+                </button> */}
             </header>
             <main className={style.main}>
                 <ChatList

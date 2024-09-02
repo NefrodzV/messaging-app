@@ -1,25 +1,19 @@
 .navList {
-    --item-lines: .1rem;
     box-sizing: border-box;
-    margin-top: 5rem;
     display: flex;
-    flex-direction: column;
-    gap: var(--item-lines);
-    padding: .5rem;
+    gap: .2rem;
     position: relative;
-    
 }
 .navLink {
     box-sizing: border-box;
-    --border-radius: 50px;
-    margin-block: auto;
     background-color: inherit;
     border: none;
-    padding: 0rem .8rem;
+    padding: 0 .5rem;
     text-decoration: none;
     height: var(--control-height);
     display: flex;
     align-items: center;
+    justify-content: center;
     color: var(--text);
     transition: .5s ease-in-out;
 }
@@ -28,9 +22,7 @@
     overflow: hidden;
     position: relative;
     display: flex;
-    gap: 1rem;
     align-items: center;
-    
 }
 
 .navLink:not(.navLink[data-current=true]):hover{
@@ -83,59 +75,19 @@
     .navLink {
         justify-content: center;
         align-items: center;
-        padding: 0;
     }
-
-    .text {
-        display: none;
-    }
-
-    #chatsButton {
-        display: none;
-    }
-    
 }
 
 @media(max-width: 768px) {
-    .logo {
-        display: block;
-    }
-
-    .close {
-        display: flex;
-    }
-
-    #chatsButton {
-        display: flex;
-    }
-    .navList {
-        overflow: hidden;
-        display: none;
-        margin: 0;
-        padding-top: 8rem;
-        box-shadow: 0 0 3px var(--shadow);
-        z-index: 5;
-        background-color: var(--primary);
-        position: fixed;
-        top: 0px;
-        bottom: 0;
-        left: 0;
-        right: 50%;
-        transform-origin: left;
-    }
-
-
-
     .text {
-        display: block;
-    }
-    .navLink {
-        margin: 0;
-        justify-content: flex-start;
-        align-items: center;
-        padding: 0rem .8rem;
+        display: none;
     }
 
+    .navLink {
+        padding: 0;
+        width: var(--control-height);;
+    }
+    
     .navList[data-show=true] {
         display: flex;
         animation: open .2s forwards ease-in-out; 
