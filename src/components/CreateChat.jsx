@@ -1,7 +1,6 @@
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 // import chatStyle from '../stylesheets/chat.module.css'
 import { useContext, useEffect, useState } from 'react';
-import { UserContext } from '../contexts/UserContext';
 import Loader from './Loader';
 import ChatHeader from './ChatHeader';
 
@@ -10,7 +9,7 @@ export default function CreateChat() {
         state: { user },
     } = useLocation();
     console.log(user);
-    const { token } = useContext(UserContext);
+
     const navigate = useNavigate();
 
     const [params] = useSearchParams();

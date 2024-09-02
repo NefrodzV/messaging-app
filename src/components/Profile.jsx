@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import userIcon from '../assets/svgs/user.svg';
 import PasswordForm from './PasswordForm';
 import ImageForm from './ImageForm';
-import { UserContext } from '../contexts/UserContext';
+import { UserContext } from '../providers/UserProvider';
 import style from '../stylesheets/profile.module.css';
 import useUtils from '../hooks/useUtils';
 import Loader from '../components/Loader';

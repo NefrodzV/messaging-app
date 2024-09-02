@@ -1,5 +1,5 @@
 import Cookie from 'js-cookie';
-import { UserContext } from '../contexts/UserContext';
+import { UserContext } from '../providers/UserProvider';
 import { useContext, memo } from 'react';
 import style from '../stylesheets/Navigation.module.css';
 import logoutIcon from '../assets/svgs/logout.svg';
@@ -9,73 +9,10 @@ import useUtils from '../hooks/useUtils';
 import useSessionStorage from '../hooks/useSessionStorage';
 import { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
-export default function Navigation({ isOpen, openHandler, clickHandler }) {
-    const [show, setShow] = useState(false);
-    const [isClosing, setIsClosing] = useState(false);
-    useEffect(() => {
-        if (isOpen && !show) {
-            setShow(true);
-        }
-        if (!isOpen && show) {
-            setIsClosing(true);
-        }
-    }, [isOpen]);
-
-    const onAnimationEndHandler = () => {
-        if (isClosing) {
-            setShow(false);
-            setIsClosing(false);
-        }
-    };
-    //     useEffect(() => {
-    //         if(isClosing) {
-    //             const onAnimationEnd = () => {
-    //                 setIsClosing(false)
-    //                 setShow(false)
-    //             }
-    //         }
-    //
-    //
-    //     }, [isClosing]);
+export default function Navigation() {
     return (
-        <nav
-            className={style.navList}
-            data-show={show}
-            data-closing={isClosing}
-            onAnimationEnd={onAnimationEndHandler}
-        >
+        <nav className={style.navList}>
             <div className={style.logo}>Logo</div>
-            {/* <button
-                type="button"
-                className={style.close}
-                aria-label="Close menu button"
-                aria-expanded={isOpen}
-                onClick={openHandler}
-            >
-                <img className={'icon'} src={xMarkSvg} alt="" />
-            </button> */}
-            <button
-                type="button"
-                aria-label="View chats"
-                className={style.navLink}
-                id={style.chatsButton}
-                title="View chats button"
-                onClick={clickHandler}
-            >
-                <div className={style.content}>
-                    <svg
-                        className={style.navIcon}
-                        viewBox="0 0 8 8"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            fill="currentColor"
-                            d="m0 0v5l1-1h1v-3h3v-1zm3 2v4h4l1 1v-5z"
-                        />
-                    </svg>
-                    <span className={style.text}>Chats</span>
-                </div>
-            </button>
             <NavLink
                 data-current={true}
                 className={style.navLink}

@@ -10,7 +10,7 @@ export default function LoginPage() {
 
     useEffect(() => {
         console.log(user);
-        if (user) navigate('/' + user.username, { replace: true });
+        if (user) navigate('/chats/20875', { replace: true });
     }, [user]);
     return (
         <main className={style.page}>

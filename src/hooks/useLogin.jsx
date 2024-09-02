@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { UserContext } from '../contexts/UserContext.jsx';
+import { UserContext } from '../providers/UserProvider';
 import { useNavigate } from 'react-router-dom';
 
 export default function useLogin() {

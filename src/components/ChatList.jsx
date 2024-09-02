@@ -1,7 +1,6 @@
 import ChatCard from './ChatCard';
 import style from '../stylesheets/ChatList.module.css';
 import { useContext, useEffect, useState, memo } from 'react';
-import { UserContext } from '../contexts/UserContext';
 import Loader from './Loader';
 import ChatItem from '../components/ChatItem';
 export default function ChatList({ render, clickHandler }) {

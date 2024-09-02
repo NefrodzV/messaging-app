@@ -1,6 +1,6 @@
 import { RouterProvider } from 'react-router-dom';
 import router from './Router';
-import { UserContext } from './contexts/UserContext';
+import { UserContext } from './providers/UserProvider';
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import UserProvider from './providers/UserProvider';

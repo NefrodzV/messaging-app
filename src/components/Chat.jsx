@@ -1,7 +1,6 @@
 import { useParams, useLocation } from 'react-router-dom';
 import style from '../stylesheets/Chat.module.css';
 import { useContext, useState, useEffect, useRef } from 'react';
-import { UserContext } from '../contexts/UserContext';
 import ResizeableTextarea from '../components/ResizeableTextarea';
 import userSvg from '../assets/svgs/user.svg';
 import propTypes from 'prop-types';
