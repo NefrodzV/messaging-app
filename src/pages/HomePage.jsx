@@ -1,12 +1,13 @@
-import { useContext, useEffect, useRef, useState } from 'react';
-import { useNavigate, Outlet, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate, Outlet } from 'react-router-dom';
 import style from '../stylesheets/HomePage.module.css';
 import Navigation from '../components/Navigation';
-import hamburgerSvg from '../assets/svgs/hamburger.svg';
 import ChatList from '../components/ChatList';
-import Chat from '../components/Chat';
+import { socket } from '../socket';
 
 export default function HomePage() {
+    const [isConnected, setIsConnected] = useState(socket.connected);
+    const [fooEvents, setFooEvents] = useState([]);
     const [isDesktop, setIsDesktop] = useState(null);
     const navigate = useNavigate();
 
@@ -38,6 +39,41 @@ export default function HomePage() {
             navigate('/chats');
         }
     }, [isDesktop]);
+
+    useEffect(() => {
+        // no-op if the socket is already connected
+        socket.connect();
+
+        return () => {
+            socket.disconnect();
+        };
+    }, []);
+    useEffect(() => {
+        function onConnect() {
+            setIsConnected(true);
+            console.log('connected to socket');
+        }
+
+        function onDisconnect() {
+            setIsConnected(false);
+            console.log('disconnected from socket');
+        }
+
+        function onFooEvent(value) {
+            setFooEvents((previous) => setFooEvents([previous, value]));
+            console.log('An event has happened with this value');
+        }
+
+        socket.on('connect', onConnect);
+        socket.on('disconnect', onDisconnect);
+        socket.on('foo', onFooEvent);
+
+        return () => {
+            socket.off('connect', onConnect);
+            socket.off('disconnect', onDisconnect);
+            socket.off('foo', onFooEvent);
+        };
+    });
     return (
         <div className={style.page}>
             <header className={style.header}>
