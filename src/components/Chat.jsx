@@ -4,43 +4,19 @@ import { useContext, useState, useEffect, useRef } from 'react';
 import ResizeableTextarea from '../components/ResizeableTextarea';
 import userSvg from '../assets/svgs/user.svg';
 import propTypes from 'prop-types';
-import { socket } from '../socket';
+import { SocketContext } from '../providers/SocketProvider';
 export default function Chat() {
     const [text, setText] = useState('');
-
-    const [isConnected, setIsConnected] = useState(socket.connected);
-    const [fooEvents, setFooEvents] = useState([]);
+    const { socket, fooEvents } = useContext(SocketContext);
     const dummyRoomId = '123ers';
     useEffect(() => {
         socket.emit('join', dummyRoomId);
     }, []);
+
     useEffect(() => {
-        function onConnect() {
-            setIsConnected(true);
-            console.log('connected to socket');
-        }
-
-        function onDisconnect() {
-            setIsConnected(false);
-            console.log('disconnected from socket');
-        }
-
-        function onFooEvent(text) {
-            console.log(socket);
-            setFooEvents((previous) => setFooEvents([previous, text]));
-            console.log();
-        }
-
-        socket.on('connect', onConnect);
-        socket.on('disconnect', onDisconnect);
-        socket.on('foo', onFooEvent);
-
-        return () => {
-            socket.off('connect', onConnect);
-            socket.off('disconnect', onDisconnect);
-            socket.off('foo', onFooEvent);
-        };
-    });
+        console.log('Something happened to foo');
+        console.log(fooEvents);
+    }, [fooEvents]);
     return (
         <section className={style.chat} aria-label="Chat">
             <header>
@@ -57,6 +33,24 @@ export default function Chat() {
                             distinctio voluptate similique recusandae temporibus
                             nihil sint dolores quod nostrum totam.
                         </p>
+                        <span className={style.time}>8:12 am</span>
+                    </div>
+                    <img
+                        className={style.userImage}
+                        src={userSvg}
+                        alt="User image"
+                    />
+                </article>
+                <article className={style.message}>
+                    <div className={style.bubble}>
+                        <p className={style.text}>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Incidunt tenetur quaerat consequatur eaque
+                            eligendi excepturi atque beatae, modi officiis
+                            distinctio voluptate similique recusandae temporibus
+                            nihil sint dolores quod nostrum totam.
+                        </p>
+                        <span className={style.time}>8:12 am</span>
                     </div>
                     <img
                         className={style.userImage}
