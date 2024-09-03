@@ -1,0 +1,95 @@
+.dialog {
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    padding: 0;
+    border: none;
+    margin: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+
+.dialog[show] {
+    
+    min-height: 0;
+}
+.header {
+    display: flex;
+    background-color: var(--secondary);
+    align-items: center;
+    padding: 0 .5rem;
+    height: fit-content;
+    justify-content: space-between;
+}
+
+.header button {
+    display: flex;
+    background-color: inherit;
+    border: none;
+    height: var(--control-height);
+    align-items: center;
+}
+.dialog button:hover > svg {
+    transition: transform .3s ease-in-out;
+    
+}
+
+.dialog button:hover > svg {
+    transform: scale(1.2);
+}
+
+.buttons {
+    display: flex;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.container {
+    flex: 1;
+    padding: .5rem;
+    background-color: var(--background30);
+    overflow-y: scroll;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.user img {
+    height: 2rem;
+}
+
+.user {
+    border-radius: var(--border-radius);
+    padding: .5rem;
+    background-color: var(--background);
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+
+}
+
+.user button {
+    height: var(--control-height);
+    width: var(--control-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: inherit;
+    transition: .5s background-color ease-in-out;
+}
+/* .user button:hover {
+    background-color: var(--backgroundb10);
+} */
+
+
+
