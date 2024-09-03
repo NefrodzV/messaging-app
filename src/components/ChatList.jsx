@@ -3,6 +3,7 @@ import style from '../stylesheets/ChatList.module.css';
 import { useContext, useEffect, useState, memo } from 'react';
 import Loader from './Loader';
 import ChatItem from '../components/ChatItem';
+import UserList from './UserList';
 export default function ChatList() {
     return (
         <section className={style.chatList} aria-label="Chats">
@@ -34,6 +35,7 @@ export default function ChatList() {
                 <ChatItem delayAnim={'3.2s'}></ChatItem>
                 <ChatItem delayAnim={'3.6s'}></ChatItem>
             </div>
+            <UserList />
         </section>
     );
 }
