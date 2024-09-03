@@ -64,7 +64,9 @@ svg {
   height: 1.5rem;
   width: 1.5rem;
   aspect-ratio: 1 / 1;
+  pointer-events: none;
 }
+
 .input-container {
   display: flex;
   flex-direction: column;
