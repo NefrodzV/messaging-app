@@ -6,13 +6,43 @@
     background-color: var(--background30);
     height: inherit;
     min-height: 0;
-    padding: .5rem;
     gap: .5rem;
     max-width: 300px;
-    
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    overflow-y:  scroll;
+    scrollbar-width: none;
+    gap: .5rem;
+    padding-inline: .5rem;
+}
 
+.header {
+    
+    
+    background-color: var(--background);
+    display: flex;
+    align-items: center;
+}
+
+.header h1 {
+    margin: 0
+}
+.add {
+    padding: 0;
+    margin-inline: auto 0;
+    width: var(--control-height);
+    height: var(--control-height);
+    border: none;
+    font-size: 100%;
+    display: flex;
+    background-color: inherit;
+    justify-content: center;
+    align-items: center;
+    background: var;
+}
  @media(max-width: 1024px) {
     .chatList {
 
