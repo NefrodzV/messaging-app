@@ -10,14 +10,16 @@
     margin: 0;
     left: 0;
     top: 0;
-    bottom: 0;
-}
-
-
-.dialog[show] {
-    
+    bottom: 0; 
     min-height: 0;
+    display: flex;
+    animation: leave-out-left .5s forwards;
 }
+
+.dialog[open] {
+    animation: show-in-left .5s forwards;
+}
+
 .header {
     display: flex;
     background-color: var(--secondary);
@@ -87,9 +89,26 @@
     background-color: inherit;
     transition: .5s background-color ease-in-out;
 }
-/* .user button:hover {
-    background-color: var(--backgroundb10);
-} */
+
+@keyframes show-in-left {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes leave-out-left {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
 
 
 

@@ -1,10 +1,12 @@
-import ChatCard from './ChatCard';
 import style from '../stylesheets/ChatList.module.css';
-import { useContext, useEffect, useState, memo } from 'react';
-import Loader from './Loader';
+import { useState } from 'react';
 import ChatItem from '../components/ChatItem';
 import UserList from './UserList';
 export default function ChatList() {
+    const [isUserListDialogOpen, setIsUserListDialogOpen] = useState(false);
+    const openDialogHandler = () => {
+        setIsUserListDialogOpen(!isUserListDialogOpen);
+    };
     return (
         <section className={style.chatList} aria-label="Chats">
             <header className={style.header}>
@@ -13,6 +15,8 @@ export default function ChatList() {
                     className={`${style.add}`}
                     aria-label="Start new chat"
                     title="Start new chat button"
+                    type="button"
+                    onClick={openDialogHandler}
                 >
                     <svg
                         className="icon"
@@ -35,7 +39,11 @@ export default function ChatList() {
                 <ChatItem delayAnim={'3.2s'}></ChatItem>
                 <ChatItem delayAnim={'3.6s'}></ChatItem>
             </div>
-            <UserList />
+
+            <UserList
+                isOpen={isUserListDialogOpen}
+                onClose={openDialogHandler}
+            />
         </section>
     );
 }

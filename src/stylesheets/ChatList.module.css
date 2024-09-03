@@ -20,7 +20,8 @@
 }
 
 .header {
-    background-color: var(--background);
+    padding-inline: .5rem;
+    background-color: var(--secondary);
     display: flex;
     align-items: center;
 }
@@ -40,6 +41,12 @@
     justify-content: center;
     align-items: center;
     background: var;
+    
+}
+
+.add:hover > svg {
+    transition: transform .2s ease-in-out;
+    transform: scale(1.2);
 }
  @media(max-width: 1024px) {
     .chatList {
