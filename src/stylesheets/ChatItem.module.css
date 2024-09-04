@@ -27,7 +27,7 @@
     
 }
 .message {
-    
+    flex: 1;
     order: 1;
     display: flex;
     overflow: hidden;
@@ -49,6 +49,7 @@
 .chatItem .user {
     order:0;
     height: 1.5rem;
+    width: 1.5rem;
 }
 
 .chatItem[data-show='true'] {
