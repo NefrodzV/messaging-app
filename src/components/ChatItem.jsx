@@ -29,7 +29,7 @@ export default function ChatItem({
                     <div className={style.message}>
                         <header>
                             <div className={style.username}>
-                                {user || 'Rose Vargas Hernandez'}
+                                {user?.username || 'Rose Vargas Hernandez'}
                             </div>
                             <span className={style.time}>
                                 {time || '8:12pm'}
