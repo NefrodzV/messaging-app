@@ -1,7 +1,9 @@
 import style from '../stylesheets/UserList.module.css';
 import { useContext, useEffect, useState } from 'react';
 import userSvg from '../assets/svgs/user.svg';
+import UserItem from './UserItem';
 export default function UserList({ isOpen, onClose }) {
+    const [data, setData] = useState(dataMock);
     const [animState, setAnimState] = useState({
         isMounted: false,
         isShowing: false,
@@ -62,171 +64,35 @@ export default function UserList({ isOpen, onClose }) {
                         </div>
                     </header>
                     <div className={style.container}>
-                        <article className={style.user}>
-                            <img src={userSvg} alt="" />
-                            <span>Wesley Vargas Borrrero</span>
-                            <button
-                                title="Start chat with this user"
-                                aria-label="Start chat with this user"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 512 512"
-                                >
-                                    <path
-                                        fill="currentColor"
-                                        d="M64 0C28.7 0 0 28.7 0 64L0 352c0 35.3 28.7 64 64 64l96 0 0 80c0 6.1 3.4 11.6 8.8 14.3s11.9 2.1 16.8-1.5L309.3 416 448 416c35.3 0 64-28.7 64-64l0-288c0-35.3-28.7-64-64-64L64 0z"
-                                    />
-                                </svg>
-                            </button>
-                        </article>
-                        <article className={style.user}>
-                            <img src={userSvg} alt="" />
-                            <span>Wesley Vargas Borrrero</span>
-                            <button
-                                title="Start chat with this user"
-                                aria-label="Start chat with this user"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 512 512"
-                                >
-                                    <path
-                                        fill="currentColor"
-                                        d="M64 0C28.7 0 0 28.7 0 64L0 352c0 35.3 28.7 64 64 64l96 0 0 80c0 6.1 3.4 11.6 8.8 14.3s11.9 2.1 16.8-1.5L309.3 416 448 416c35.3 0 64-28.7 64-64l0-288c0-35.3-28.7-64-64-64L64 0z"
-                                    />
-                                </svg>
-                            </button>
-                        </article>
-                        <article className={style.user}>
-                            <img src={userSvg} alt="" />
-                            <span>Wesley Vargas Borrrero</span>
-                            <button
-                                title="Start chat with this user"
-                                aria-label="Start chat with this user"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 512 512"
-                                >
-                                    <path
-                                        fill="currentColor"
-                                        d="M64 0C28.7 0 0 28.7 0 64L0 352c0 35.3 28.7 64 64 64l96 0 0 80c0 6.1 3.4 11.6 8.8 14.3s11.9 2.1 16.8-1.5L309.3 416 448 416c35.3 0 64-28.7 64-64l0-288c0-35.3-28.7-64-64-64L64 0z"
-                                    />
-                                </svg>
-                            </button>
-                        </article>{' '}
-                        <article className={style.user}>
-                            <img src={userSvg} alt="" />
-                            <span>Wesley Vargas Borrrero</span>
-                            <button
-                                title="Start chat with this user"
-                                aria-label="Start chat with this user"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 512 512"
-                                >
-                                    <path
-                                        fill="currentColor"
-                                        d="M64 0C28.7 0 0 28.7 0 64L0 352c0 35.3 28.7 64 64 64l96 0 0 80c0 6.1 3.4 11.6 8.8 14.3s11.9 2.1 16.8-1.5L309.3 416 448 416c35.3 0 64-28.7 64-64l0-288c0-35.3-28.7-64-64-64L64 0z"
-                                    />
-                                </svg>
-                            </button>
-                        </article>
-                        <article className={style.user}>
-                            <img src={userSvg} alt="" />
-                            <span>Wesley Vargas Borrrero</span>
-                            <button
-                                title="Start chat with this user"
-                                aria-label="Start chat with this user"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 512 512"
-                                >
-                                    <path
-                                        fill="currentColor"
-                                        d="M64 0C28.7 0 0 28.7 0 64L0 352c0 35.3 28.7 64 64 64l96 0 0 80c0 6.1 3.4 11.6 8.8 14.3s11.9 2.1 16.8-1.5L309.3 416 448 416c35.3 0 64-28.7 64-64l0-288c0-35.3-28.7-64-64-64L64 0z"
-                                    />
-                                </svg>
-                            </button>
-                        </article>
-                        <article className={style.user}>
-                            <img src={userSvg} alt="" />
-                            <span>Wesley Vargas Borrrero</span>
-                            <button
-                                title="Start chat with this user"
-                                aria-label="Start chat with this user"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 512 512"
-                                >
-                                    <path
-                                        fill="currentColor"
-                                        d="M64 0C28.7 0 0 28.7 0 64L0 352c0 35.3 28.7 64 64 64l96 0 0 80c0 6.1 3.4 11.6 8.8 14.3s11.9 2.1 16.8-1.5L309.3 416 448 416c35.3 0 64-28.7 64-64l0-288c0-35.3-28.7-64-64-64L64 0z"
-                                    />
-                                </svg>
-                            </button>
-                        </article>
-                        <article className={style.user}>
-                            <img src={userSvg} alt="" />
-                            <span>Wesley Vargas Borrrero</span>
-                            <button
-                                title="Start chat with this user"
-                                aria-label="Start chat with this user"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 512 512"
-                                >
-                                    <path
-                                        fill="currentColor"
-                                        d="M64 0C28.7 0 0 28.7 0 64L0 352c0 35.3 28.7 64 64 64l96 0 0 80c0 6.1 3.4 11.6 8.8 14.3s11.9 2.1 16.8-1.5L309.3 416 448 416c35.3 0 64-28.7 64-64l0-288c0-35.3-28.7-64-64-64L64 0z"
-                                    />
-                                </svg>
-                            </button>
-                        </article>
-                        <article className={style.user}>
-                            <img src={userSvg} alt="" />
-                            <span>Wesley Vargas Borrrero</span>
-                            <button
-                                title="Start chat with this user"
-                                aria-label="Start chat with this user"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 512 512"
-                                >
-                                    <path
-                                        fill="currentColor"
-                                        d="M64 0C28.7 0 0 28.7 0 64L0 352c0 35.3 28.7 64 64 64l96 0 0 80c0 6.1 3.4 11.6 8.8 14.3s11.9 2.1 16.8-1.5L309.3 416 448 416c35.3 0 64-28.7 64-64l0-288c0-35.3-28.7-64-64-64L64 0z"
-                                    />
-                                </svg>
-                            </button>
-                        </article>
-                        <article className={style.user}>
-                            <img src={userSvg} alt="" />
-                            <span>Wesley Vargas Borrrero</span>
-                            <button
-                                title="Start chat with this user"
-                                aria-label="Start chat with this user"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 512 512"
-                                >
-                                    <path
-                                        fill="currentColor"
-                                        d="M64 0C28.7 0 0 28.7 0 64L0 352c0 35.3 28.7 64 64 64l96 0 0 80c0 6.1 3.4 11.6 8.8 14.3s11.9 2.1 16.8-1.5L309.3 416 448 416c35.3 0 64-28.7 64-64l0-288c0-35.3-28.7-64-64-64L64 0z"
-                                    />
-                                </svg>
-                            </button>
-                        </article>
+                        {data?.map((user) => (
+                            <UserItem user={user} />
+                        ))}
                     </div>
                 </dialog>
             )}
         </>
     );
 }
+
+const dataMock = [
+    {
+        username: 'john_doe',
+        _id: 'user123',
+        imgUrl: 'https://example.com/images/john_doe.jpg',
+    },
+    {
+        username: 'jane_smith',
+        _id: 'user456',
+        imgUrl: 'https://example.com/images/jane_smith.jpg',
+    },
+    {
+        username: 'alice_johnson',
+        _id: 'user789',
+        imgUrl: 'https://example.com/images/alice_johnson.jpg',
+    },
+    {
+        username: 'bob_brown',
+        _id: 'user101',
+        imgUrl: 'https://example.com/images/bob_brown.jpg',
+    },
+];

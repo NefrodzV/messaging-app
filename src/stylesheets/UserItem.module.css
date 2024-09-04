@@ -1,0 +1,25 @@
+.user img {
+    height: 2rem;
+    width: 2rem;
+}
+
+.user {
+    border-radius: var(--border-radius);
+    padding: .5rem;
+    background-color: var(--background);
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+
+}
+
+.user button {
+    height: var(--control-height);
+    width: var(--control-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: inherit;
+    transition: .5s background-color ease-in-out;
+}
