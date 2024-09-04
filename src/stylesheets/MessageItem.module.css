@@ -1,0 +1,57 @@
+.message {
+    max-width: 80%;
+    display: flex;  
+    gap: .8rem;
+    overflow: visible;
+    /* filter: drop-shadow(0 0 1px  var(--shadow)); */
+}
+
+.userImage {
+    order: 0;
+    height: 2rem;
+    border-radius: 50%;
+    aspect-ratio:  1 / 1;
+    /* filter: drop-shadow(0 0 1px  var(--shadow)) */
+    
+}
+
+.bubble {
+    z-index: 1;
+    box-sizing: border-box;
+    padding: .5rem 1.2rem;
+    position: relative;
+    margin: 0;
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    background-color: var(--background30);
+    overflow: visible;
+    clip-path: polygon(0 12px, 12px 6px, 12px 0, 100% 0, 100% 100%, 12px 100%, 12px 20px) ;
+}
+
+.time {
+    align-self: flex-end;
+    font-size: .8rem;
+}
+
+.text {
+    margin: 0;
+}
+/** When the message is not the  logged in user*/
+.message[data-reverse=true] {
+    align-self: flex-end;
+}
+.message[data-reverse=true] .bubble {
+    display: flex;
+    align-items: end;
+    clip-path: polygon(100% 12px, calc(100% - 12px) 6px, calc(100% - 12px) 0, 0 0, 0 100%, calc(100% - 12px) 100%, calc(100% - 12px) 20px);
+}
+
+.message[data-reverse=true] .text {
+    width: fit-content;
+    align-self: flex-start;
+}
+.message[data-reverse=true] .userImage {
+    order: 3;
+}

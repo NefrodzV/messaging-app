@@ -5,8 +5,10 @@ import ResizeableTextarea from '../components/ResizeableTextarea';
 import userSvg from '../assets/svgs/user.svg';
 import propTypes from 'prop-types';
 import { SocketContext } from '../providers/SocketProvider';
+import MessageItem from './MessageItem';
 export default function Chat() {
     const [text, setText] = useState('');
+    const [data, setData] = useState(dataMock);
     const { socket, fooEvents } = useContext(SocketContext);
     const dummyRoomId = '123ers';
     useEffect(() => {
@@ -24,40 +26,9 @@ export default function Chat() {
                 <h2 className={style.username}>Rose Vargas Hernandez</h2>
             </header>
             <section className={style.messageList}>
-                <article data-reverse={true} className={style.message}>
-                    <div className={style.bubble}>
-                        <p className={style.text}>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Incidunt tenetur quaerat consequatur eaque
-                            eligendi excepturi atque beatae, modi officiis
-                            distinctio voluptate similique recusandae temporibus
-                            nihil sint dolores quod nostrum totam.
-                        </p>
-                        <span className={style.time}>8:12 am</span>
-                    </div>
-                    <img
-                        className={style.userImage}
-                        src={userSvg}
-                        alt="User image"
-                    />
-                </article>
-                <article className={style.message}>
-                    <div className={style.bubble}>
-                        <p className={style.text}>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Incidunt tenetur quaerat consequatur eaque
-                            eligendi excepturi atque beatae, modi officiis
-                            distinctio voluptate similique recusandae temporibus
-                            nihil sint dolores quod nostrum totam.
-                        </p>
-                        <span className={style.time}>8:12 am</span>
-                    </div>
-                    <img
-                        className={style.userImage}
-                        src={userSvg}
-                        alt="User image"
-                    />
-                </article>
+                {data?.map((message) => (
+                    <MessageItem message={message} />
+                ))}
             </section>
             <form
                 className={style.sendMessage}
@@ -103,6 +74,50 @@ export default function Chat() {
     );
 }
 
-Chat.propTypes = {
-    focusHandler: propTypes.func,
-};
+const dataMock = [
+    {
+        _id: 'post001',
+        user: {
+            username: 'john_doe',
+        },
+        text: 'Just had a great day at the park!',
+        date: '2024-09-04T10:30:00Z',
+        imgs: [
+            'https://example.com/images/park1.jpg',
+            'https://example.com/images/park2.jpg',
+        ],
+    },
+    {
+        _id: 'post002',
+        user: {
+            username: 'jane_smith',
+        },
+        text: 'Check out my new recipe!',
+        date: '2024-09-03T15:00:00Z',
+        imgs: [
+            'https://example.com/images/recipe1.jpg',
+            'https://example.com/images/recipe2.jpg',
+        ],
+    },
+    {
+        _id: 'post003',
+        user: {
+            username: 'alice_johnson',
+        },
+        text: 'Loving the new book I’m reading!',
+        date: '2024-09-02T20:45:00Z',
+        imgs: ['https://example.com/images/book1.jpg'],
+    },
+    {
+        _id: 'post004',
+        user: {
+            username: 'bob_brown',
+        },
+        text: 'Had a wonderful time at the concert!',
+        date: '2024-09-01T22:00:00Z',
+        imgs: [
+            'https://example.com/images/concert1.jpg',
+            'https://example.com/images/concert2.jpg',
+        ],
+    },
+];
