@@ -29,7 +29,7 @@ export default function ChatList({ onSelectedChat }) {
                 </button>
             </header>
             <div className={style.container}>
-                {data?.map((item, i) => {
+                {data?.map((chatItem, i) => {
                     // TODO this calculation is very slow ask for a fix for this
                     // const increment = 0.2;
                     // delayRef.current =
@@ -38,11 +38,11 @@ export default function ChatList({ onSelectedChat }) {
                     // console.log(`${i * 0.2}`);
                     return (
                         <ChatItem
-                            key={item._id}
-                            text={item.text}
-                            time={item.time}
-                            imgUrl={item.imgUrl}
-                            user={item.user}
+                            key={chatItem._id}
+                            text={chatItem.text}
+                            time={chatItem.time}
+                            imgUrl={chatItem.imgUrl}
+                            user={chatItem.user}
                             delayAnim={`${i * 0.2}s`}
                         />
                     );
