@@ -4,7 +4,7 @@ import { useContext, memo } from 'react';
 import style from '../stylesheets/Navigation.module.css';
 import logoutIcon from '../assets/svgs/logout.svg';
 import xMarkSvg from '../assets/svgs/xmark.svg';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import useUtils from '../hooks/useUtils';
 import useSessionStorage from '../hooks/useSessionStorage';
 import { useState, useEffect } from 'react';
@@ -12,6 +12,7 @@ import propTypes from 'prop-types';
 import useMediaQuery from '../hooks/useMediaQuery';
 export default function Navigation() {
     const { queryIsActive } = useMediaQuery('(max-width: 768px)');
+    const { chatId } = useParams();
     return (
         <nav className={style.navList}>
             <div className={style.logo}>Logo</div>
@@ -21,7 +22,7 @@ export default function Navigation() {
                 title="Go to my chats"
                 aria-label="Go to my chats"
                 // Disabled in desktop size
-                to={!queryIsActive ? 'javascript:void(0)' : '/chats'}
+                to={!queryIsActive && chatId ? 'javascript:void(0)' : '/chats'}
             >
                 <div className={style.content}>
                     <svg
