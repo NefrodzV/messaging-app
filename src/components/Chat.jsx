@@ -27,7 +27,7 @@ export default function Chat() {
             </header>
             <section className={style.messageList}>
                 {data?.map((message) => (
-                    <MessageItem message={message} />
+                    <MessageItem key={message._id} message={message} />
                 ))}
             </section>
             <form
