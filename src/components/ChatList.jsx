@@ -2,7 +2,7 @@ import style from '../stylesheets/ChatList.module.css';
 import { useEffect, useRef, useState } from 'react';
 import ChatItem from '../components/ChatItem';
 import UserList from './UserList';
-export default function ChatList() {
+export default function ChatList({ onSelectedChat }) {
     const [data, setData] = useState(dataMock);
     const [isUserListDialogOpen, setIsUserListDialogOpen] = useState(false);
     const openDialogHandler = () => {
