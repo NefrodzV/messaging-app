@@ -4,32 +4,18 @@ import style from '../stylesheets/HomePage.module.css';
 import Navigation from '../components/Navigation';
 import ChatList from '../components/ChatList';
 import SocketProvider from '../providers/SocketProvider';
+import useMediaQuery from '../hooks/useMediaQuery';
 
 export default function HomePage() {
     const navigate = useNavigate();
     let { chatId } = useParams();
-    const [isMobile, setIsMobile] = useState(
-        window.matchMedia('(max-width: 768px)').matches
-    );
+    const { queryIsActive } = useMediaQuery('(max-width:768px)');
 
     useEffect(() => {
-        const onResizeHandler = () => {
-            setIsMobile(window.matchMedia('(max-width: 768px)').matches);
-        };
-
-        onResizeHandler();
-        window.addEventListener('resize', onResizeHandler);
-
-        return () => {
-            window.removeEventListener('resize', onResizeHandler);
-        };
-    }, []);
-
-    useEffect(() => {
-        if (!isMobile && !chatId) {
+        if (!queryIsActive && !chatId) {
             navigate('/chats/lastChat');
         }
-    }, [isMobile]);
+    }, [queryIsActive]);
 
     return (
         <SocketProvider>
@@ -39,7 +25,7 @@ export default function HomePage() {
                     <Navigation />
                 </header>
                 <main className={style.main}>
-                    {!isMobile ? <ChatList /> : !chatId && <ChatList />}
+                    {!queryIsActive ? <ChatList /> : !chatId && <ChatList />}
                     {chatId && <Outlet />}
                 </main>
             </div>
