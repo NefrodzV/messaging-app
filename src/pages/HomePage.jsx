@@ -1,24 +1,20 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, Outlet } from 'react-router-dom';
+import { useNavigate, Outlet, useParams, useLocation } from 'react-router-dom';
 import style from '../stylesheets/HomePage.module.css';
 import Navigation from '../components/Navigation';
 import ChatList from '../components/ChatList';
 import SocketProvider from '../providers/SocketProvider';
 
 export default function HomePage() {
-    const [isDesktop, setIsDesktop] = useState(null);
     const navigate = useNavigate();
+    let { chatId } = useParams();
+    const [isMobile, setIsMobile] = useState(
+        window.matchMedia('(max-width: 768px)').matches
+    );
 
     useEffect(() => {
         const onResizeHandler = () => {
-            const viewportWidth = window.innerWidth;
-            if (viewportWidth > 768) {
-                setIsDesktop(true);
-            }
-
-            if (viewportWidth <= 768) {
-                setIsDesktop(false);
-            }
+            setIsMobile(window.matchMedia('(max-width: 768px)').matches);
         };
 
         onResizeHandler();
@@ -30,13 +26,10 @@ export default function HomePage() {
     }, []);
 
     useEffect(() => {
-        // Navigate to page with a chat id
-        if (isDesktop) {
-            navigate('/chats/1111');
-        } else {
-            navigate('/chats');
+        if (!isMobile && !chatId) {
+            navigate('/chats/lastChat');
         }
-    }, [isDesktop]);
+    }, [isMobile]);
 
     return (
         <SocketProvider>
@@ -46,8 +39,8 @@ export default function HomePage() {
                     <Navigation />
                 </header>
                 <main className={style.main}>
-                    <ChatList />
-                    <Outlet />
+                    {!isMobile ? <ChatList /> : !chatId && <ChatList />}
+                    {chatId && <Outlet />}
                 </main>
             </div>
         </SocketProvider>
