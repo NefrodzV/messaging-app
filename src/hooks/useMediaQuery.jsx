@@ -7,8 +7,6 @@ export default function useMediaQuery(query) {
 
     useEffect(() => {
         function onResizeHandler() {
-            console.log(window.matchMedia(query).matches);
-            console.log(query);
             setQueryIsActive(window.matchMedia(query).matches);
         }
 
