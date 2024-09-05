@@ -9,7 +9,9 @@ import useUtils from '../hooks/useUtils';
 import useSessionStorage from '../hooks/useSessionStorage';
 import { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
+import useMediaQuery from '../hooks/useMediaQuery';
 export default function Navigation() {
+    const { queryIsActive } = useMediaQuery('(max-width: 768px)');
     return (
         <nav className={style.navList}>
             <div className={style.logo}>Logo</div>
@@ -18,6 +20,8 @@ export default function Navigation() {
                 className={style.navLink}
                 title="Go to my chats"
                 aria-label="Go to my chats"
+                // Disabled in desktop size
+                to={!queryIsActive ? 'javascript:void(0)' : '/chats'}
             >
                 <div className={style.content}>
                     <svg
