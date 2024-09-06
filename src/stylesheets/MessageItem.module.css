@@ -33,7 +33,7 @@
 
 .time {
     align-self: flex-end;
-    font-size: .8rem;
+    font-size: calc(var(--font-size) * .8);
 }
 
 .text {
