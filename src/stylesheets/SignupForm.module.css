@@ -28,14 +28,3 @@
     align-self: center;
     text-align: center;
 }
-
-@media(max-width: 600px) {
-    :root {
-        --font-size: var
-    }
-    
-    .form {
-        padding: 1rem;
-        gap: .7rem;
-    }
-}
