@@ -4,6 +4,7 @@
     width: auto;
     display: flex;
     flex-direction: column;
+    position: relative;
     
 }
 
@@ -14,8 +15,6 @@
     gap: .5rem;
     padding: .5rem .8rem;
     box-shadow:  0 1px 3px var(--background30);
-    
-    
 }
 
 .chat header .user {
@@ -61,6 +60,7 @@
     align-items: center;
 }
 
+
 .sendMessage > .container {
     border-radius: var(--border-radius);
     flex: 1;
@@ -69,6 +69,87 @@
     
     box-sizing: border-box;
     display: flex;
+}
+
+.options {
+    display: none;
+    overflow: hidden;
+    background-color: var(--background);
+    box-shadow: 0 0 3px rgba(0, 0 , 0 ,.4);
+    border: none;
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    width: 300px;
+    padding: 0;
+    border-radius: var(--border-radius);
+    animation: close .5s ease;
+
+    
+}
+
+.options[open] {
+    display: block;
+    animation: open .5s ease-in-out forwards;
+}
+
+.options[data-closing=true] {
+    animation: close .5s ease-in-out forwards;
+}
+
+.options header {
+    box-shadow: none;
+    
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--secondary);
+}
+.options header h1 {
+    margin:0
+}
+
+.options header button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.options header button  svg {
+    transition: transform .2s ease-in-out;
+}
+
+.options header button:hover  svg {
+    transform: scale(1.1);
+}
+
+.options section {
+    padding: .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5px
+    
+}
+
+.option {
+    background-color: var(--background);
+    border-radius: 0;
+    display: flex;
+    border: none;
+    align-items: center;
+    gap: .5rem;
+}
+.option:hover {
+    background-color: var(--background10);
+}
+
+.overlay {
+    display: none;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background-color: rgba(0,0,0,.3);
 }
 
 
@@ -89,24 +170,28 @@
 }
 
 
-@keyframes show {
+@keyframes open {
     from {
-        transform: translate(100%);
+        opacity: 0;
+        transform: translateY(-10%);
         
     }
 
     to {
-        transform: translate(0);
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
 @keyframes close {
     from {
-        transform: translate(0);
+        opacity: 1;
+        transform: translateY(0);
         
     }
 
     to {
-        transform: translate(100%);
+        opacity: 0;
+        transform: translateY(-10%);
     }
 }
