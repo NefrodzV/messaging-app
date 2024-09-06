@@ -8,8 +8,8 @@
   --text70: hwb(195 3% 80%);
   --background: #f5f9fa;
   --background30: hwb(192 96% 15%);
-  --backgroundb5:hwb(192 96% 5%);
-  --backgroundb10: hwb(192 96% 10%);
+  --background5:hwb(192 96% 5%);
+  --background10: hwb(192 96% 10%);
   --primary: #48a1c3;
   --primaryb50: hwb(197 28% 50%);
   --primary30: hsl(197, 51%, 52%, 30%);
@@ -21,7 +21,7 @@
   --shadow: rgba(0,0,0, .125); 
   --border-radius: .2rem;
   --control-height: 2.8rem;
-  --font-size: 1rem;
+  --font-size: 1.5rem;
 }
 h1 {
   font-size: calc(var(--font-size) * 1.3)
@@ -61,8 +61,8 @@ body {
 }
 
 svg {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: var(--font-size);
+  width: var(--font-size);
   aspect-ratio: 1 / 1;
   pointer-events: none;
 }
