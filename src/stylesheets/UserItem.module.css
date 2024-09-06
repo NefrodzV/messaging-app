@@ -1,6 +1,6 @@
 .user img {
-    height: 2rem;
-    width: 2rem;
+    height: 2.5rem;
+    width: 2.5rem;
 }
 
 .user {
@@ -10,8 +10,6 @@
     display: flex;
     align-items: center;
     gap: .5rem;
-    
-
 }
 
 .user button {
