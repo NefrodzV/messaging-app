@@ -39,10 +39,7 @@ export default function ChatList({ onSelectedChat }) {
                     return (
                         <ChatItem
                             key={chatItem._id}
-                            text={chatItem.text}
-                            time={chatItem.time}
-                            imgUrl={chatItem.imgUrl}
-                            user={chatItem.user}
+                            chat={chatItem}
                             delayAnim={`${i * 0.2}s`}
                         />
                     );
@@ -61,101 +58,110 @@ const dataMock = [
     {
         _id: 'post001',
         text: 'Exploring the wonders of the universe!',
-        imgUrl: 'https://example.com/images/universe.jpg',
+
         user: {
             username: 'astro_lover',
             _id: 'user123',
+            imgUrl: 'https://example.com/images/universe.jpg',
         },
-        time: new Date('2024-09-01T08:30:00Z').toLocaleString(),
+        date: new Date('2024-09-01T08:30:00Z').toLocaleString(),
     },
     {
         _id: 'post002',
         text: 'Just made the best coffee ever!',
-        imgUrl: 'https://example.com/images/coffee.jpg',
+
         user: {
             username: 'coffee_enthusiast',
             _id: 'user456',
+            imgUrl: 'https://example.com/images/coffee.jpg',
         },
-        time: new Date('2024-09-01T09:00:00Z').toLocaleString(),
+        date: new Date('2024-09-01T09:00:00Z').toLocaleString(),
     },
     {
         _id: 'post003',
         text: 'Had a great workout session today.',
-        imgUrl: 'https://example.com/images/workout.jpg',
+
         user: {
             username: 'fit_fanatic',
             _id: 'user789',
+            imgUrl: 'https://example.com/images/workout.jpg',
         },
-        time: new Date('2024-09-01T10:15:00Z').toLocaleString(),
+        date: new Date('2024-09-01T10:15:00Z').toLocaleString(),
     },
     {
         _id: 'post004',
         text: 'Check out this beautiful sunset!',
-        imgUrl: 'https://example.com/images/sunset.jpg',
         user: {
             username: 'nature_lover',
             _id: 'user101',
+            imgUrl: 'https://example.com/images/sunset.jpg',
         },
-        time: new Date('2024-09-01T18:45:00Z').toLocaleString(),
+        date: new Date('2024-09-01T18:45:00Z').toLocaleString(),
     },
     {
         _id: 'post005',
         text: 'Learning to code with JavaScript.',
-        imgUrl: 'https://example.com/images/javascript.jpg',
+
         user: {
             username: 'code_newbie',
             _id: 'user102',
+            imgUrl: 'https://example.com/images/javascript.jpg',
         },
-        time: new Date('2024-09-01T11:30:00Z').toLocaleString(),
+        date: new Date('2024-09-01T11:30:00Z').toLocaleString(),
     },
     {
         _id: 'post006',
         text: 'Just finished reading a fantastic book.',
-        imgUrl: 'https://example.com/images/book.jpg',
+
         user: {
             username: 'bookworm',
             _id: 'user103',
+            imgUrl: 'https://example.com/images/book.jpg',
         },
-        time: new Date('2024-09-01T14:00:00Z').toLocaleString(),
+        date: new Date('2024-09-01T14:00:00Z').toLocaleString(),
     },
     {
         _id: 'post007',
         text: 'Weekend getaway at the beach.',
-        imgUrl: 'https://example.com/images/beach.jpg',
+
         user: {
             username: 'travel_junkie',
             _id: 'user104',
+            imgUrl: 'https://example.com/images/beach.jpg',
         },
-        time: new Date('2024-09-01T15:30:00Z').toLocaleString(),
+        date: new Date('2024-09-01T15:30:00Z').toLocaleString(),
     },
     {
         _id: 'post008',
         text: 'Delicious homemade pizza night!',
-        imgUrl: 'https://example.com/images/pizza.jpg',
+
         user: {
             username: 'foodie',
             _id: 'user105',
+            imgUrl: 'https://example.com/images/pizza.jpg',
         },
-        time: new Date('2024-09-01T19:00:00Z').toLocaleString(),
+        date: new Date('2024-09-01T19:00:00Z').toLocaleString(),
     },
     {
         _id: 'post009',
         text: 'Just adopted a cute puppy!',
-        imgUrl: 'https://example.com/images/puppy.jpg',
+
         user: {
             username: 'dog_lover',
             _id: 'user106',
+            imgUrl: 'https://example.com/images/puppy.jpg',
         },
-        time: new Date('2024-09-01T13:00:00Z').toLocaleString(),
+        date: new Date('2024-09-01T13:00:00Z').toLocaleString(),
     },
     {
         _id: 'post010',
         text: 'Excited for the new movie release!',
-        imgUrl: 'https://example.com/images/movie.jpg',
+
         user: {
             username: 'film_buff',
             _id: 'user107',
+            imgUrl: 'https://example.com/images/movie.jpg',
         },
-        time: new Date('2024-09-01T20:00:00Z').toLocaleString(),
+        date: new Date('2024-09-01T20:00:00Z').toLocaleString(),
     },
 ];

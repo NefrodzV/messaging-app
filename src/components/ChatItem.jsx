@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react';
 import style from '../stylesheets/ChatItem.module.css';
 import userSvg from '../assets/svgs/user.svg';
+import { Link } from 'react-router-dom';
 
-export default function ChatItem({
-    text,
-    user,
-    imgUrl,
-    time,
-    delayAnim,
-    clickHandler,
-}) {
+export default function ChatItem({ chat, delayAnim }) {
+    const { text, _id, user, date } = chat;
     const [mounted, setMounted] = useState(false);
     const [show, setShow] = useState(false);
     useEffect(() => {
@@ -21,7 +16,6 @@ export default function ChatItem({
         <>
             {mounted && (
                 <article
-                    onClick={clickHandler}
                     className={style.chatItem}
                     data-show={show}
                     style={{ animationDelay: delayAnim }}
@@ -32,7 +26,7 @@ export default function ChatItem({
                                 {user?.username || 'Rose Vargas Hernandez'}
                             </div>
                             <span className={style.time}>
-                                {time || '8:12pm'}
+                                {date || '8:12pm'}
                             </span>
                         </header>
                         <p>
@@ -43,10 +37,14 @@ export default function ChatItem({
                     fugiat, repellendus eum dicta illo cumque! Est!`}
                         </p>
                     </div>
+                    <Link
+                        to={'/chats/' + _id}
+                        aria-label={`Open your chat with ${user?.username}`}
+                    ></Link>
                     <img
                         className={style.user}
-                        src={imgUrl || userSvg}
-                        alt="user profile image"
+                        src={user?.imgUrl || userSvg}
+                        alt={`${user?.username} profile image`}
                     />
                 </article>
             )}
