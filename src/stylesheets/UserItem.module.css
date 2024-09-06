@@ -9,11 +9,13 @@
     background-color: var(--background);
     display: flex;
     align-items: center;
-    justify-content:space-between;
+    gap: .5rem;
+    
 
 }
 
 .user button {
+    margin-inline: auto 0;
     height: var(--control-height);
     width: var(--control-height);
     display: flex;
