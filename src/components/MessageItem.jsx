@@ -5,7 +5,10 @@ export default function MessageItem({ message, onClick }) {
 
     return (
         <article className={style.message}>
-            <div className={style.bubble} onClick={onClick}>
+            <div
+                className={style.bubble}
+                onClick={onClick.bind('message', message)}
+            >
                 <p className={style.text}>{text}</p>
                 <span className={style.time}>8:12 am</span>
             </div>
