@@ -36,15 +36,15 @@ h3 {
 }
 
 h4 {
-  font-size:  calc(var(--font-size) * 1.050);;
+  font-size:  calc(var(--font-size) * 1.050);
 }
 
 h5 {
-  font-size: .9rem;
+  font-size: calc(var(--font-size) * 1);
 }
 
 h6 {
-  font-size: .8rem;
+  font-size: calc(var(--font-size) * .8);
 }
 
 body {
@@ -165,12 +165,11 @@ a {
   color: var(--primaryb50);
 }
 
-/* @media(max-width: 600px) {
+@media(max-width:768px) {
   :root {
-    --font-size: clamp(.8rem, .8rem + .5vw , 1rem)
+      --font-size: 1rem
   }
-  
-} */
+}
 @keyframes shake {
   20% {
     transform: translateX(-2px);
