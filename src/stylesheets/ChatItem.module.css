@@ -23,7 +23,7 @@
     white-space: nowrap;
 }
 .time {
-    font-size: .8rem;
+    font-size: calc(var(--font-size) * .8);
     
 }
 .message {
@@ -36,7 +36,7 @@
 }
 
 .message p {
-    font-size: .8rem;
+    font-size: calc(var(--font-size) * .8);
     width: 90%;
     overflow: hidden;
     margin: 0;
@@ -47,6 +47,7 @@
 }
 
 .chatItem .user {
+    pointer-events: none;
     order:0;
     height: 1.5rem;
     width: 1.5rem;
@@ -55,6 +56,12 @@
 .chatItem[data-show='true'] {
     opacity: 0;
     animation: show 1s forwards;
+}
+
+.chatItem a {
+    position: absolute;
+    background-color: transparent;
+    inset: 0;
 }
 
 @keyframes show {
