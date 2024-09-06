@@ -11,18 +11,25 @@ export default function Chat() {
     const [text, setText] = useState('');
     const [data, setData] = useState(dataMock);
     const { socket, fooEvents } = useContext(SocketContext);
-    const dummyRoomId = '123ers';
+    const { chatId } = useParams();
     const [isDialogOpen, setIsDialogOpen] = useState(true);
+
+    const [selectedMessage, setSelectedMessage] = useState();
     useEffect(() => {
-        socket.emit('join', dummyRoomId);
+        socket.emit('join', chatId);
     }, []);
+
+    useEffect(() => {
+        console.log('chat id changed: ' + chatId);
+    }, [chatId]);
 
     useEffect(() => {
         console.log('Something happened to foo');
         console.log(fooEvents);
     }, [fooEvents]);
 
-    const openDialog = () => {
+    const openDialog = (message) => {
+        setSelectedMessage(message);
         setIsDialogOpen(!isDialogOpen);
     };
     return (
@@ -97,7 +104,14 @@ export default function Chat() {
                     </button>
                 </header>
                 <section>
-                    <button className={style.option}>
+                    <button
+                        className={style.option}
+                        onClick={() => {
+                            setText(selectedMessage.text);
+                            setIsDialogOpen(false);
+                            // TODO DO OTHER LOGIC FOR THE EDIT MESSAGE
+                        }}
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512"
@@ -106,6 +120,7 @@ export default function Chat() {
                         </svg>
                         Edit
                     </button>
+                    {/* Make the logic to delete a message */}
                     <button className={style.option}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
