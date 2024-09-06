@@ -16,6 +16,7 @@
 }
 
 .bubble {
+    cursor: pointer;
     z-index: 1;
     box-sizing: border-box;
     padding: .5rem 1.2rem;
