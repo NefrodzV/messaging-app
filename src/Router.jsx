@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import Chat from './components/Chat';
 import { Navigate } from 'react-router-dom';
+import ProfilePage from './pages/ProfilePage';
 const router = createBrowserRouter([
     {
         path: '/',
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
     {
         path: '/signup',
         element: <SignupPage />,
+    },
+
+    {
+        path: '/profile',
+        element: <ProfilePage />,
     },
 ]);
 

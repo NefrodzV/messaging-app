@@ -43,6 +43,7 @@ export default function Navigation() {
                 className={style.navLink}
                 title="Go to my profile"
                 aria-label="Go to my profile"
+                to={'/profile'}
             >
                 <div className={style.content}>
                     <svg
