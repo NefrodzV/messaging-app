@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, Outlet, useParams, useLocation } from 'react-router-dom';
+import { useNavigate, Outlet, useParams } from 'react-router-dom';
 import style from '../stylesheets/HomePage.module.css';
-import Navigation from '../components/Navigation';
 import ChatList from '../components/ChatList';
+import Header from '../components/Header';
 import SocketProvider from '../providers/SocketProvider';
 import useMediaQuery from '../hooks/useMediaQuery';
 
@@ -20,10 +20,7 @@ export default function HomePage() {
     return (
         <SocketProvider>
             <div className={style.page}>
-                <header className={style.header}>
-                    <div>Logo</div>
-                    <Navigation />
-                </header>
+                <Header />
                 <main className={style.main}>
                     {!queryIsActive ? <ChatList /> : !chatId && <ChatList />}
                     {chatId && <Outlet />}
