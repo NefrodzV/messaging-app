@@ -1,11 +1,10 @@
-import headerStyles from '../stylesheets/header.module.css'
-import MobileNavigation from './MobileNavigation'
+import style from '../stylesheets/Header.module.css';
+import Navigation from './Navigation';
 export default function Header() {
-
-    return(
-        <header className={headerStyles.wrapper}>
-            <MobileNavigation />
-            <span className='logo-secondary'>MSGR</span>
+    return (
+        <header className={style.header}>
+            <div>Logo</div>
+            <Navigation />
         </header>
-    )
+    );
 }
