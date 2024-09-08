@@ -1,3 +1,61 @@
 .page {
     display: flex;
+    height: inherit;
+    flex-direction: column;
+    background-color: var(--background30);
+    position: relative;
 }
+
+.main {
+    flex: 1;
+    background-color: var(--background);
+    display: flex;
+    min-height: 0;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.hero {
+    height: 25%;
+    background: linear-gradient(90deg, var(--text) 0%, var(--primary) 35%, var(--accent) 100%);;
+}
+
+.user {
+   
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.imgInput{
+    display: none;
+}
+
+.userImg {
+    /* box-shadow: 0 0 3px black;
+    inset: -25% 10px;
+    position: absolute; */
+    background: var(--background);
+    height: 150px;
+    width: 150px;
+    border-radius: 100px;
+    object-fit: contain;
+}
+
+.imgLabel {
+    cursor: pointer;
+    padding: .5rem;
+    background-color: var(--primary);
+    transition: background-color .5s ease-in-out;
+}
+
+.imgLabel:hover {
+    background-color: var(--secondary);
+    
+}
+
