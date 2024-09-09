@@ -5,21 +5,51 @@ import HomePage from './pages/HomePage';
 import Chat from './components/Chat';
 import { Navigate } from 'react-router-dom';
 import ProfilePage from './pages/ProfilePage';
+import PageLayout from './components/PageLayout';
+import ChatList from './components/ChatList';
+import ChatAndProfileLayout from './components/ChatAndProfileLayout';
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Navigate to="/login" replace={true} />,
-    },
-    {
-        path: '/chats',
-        element: <HomePage />,
+        element: <PageLayout />,
         children: [
             {
-                path: ':chatId',
-                element: <Chat />,
+                path: 'chats',
+                element: <ChatAndProfileLayout />,
+                children: [
+                    {
+                        path: ':chatId',
+                        element: <Chat />,
+                    },
+                ],
+            },
+            {
+                index: true,
+                element: <Navigate to={'chats'} />,
+            },
+
+            {
+                path: 'profile',
+                element: <ChatAndProfileLayout />,
+                children: [
+                    {
+                        index: true,
+                        element: <ProfilePage />,
+                    },
+                ],
             },
         ],
     },
+    // {
+    //     path: '/chats',
+    //     element: <HomePage />,
+    //     children: [
+    //         {
+    //             path: ':chatId',
+    //             element: <Chat />,
+    //         },
+    //     ],
+    // },
     {
         path: '/login',
         element: <LoginPage />,

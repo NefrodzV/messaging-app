@@ -1,0 +1,14 @@
+.layout {
+    display: flex;
+    height: inherit;
+    flex-direction: column;
+    background-color: var(--background30);
+    position: relative;
+}
+
+.main {
+    flex: 1;
+    background-color: var(--background);
+    display: flex;
+    min-height: 0;
+}
