@@ -8,6 +8,7 @@ import ProfilePage from './pages/ProfilePage';
 import PageLayout from './components/PageLayout';
 import ChatList from './components/ChatList';
 import ChatAndProfileLayout from './components/ChatAndProfileLayout';
+import Profile from './components/Profile';
 const router = createBrowserRouter([
     {
         path: '/',
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <ProfilePage />,
+                        element: <Profile />,
                     },
                 ],
             },
