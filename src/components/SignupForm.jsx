@@ -36,6 +36,7 @@ export default function SignupForm() {
     };
 
     const onSubmitHandler = (e) => {
+        console.log('submitting');
         e.preventDefault();
         const copyData = structuredClone(data);
         const { username, password, email, confirmPassword } = copyData;
@@ -164,7 +165,7 @@ export default function SignupForm() {
             <button className="primary">sign up</button>
             <Link
                 className={style.link}
-                to={status === 'pending' ? 'javascript:void(0)' : '/login'}
+                to={status === 'pending' ? 'undefined' : '/login'}
             >
                 Already got an account? Login here.
             </Link>
