@@ -3,7 +3,6 @@ import style from '../stylesheets/Chat.module.css';
 import { useContext, useState, useEffect, useRef } from 'react';
 import ResizeableTextarea from '../components/ResizeableTextarea';
 import userSvg from '../assets/svgs/user.svg';
-import propTypes from 'prop-types';
 import { SocketContext } from '../providers/SocketProvider';
 import MessageItem from './MessageItem';
 import SectionModal from './SectionModal';
@@ -29,18 +28,21 @@ export default function Chat() {
         }
 
         function onEdit(message) {
-            // setData((prev) => {
-            //     return prev.map((item) => {
-            //         if (item._id === message._id) {
-            //             return message;
-            //         }
-            //     });
-            // });
+            setData((prev) => {
+                return prev.map((item) => {
+                    if (item._id === message._id) {
+                        return message;
+                    }
+
+                    return item;
+                });
+            });
         }
         socket.on('message', onMessage);
         socket.on('delete', onDelete);
         socket.on('edit', onEdit);
         return () => {
+            console.log('removing listeners');
             // This listens to messages sent by other users
             socket.off('message', onMessage);
             socket.off('delete', onDelete);
@@ -48,9 +50,6 @@ export default function Chat() {
         };
     }, []);
 
-    useEffect(() => {
-        // console.log(data);
-    }, [data]);
     useEffect(() => {
         socket.emit('join', chatId);
     }, [chatId]);
@@ -67,7 +66,6 @@ export default function Chat() {
             </header>
             <section className={style.messageList}>
                 {data?.map((message) => {
-                    // console.log(message);
                     return (
                         <MessageItem
                             key={message._id}
@@ -84,8 +82,20 @@ export default function Chat() {
                 }}
                 onSubmit={(e) => {
                     e.preventDefault();
-                    if (text.length === 0) return;
-                    if (isEditing) socket.emit('message', chatId, text);
+                    if (text.trim().length === 0) return;
+                    if (isEditing) {
+                        const editedMessage = {
+                            ...selectedMessage,
+                            text: text,
+                        };
+                        socket.emit('edit', chatId, editedMessage);
+                        setIsEditing(false);
+                        setSelectedMessage(null);
+                        setText('');
+                        return;
+                    }
+
+                    socket.emit('message', chatId, text);
                 }}
             >
                 <div className={style.container}>
