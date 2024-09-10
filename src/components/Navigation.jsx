@@ -13,16 +13,20 @@ import useMediaQuery from '../hooks/useMediaQuery';
 export default function Navigation() {
     const { queryIsActive } = useMediaQuery('(max-width: 768px)');
     const { chatId } = useParams();
+    const handleNavLinkActive = ({ isActive, isPending, isTransitioning }) => {
+        console.log(isActive);
+        console.log(isPending);
+        console.log(isTransitioning);
+        return isActive ? `${style.navLink} ${style.active}` : style.navLink;
+    };
     return (
         <nav className={style.navList}>
             <div className={style.logo}>Logo</div>
             <NavLink
-                data-current={true}
-                className={style.navLink}
+                className={handleNavLinkActive}
                 title="Go to my chats"
                 aria-label="Go to my chats"
-                // Disabled in desktop size
-                to={!queryIsActive && chatId ? 'javascript:void(0)' : '/chats'}
+                to={'chats'}
             >
                 <div className={style.content}>
                     <svg
@@ -39,11 +43,10 @@ export default function Navigation() {
                 </div>
             </NavLink>
             <NavLink
-                // data-current={true}
-                className={style.navLink}
+                className={handleNavLinkActive}
                 title="Go to my profile"
                 aria-label="Go to my profile"
-                to={'/profile'}
+                to={'profile'}
             >
                 <div className={style.content}>
                     <svg
