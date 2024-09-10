@@ -12,21 +12,48 @@ export default function Chat() {
     const [data, setData] = useState(dataMock);
     const { socket, fooEvents } = useContext(SocketContext);
     const { chatId } = useParams();
-    const [isDialogOpen, setIsDialogOpen] = useState(true);
-
-    const [selectedMessage, setSelectedMessage] = useState();
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+    const [selectedMessage, setSelectedMessage] = useState(null);
     useEffect(() => {
-        socket.emit('join', chatId);
+        function onMessage(message) {
+            console.log('Message from other user:');
+            console.log(message);
+            setData((prev) => [...prev, message]);
+        }
+
+        function onDelete(message) {
+            console.log('delete message');
+            console.log(message);
+            setData((prev) => prev.filter((item) => item._id != message._id));
+        }
+
+        function onEdit(message) {
+            // setData((prev) => {
+            //     return prev.map((item) => {
+            //         if (item._id === message._id) {
+            //             return message;
+            //         }
+            //     });
+            // });
+        }
+        socket.on('message', onMessage);
+        socket.on('delete', onDelete);
+        socket.on('edit', onEdit);
+        return () => {
+            // This listens to messages sent by other users
+            socket.off('message', onMessage);
+            socket.off('delete', onDelete);
+            socket.off('edit', onEdit);
+        };
     }, []);
 
     useEffect(() => {
-        console.log('chat id changed: ' + chatId);
-    }, [chatId]);
-
+        // console.log(data);
+    }, [data]);
     useEffect(() => {
-        console.log('Something happened to foo');
-        console.log(fooEvents);
-    }, [fooEvents]);
+        socket.emit('join', chatId);
+    }, [chatId]);
 
     const openDialog = (message) => {
         setSelectedMessage(message);
@@ -39,13 +66,16 @@ export default function Chat() {
                 <h2 className={style.username}>Rose Vargas Hernandez</h2>
             </header>
             <section className={style.messageList}>
-                {data?.map((message) => (
-                    <MessageItem
-                        key={message._id}
-                        message={message}
-                        onClick={openDialog}
-                    />
-                ))}
+                {data?.map((message) => {
+                    // console.log(message);
+                    return (
+                        <MessageItem
+                            key={message._id}
+                            message={message}
+                            onClick={openDialog}
+                        />
+                    );
+                })}
             </section>
             <form
                 className={style.sendMessage}
@@ -54,22 +84,44 @@ export default function Chat() {
                 }}
                 onSubmit={(e) => {
                     e.preventDefault();
-                    socket.emit('message', dummyRoomId, text);
+                    if (text.length === 0) return;
+                    if (isEditing) socket.emit('message', chatId, text);
                 }}
             >
                 <div className={style.container}>
-                    <ResizeableTextarea
-                        className={'primary'}
-                        value={text}
-                        ariaLabel={'Enter message here'}
-                        name={text}
-                        id={text}
-                        placeholder={'Enter message to Rose'}
-                        maxRows={5}
-                        onChangeHandler={(e) => {
-                            setText(e.target.value);
-                        }}
-                    />
+                    <div className={style.wrapper}>
+                        {isEditing && (
+                            <label className={style.label}>
+                                Edit message...
+                                <button
+                                    onClick={() => {
+                                        setIsEditing(false);
+                                        setSelectedMessage(null);
+                                        setText('');
+                                    }}
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 384 512"
+                                    >
+                                        <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path>
+                                    </svg>
+                                </button>
+                            </label>
+                        )}
+                        <ResizeableTextarea
+                            className={'primary'}
+                            value={text}
+                            ariaLabel={'Enter message here'}
+                            name={text}
+                            id={text}
+                            placeholder={'Enter message to Rose'}
+                            maxRows={5}
+                            onChangeHandler={(e) => {
+                                setText(e.target.value);
+                            }}
+                        />
+                    </div>
                     <button
                         className={style.sendButton}
                         title="Send message button"
@@ -107,6 +159,7 @@ export default function Chat() {
                     <button
                         className={style.option}
                         onClick={() => {
+                            setIsEditing(true);
                             setText(selectedMessage.text);
                             setIsDialogOpen(false);
                             // TODO DO OTHER LOGIC FOR THE EDIT MESSAGE
@@ -121,7 +174,13 @@ export default function Chat() {
                         Edit
                     </button>
                     {/* Make the logic to delete a message */}
-                    <button className={style.option}>
+                    <button
+                        className={style.option}
+                        onClick={() => {
+                            socket.emit('delete', chatId, selectedMessage);
+                            setIsDialogOpen(false);
+                        }}
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 448 512"

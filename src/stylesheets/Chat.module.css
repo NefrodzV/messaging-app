@@ -8,6 +8,24 @@
     
 }
 
+.wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    text-decoration: underline;
+    display: flex;
+    align-items: ce;
+    gap: .5rem;
+    padding: 0 .8rem;
+}
+
+.label button {
+    border: none;
+    background-color: inherit;
+}
 .chat header {
     display: flex;
     align-items: center;
@@ -39,6 +57,7 @@
 }
 
 .sendButton {
+    justify-self: center;
     display: flex;
     border: none;
     padding: 0;
@@ -83,7 +102,7 @@
     width: 300px;
     padding: 0;
     border-radius: var(--border-radius);
-    animation: close .5s ease;
+    
 
     
 }

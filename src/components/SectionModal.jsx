@@ -11,7 +11,7 @@ export default function SectionModal({ children, isOpen, title, className }) {
             setIsMounted(true);
             setOpen(true);
         }
-        if (!isOpen) setIsClosing(true);
+        if (!isOpen && open) setIsClosing(true);
     }, [isOpen]);
     return (
         <>
