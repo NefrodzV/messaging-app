@@ -3,6 +3,7 @@
     display: flex;
     gap: .2rem;
     position: relative;
+    text-transform: uppercase;
 }
 .navLink {
     box-sizing: border-box;
@@ -18,7 +19,8 @@
     transition: .5s ease-in-out;
 }
 
-.navLink .content {
+ .navLink .content {
+    gap: .5rem;
     overflow: hidden;
     position: relative;
     display: flex;
@@ -30,7 +32,7 @@
     background-color: var(--secondary);
 }
 
-.navLink[data-current=true] {
+.navLink.active {
     border-radius: var(--border-radius);
     background-color: var(--secondary20);
     
