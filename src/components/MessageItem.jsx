@@ -14,7 +14,7 @@ export default function MessageItem({ message, onClick }) {
             </div>
             <img
                 className={style.userImage}
-                src={user.imageUrl || userSvg}
+                src={user?.imageUrl || userSvg}
                 alt={`${user?.username} profile image`}
             />
         </article>
