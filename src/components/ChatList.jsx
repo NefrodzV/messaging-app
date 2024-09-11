@@ -1,13 +1,27 @@
 import style from '../stylesheets/ChatList.module.css';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import ChatItem from '../components/ChatItem';
 import UserList from './UserList';
-export default function ChatList({ onSelectedChat }) {
+import { SocketContext } from '../providers/SocketProvider';
+export default function ChatList() {
     const [data, setData] = useState(dataMock);
     const [isUserListDialogOpen, setIsUserListDialogOpen] = useState(false);
     const openDialogHandler = () => {
         setIsUserListDialogOpen(!isUserListDialogOpen);
     };
+
+    const { socket } = useContext(SocketContext);
+
+    useEffect(() => {
+        const onUpdate = (message) =>
+            console.log('data from scoket id: ' + message);
+
+        socket?.on('update', onUpdate);
+
+        return () => {
+            socket?.off('update', onUpdate);
+        };
+    }, []);
     return (
         <section className={style.chatList} aria-label="Chats">
             <header className={style.header}>

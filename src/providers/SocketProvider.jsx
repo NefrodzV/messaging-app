@@ -25,19 +25,14 @@ export default function SocketProvider({ children }) {
             console.log('An event on foo has happened with this value');
         }
 
-        const onUpdate = (message) =>
-            console.log('data from scoket id: ' + message);
-
         socket?.on('connect', onConnect);
         socket?.on('disconnect', onDisconnect);
         socket?.on('foo', onFooEvent);
-        socket?.on('update', onUpdate);
 
         return () => {
             socket?.off('connect', onConnect);
             socket?.off('disconnect', onDisconnect);
             socket?.off('foo', onFooEvent);
-            socket.off('update', onUpdate);
         };
     }, []);
 
