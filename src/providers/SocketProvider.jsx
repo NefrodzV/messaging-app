@@ -37,7 +37,7 @@ export default function SocketProvider({ children }) {
             socket?.off('connect', onConnect);
             socket?.off('disconnect', onDisconnect);
             socket?.off('foo', onFooEvent);
-            socket.off('update', on);
+            socket.off('update', onUpdate);
         };
     }, []);
 
