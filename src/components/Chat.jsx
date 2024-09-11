@@ -38,20 +38,20 @@ export default function Chat() {
                 });
             });
         }
-        socket.on('message', onMessage);
-        socket.on('delete', onDelete);
-        socket.on('edit', onEdit);
+        socket?.on('message', onMessage);
+        socket?.on('delete', onDelete);
+        socket?.on('edit', onEdit);
         return () => {
             console.log('removing listeners');
             // This listens to messages sent by other users
-            socket.off('message', onMessage);
-            socket.off('delete', onDelete);
-            socket.off('edit', onEdit);
+            socket?.off('message', onMessage);
+            socket?.off('delete', onDelete);
+            socket?.off('edit', onEdit);
         };
     }, []);
 
     useEffect(() => {
-        socket.emit('join', chatId);
+        socket?.emit('join', chatId);
     }, [chatId]);
 
     const openDialog = (message) => {
@@ -88,14 +88,14 @@ export default function Chat() {
                             ...selectedMessage,
                             text: text,
                         };
-                        socket.emit('edit', chatId, editedMessage);
+                        socket?.emit('edit', chatId, editedMessage);
                         setIsEditing(false);
                         setSelectedMessage(null);
                         setText('');
                         return;
                     }
 
-                    socket.emit('message', chatId, text);
+                    socket?.emit('message', chatId, text);
                 }}
             >
                 <div className={style.container}>
@@ -187,7 +187,7 @@ export default function Chat() {
                     <button
                         className={style.option}
                         onClick={() => {
-                            socket.emit('delete', chatId, selectedMessage);
+                            socket?.emit('delete', chatId, selectedMessage);
                             setIsDialogOpen(false);
                         }}
                     >
