@@ -48,11 +48,7 @@ function App() {
 
     const updateUser = () => getUser();
 
-    return (
-        <UserProvider>
-            <RouterProvider router={router} />{' '}
-        </UserProvider>
-    );
+    return <RouterProvider router={router} />;
 }
 
 export default App;
