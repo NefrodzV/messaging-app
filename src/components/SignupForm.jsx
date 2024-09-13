@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import style from '../stylesheets/SignupForm.module.css';
 import useSignup from '../hooks/useSignup';
 import { useEffect, useState } from 'react';
+import Loader from './Loader';
+import { resetErrors } from '../utils/utils';
 export default function SignupForm() {
     const [data, setData] = useState({
         username: {
@@ -36,8 +38,8 @@ export default function SignupForm() {
     };
 
     const onSubmitHandler = (e) => {
-        console.log('submitting');
         e.preventDefault();
+        resetErrors(data, setData);
         const copyData = structuredClone(data);
         const { username, password, email, confirmPassword } = copyData;
         let hasErrors = false;
@@ -84,10 +86,10 @@ export default function SignupForm() {
             }
         }
 
-        // if (hasErrors) {
-        //     setData(copyData);
-        //     return;
-        // }
+        if (hasErrors) {
+            setData(copyData);
+            return;
+        }
 
         signup({
             email: data.email.value,
@@ -98,6 +100,7 @@ export default function SignupForm() {
     };
 
     useEffect(() => {
+        // This sets the errors from the response
         if (errors) {
             const copyData = structuredClone(data);
             for (const property in data) {
@@ -162,13 +165,18 @@ export default function SignupForm() {
                     value={data.confirmPassword.value}
                 />
             </div>
-            <button className="primary">sign up</button>
-            <Link
-                className={style.link}
-                to={status === 'pending' ? 'undefined' : '/login'}
-            >
-                Already got an account? Login here.
-            </Link>
+            {status === 'pending' ? (
+                <Loader />
+            ) : (
+                <>
+                    <button type="submit" className="primary">
+                        sign up
+                    </button>
+                    <Link className={style.link} to={'/login'}>
+                        Already got an account? Login here.
+                    </Link>
+                </>
+            )}
         </form>
     );
 }

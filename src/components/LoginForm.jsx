@@ -4,6 +4,7 @@ import useLogin from '../hooks/useLogin';
 import { useEffect, useState } from 'react';
 import Loader from './Loader';
 import { Link } from 'react-router-dom';
+import { resetErrors } from '../utils/utils';
 
 export default function LoginForm() {
     const [data, setData] = useState({
@@ -18,15 +19,6 @@ export default function LoginForm() {
     });
     const { login, errors, status } = useLogin();
 
-    const resetErrors = () => {
-        const dataCopy = structuredClone(data);
-        for (const property in dataCopy) {
-            dataCopy[property].error = '';
-        }
-
-        setData(dataCopy);
-    };
-
     const onChangeHandler = (e) => {
         const name = e.target.name;
         const text = e.target.value;
@@ -40,6 +32,7 @@ export default function LoginForm() {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
+        resetErrors(data, setData);
         const dataCopy = structuredClone(data);
         let hasErrors = false;
         const email = dataCopy.email.value;
@@ -65,8 +58,6 @@ export default function LoginForm() {
             setData(dataCopy);
             return;
         }
-
-        resetErrors();
 
         const loginData = {
             email: data.email.value,
@@ -131,13 +122,17 @@ export default function LoginForm() {
                     onChange={onChangeHandler}
                 />
             </div>
-            {status !== 'pending' && (
-                <button className="primary">Log in</button>
+
+            {status === 'pending' ? (
+                <Loader />
+            ) : (
+                <>
+                    <button className="primary">Log in</button>
+                    <Link className={style.link} to={'/signup'}>
+                        No account? Sign up here.
+                    </Link>
+                </>
             )}
-            {status === 'pending' && <Loader />}
-            <Link className={style.link} to={'/signup'}>
-                No account? Sign up here.
-            </Link>
         </form>
     );
 }
