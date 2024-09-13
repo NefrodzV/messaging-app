@@ -1,5 +1,4 @@
-import { useContext, useState } from 'react';
-import { UserContext } from '../providers/UserProvider';
+import { useState } from 'react';
 
 export default function useLogin() {
     const [errors, setErrors] = useState(null);
