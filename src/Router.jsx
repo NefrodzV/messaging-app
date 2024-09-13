@@ -1,13 +1,9 @@
 import { createBrowserRouter, redirect } from 'react-router-dom';
 import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
-import Chat from './components/Chat';
 import { Navigate } from 'react-router-dom';
 import ProfilePage from './pages/ProfilePage';
-import PageLayout from './components/PageLayout';
-import ChatList from './components/ChatList';
-import ChatAndProfileLayout from './components/ChatAndProfileLayout';
-import Profile from './components/Profile';
+import { Profile, Chat, PageLayout, ChatAndProfileLayout } from './components';
 import { withUserProvider } from './utils/utils.jsx';
 const router = createBrowserRouter([
     {
@@ -46,16 +42,6 @@ const router = createBrowserRouter([
             },
         ],
     },
-    // {
-    //     path: '/chats',
-    //     element: <HomePage />,
-    //     children: [
-    //         {
-    //             path: ':chatId',
-    //             element: <Chat />,
-    //         },
-    //     ],
-    // },
     {
         path: '/login',
         element: <LoginPage />,
