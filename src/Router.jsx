@@ -5,12 +5,13 @@ import { Navigate } from 'react-router-dom';
 import ProfilePage from './pages/ProfilePage';
 import { Profile, Chat, PageLayout, ChatAndProfileLayout } from './components';
 import { withUserProvider } from './utils/utils.jsx';
+import { getUser } from './utils/utils.js';
 const router = createBrowserRouter([
     {
         path: '/',
         element: withUserProvider(<PageLayout />),
         loader: async () => {
-            const user = { username: 'dummy user', lastChat: 'lastChatId' };
+            const user = await getUser();
             if (!user) return redirect('/login');
             return user;
         },
