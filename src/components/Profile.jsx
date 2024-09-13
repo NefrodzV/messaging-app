@@ -2,7 +2,9 @@ import style from '../stylesheets/ProfilePage.module.css';
 import userSvg from '../assets/svgs/user.svg';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import useUser from '../hooks/useUser';
 export default function Profile() {
+    const { user } = useUser();
     const [userImage, setUserImage] = useState('');
     return (
         <section className={style.profile}>
@@ -13,11 +15,11 @@ export default function Profile() {
 
                 <img
                     className={style.userImg}
-                    src={userImage || userSvg}
+                    src={user?.image || userSvg}
                     alt="User profile image"
                 />
 
-                <h2>Rose Vargas Hernandez</h2>
+                <h2>{user?.username}</h2>
                 <label className={style.imgLabel} htmlFor="image">
                     update image
                 </label>
