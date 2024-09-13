@@ -1,9 +1,7 @@
 import { useContext, useState } from 'react';
 import { UserContext } from '../providers/UserProvider';
-import { useNavigate } from 'react-router-dom';
 
 export default function useLogin() {
-    const { setUser } = useContext(UserContext);
     const [errors, setErrors] = useState(null);
     const [status, setStatus] = useState(null);
 
@@ -17,6 +15,7 @@ export default function useLogin() {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data),
                     mode: 'cors',
+                    credentials: 'include',
                 }
             );
 
@@ -30,10 +29,6 @@ export default function useLogin() {
             }
             setUser(response);
             setStatus('success');
-            const token = {
-                token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Y…IxMX0.w5mWAhqkNwiDBFUnkvBdV_zHCb0__9bl7JxDzvOrS5E',
-            };
-            navigate('/' + token);
         } catch (e) {
             console.error(e);
         }
