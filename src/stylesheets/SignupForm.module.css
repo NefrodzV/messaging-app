@@ -8,6 +8,7 @@
     gap: 1.5rem;
     flex-direction: column;
     box-sizing: border-box;
+    position: relative;
 }
 .content {
     display: flex;
@@ -27,4 +28,62 @@
 .link {
     align-self: center;
     text-align: center;
+}
+
+.success {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    border: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--background);
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    animation: scale .5s forwards;
+}
+
+.container {
+    --dimensions: 250px;
+    overflow: hidden;
+    height: var(--dimensions);
+    width: 0;
+    animation: increment-width 1s forwards;
+    animation-delay: .5s;
+}
+.container svg {
+    color: var(--accent);
+    height: var(--dimensions);
+    width: var(--dimensions);
+   
+}
+
+@media(max-width: 600px) {
+    .container {
+        --dimensions: 175px;
+    }
+}
+
+@keyframes increment-width {
+    from {
+        width: 0px;
+    }
+
+    to {
+        width: 250px;
+    }
+}
+
+@keyframes scale {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
 }
