@@ -2,8 +2,11 @@ import style from '../stylesheets/UserList.module.css';
 import { useContext, useEffect, useState } from 'react';
 import userSvg from '../assets/svgs/user.svg';
 import UserItem from './UserItem';
+import Loader from './Loader';
+import CenteredWrapper from './CenteredWrapper';
+import useUsers from '../hooks/useUsers';
 export default function UserList({ isOpen, onClose }) {
-    const [data, setData] = useState(dataMock);
+    const { users, status } = useUsers();
     const [animState, setAnimState] = useState({
         isMounted: false,
         isShowing: false,
@@ -64,9 +67,13 @@ export default function UserList({ isOpen, onClose }) {
                         </div>
                     </header>
                     <div className={style.container}>
-                        {data?.map((user) => (
-                            <UserItem user={user} />
-                        ))}
+                        {status === 'pending' ? (
+                            <Loader />
+                        ) : users.length != 0 ? (
+                            data?.map((user) => <UserItem user={user} />)
+                        ) : (
+                            <CenteredWrapper text={'No users in list'} />
+                        )}
                     </div>
                 </dialog>
             )}
