@@ -70,7 +70,7 @@ export default function UserList({ isOpen, onClose }) {
                         {status === 'pending' ? (
                             <Loader />
                         ) : users.length != 0 ? (
-                            data?.map((user) => <UserItem user={user} />)
+                            users?.map((user) => <UserItem user={user} />)
                         ) : (
                             <CenteredWrapper text={'No users in list'} />
                         )}
