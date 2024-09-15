@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import style from '../stylesheets/UserItem.module.css';
 import userSvg from '../assets/svgs/user.svg';
 export default function UserItem({ user }) {
-    const { _id, username, imgUrl } = user;
+    const { _id, username, image } = user;
 
     return (
         <article className={style.user}>
-            <img src={imgUrl || userSvg} alt={`${username} profile image`} />
+            <img src={image || userSvg} alt={`${username} profile image`} />
             <span>{username}</span>
             <button
                 title="Start chat with this user"
