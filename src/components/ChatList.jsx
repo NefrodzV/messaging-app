@@ -2,9 +2,13 @@ import style from '../stylesheets/ChatList.module.css';
 import { useContext, useEffect, useRef, useState } from 'react';
 import ChatItem from '../components/ChatItem';
 import UserList from './UserList';
+import useUser from '../hooks/useUser.js';
 import { SocketContext } from '../providers/SocketProvider';
+import CenteredWrapper from './CenteredWrapper';
 export default function ChatList() {
-    const [data, setData] = useState(dataMock);
+    const { user } = useUser();
+    const { chats } = user;
+    // const [data, setData] = useState(dataMock);
     const [isUserListDialogOpen, setIsUserListDialogOpen] = useState(false);
     const openDialogHandler = () => {
         setIsUserListDialogOpen(!isUserListDialogOpen);
@@ -43,21 +47,17 @@ export default function ChatList() {
                 </button>
             </header>
             <div className={style.container}>
-                {data?.map((chatItem, i) => {
-                    // TODO this calculation is very slow ask for a fix for this
-                    // const increment = 0.2;
-                    // delayRef.current =
-                    //     Math.round((delayRef.current + increment) * 10) / 10;
-                    // const delay = `${delayRef.current}s`;
-                    // console.log(`${i * 0.2}`);
-                    return (
+                {chats.length != 0 ? (
+                    chats?.map((chatItem, i) => (
                         <ChatItem
                             key={chatItem._id}
                             chat={chatItem}
                             delayAnim={`${i * 0.2}s`}
                         />
-                    );
-                })}
+                    ))
+                ) : (
+                    <CenteredWrapper text={'No chats started by you'} />
+                )}
             </div>
 
             <UserList
