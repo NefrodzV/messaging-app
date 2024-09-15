@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Gives the users data for the user list
 export default function useUsers() {
@@ -8,7 +8,10 @@ export default function useUsers() {
     async function getUsers() {
         try {
             setStatus('pending');
-            const request = await fetch(import.meta.env.VITE_API + '/users');
+            const request = await fetch(import.meta.env.VITE_API + '/users', {
+                credentials: 'include',
+                mode: 'cors',
+            });
 
             const response = await request.json();
             if (!request.ok) {
@@ -18,11 +21,13 @@ export default function useUsers() {
             setUsers(response.users);
             setStatus('success');
         } catch (e) {
-            console.error(
-                'Something went wrong getting users from api:' +
-                    JSON.stringify(e)
-            );
+            console.error('Something went wrong getting users from api:' + e);
             setStatus('error');
         }
     }
+
+    useEffect(() => {
+        getUsers();
+    }, []);
+    return { users, status };
 }
