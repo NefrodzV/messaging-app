@@ -1,7 +1,6 @@
 import style from '../stylesheets/ChatList.module.css';
 import { useContext, useEffect, useRef, useState } from 'react';
 import ChatItem from '../components/ChatItem';
-import UserList from './UserList';
 import useUser from '../hooks/useUser.js';
 import { SocketContext } from '../providers/SocketProvider';
 import CenteredWrapper from './CenteredWrapper';
@@ -9,10 +8,6 @@ export default function ChatList() {
     const { user } = useUser();
     const { chats } = user;
     // const [data, setData] = useState(dataMock);
-    const [isUserListDialogOpen, setIsUserListDialogOpen] = useState(false);
-    const openDialogHandler = () => {
-        setIsUserListDialogOpen(!isUserListDialogOpen);
-    };
 
     const { socket } = useContext(SocketContext);
 
@@ -35,7 +30,7 @@ export default function ChatList() {
                     aria-label="Start new chat"
                     title="Start new chat button"
                     type="button"
-                    onClick={openDialogHandler}
+                    onClick={() => {}}
                 >
                     <svg
                         className="icon"
@@ -59,11 +54,6 @@ export default function ChatList() {
                     <CenteredWrapper text={'No chats started by you'} />
                 )}
             </div>
-
-            <UserList
-                isOpen={isUserListDialogOpen}
-                onClose={openDialogHandler}
-            />
         </section>
     );
 }
