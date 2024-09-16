@@ -10,6 +10,7 @@ export { default as Navigation } from './Navigation';
 export { default as PageLayout } from './PageLayout';
 export { default as ResizeableTextarea } from './ResizeableTextarea';
 export { default as SectionModal } from './SectionModal';
+export { default as Dialog } from './Dialog';
 export { default as UserList } from './UserList';
 export { default as UserItem } from './UserItem';
 export { default as SignupForm } from './SignupForm';
