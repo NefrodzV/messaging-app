@@ -16,11 +16,10 @@ export default function PageLayout() {
     const { chatId } = useParams();
     const navigate = useNavigate();
     const { pathname } = useLocation();
-    console.log(pathname);
     useEffect(() => {
         if (pathname == '/' || pathname.includes('chats')) {
             if (!queryIsActive && !chatId) {
-                navigate('chats/' + user?.lastChat);
+                if (user?.lastChat) navigate('chats/' + user?.lastChat);
             }
         }
     }, [queryIsActive, pathname]);
