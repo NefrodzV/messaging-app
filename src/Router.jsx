@@ -3,7 +3,13 @@ import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 import { Navigate } from 'react-router-dom';
 import ProfilePage from './pages/ProfilePage';
-import { Profile, Chat, PageLayout, ChatAndProfileLayout } from './components';
+import {
+    Profile,
+    Chat,
+    PageLayout,
+    ChatAndProfileLayout,
+    UserList,
+} from './components';
 import { withUserProvider } from './utils/utils.jsx';
 import { getUser } from './utils/utils.js';
 const router = createBrowserRouter([
@@ -38,6 +44,17 @@ const router = createBrowserRouter([
                     {
                         index: true,
                         element: <Profile />,
+                    },
+                ],
+            },
+
+            {
+                path: 'users',
+                element: <ChatAndProfileLayout />,
+                children: [
+                    {
+                        index: true,
+                        element: <UserList />,
                     },
                 ],
             },
