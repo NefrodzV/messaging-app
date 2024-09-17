@@ -7,7 +7,7 @@ export default function UserItem({ user }) {
     return (
         <article className={style.user}>
             <img src={image || userSvg} alt={`${username} profile image`} />
-            <span>{username}</span>
+            <span className={style.username}>{username}</span>
             <button
                 title="Start chat with this user"
                 aria-label="Start chat with this user"
