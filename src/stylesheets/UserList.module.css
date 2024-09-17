@@ -1,15 +1,22 @@
 .section {
     flex: 1;
+    height: inherit;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
 }
 .header {
     display: flex;
-    background-color: var(--secondary);
+    
     align-items: center;
     padding: 0 .5rem;
     height: fit-content;
     justify-content: space-between;
 }
-
+.line { 
+    margin: 0 .5rem;
+    background-color: var(--text);
+}
 .header button {
     display: flex;
     background-color: inherit;
@@ -35,6 +42,8 @@
 }
 
 .container {
+    min-height: 0;
+    flex-wrap: wrap;
     flex: 1;
     padding: .5rem;
     background-color: var(--background);
@@ -42,7 +51,7 @@
     scrollbar-width: none;
     scroll-behavior: smooth;
     display: flex;
-    flex-direction: column;
+    
     gap: .5rem;
 }
 

@@ -23,6 +23,7 @@ export default function UserList() {
                     </button>
                 </div>
             </header>
+            <hr className={style.line} />
             <div className={style.container}>
                 {status === 'pending' ? (
                     <Loader />
