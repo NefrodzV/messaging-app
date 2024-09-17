@@ -8,7 +8,7 @@ export default function UserList() {
     return (
         <section className={style.section}>
             <header className={style.header}>
-                <h1>Users</h1>
+                <h1>Chat with a user</h1>
                 <div className={style.buttons}>
                     <button
                         title="Search for a user"
