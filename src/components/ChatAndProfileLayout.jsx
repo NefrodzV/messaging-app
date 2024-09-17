@@ -17,7 +17,7 @@ export default function ChatAndProfileLayout() {
             ) : (
                 pathname.includes('/chats') && !chatId && <ChatList />
             )}
-            <Outlet />
+            {queryIsActive && pathname === '/chats' ? null : <Outlet />}
         </SocketProvider>
     );
 }
