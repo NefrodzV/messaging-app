@@ -4,6 +4,7 @@ import ChatItem from '../components/ChatItem';
 import useUser from '../hooks/useUser.js';
 import { SocketContext } from '../providers/SocketProvider';
 import CenteredWrapper from './CenteredWrapper';
+import { Link } from 'react-router-dom';
 export default function ChatList() {
     const { user } = useUser();
     const { chats } = user;
@@ -24,13 +25,12 @@ export default function ChatList() {
     return (
         <section className={style.chatList} aria-label="Chats">
             <header className={style.header}>
-                <h1>Chats</h1>
-                <button
+                <h1>Your chats</h1>
+                <Link
                     className={`${style.add}`}
-                    aria-label="Start new chat"
-                    title="Start new chat button"
-                    type="button"
-                    onClick={() => {}}
+                    aria-label="Go start a new chat"
+                    title="Start a new chat"
+                    to={'/users'}
                 >
                     <svg
                         className="icon"
@@ -39,7 +39,7 @@ export default function ChatList() {
                     >
                         <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
                     </svg>
-                </button>
+                </Link>
             </header>
             <div className={style.container}>
                 {chats.length != 0 ? (
