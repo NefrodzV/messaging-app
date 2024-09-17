@@ -2,12 +2,11 @@
     height: 8rem;
     width: 8rem;
     object-fit: fill;
+    border-radius: var(--border-radius);
 }
 
 .user {
     box-sizing: border-box;
-    
-    
     box-shadow: 0 0 3px var(--shadow);
     border-radius: var(--border-radius);
     padding: .5rem;
