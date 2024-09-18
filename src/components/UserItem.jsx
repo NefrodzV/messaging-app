@@ -9,8 +9,8 @@ export default function UserItem({ user }) {
             <img src={image || userSvg} alt={`${username} profile image`} />
             <span className={style.username}>{username}</span>
             <button
-                title="Start chat with this user"
-                aria-label="Start chat with this user"
+                title={`Start chat with ${user?.username}`}
+                aria-label={`Start chat with ${user?.username}`}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path
