@@ -34,3 +34,30 @@ export async function getUsers() {
         console.error(e);
     }
 }
+
+export async function getChat(chatId) {
+    try {
+        const request = await fetch(
+            import.meta.env.VITE_API + `/chats/${chatId}`,
+            {
+                mode: 'cors',
+                credentials: 'include',
+            }
+        );
+
+        const response = await request.json();
+        if (!request.ok) {
+            console.log('getting chats data error');
+            throw {
+                status: request.status,
+                statusText: request.statusText,
+                message: response.message,
+            };
+        }
+
+        return response.chat;
+    } catch (e) {
+        console.error('Error getting chat with chatId: ' + e);
+        return e;
+    }
+}
