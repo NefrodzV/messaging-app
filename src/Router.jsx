@@ -1,4 +1,4 @@
-import { createBrowserRouter, redirect } from 'react-router-dom';
+import { createBrowserRouter, json, redirect } from 'react-router-dom';
 import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 import { Navigate } from 'react-router-dom';
@@ -11,7 +11,8 @@ import {
     UserList,
 } from './components';
 import { withUserProvider } from './utils/utils.jsx';
-import { getUser } from './utils/utils.js';
+import { getChat, getUser, getUsers } from './data';
+import ErrorLayout from './components/ErrorLayout.jsx';
 const router = createBrowserRouter([
     {
         path: '/',
@@ -21,18 +22,41 @@ const router = createBrowserRouter([
             if (!user) return redirect('/login');
             return user;
         },
+
         children: [
             {
+                loader: () => {
+                    return { text: 'chatsData' };
+                },
                 path: 'chats',
                 element: <ChatAndProfileLayout />,
                 children: [
                     {
                         path: ':chatId',
                         element: <Chat />,
+                        loader: async ({ params }) => {
+                            const chat = await getChat();
+                            if (!Object.hasOwn(chat, 'chat')) {
+                                throw json(
+                                    { message: chat.message },
+                                    {
+                                        status: chat.status,
+                                        statusText: chat.statusText,
+                                    }
+                                );
+                            }
+
+                            return chat;
+                        },
+                        errorElement: <ErrorLayout />,
                     },
                     {
                         index: true,
                         element: <UserList />,
+                        loader: async () => {
+                            const users = await getUsers();
+                            return users;
+                        },
                     },
                 ],
             },
@@ -59,6 +83,10 @@ const router = createBrowserRouter([
                     {
                         index: true,
                         element: <UserList />,
+                        loader: async () => {
+                            const users = await getUsers();
+                            return users;
+                        },
                     },
                 ],
             },
