@@ -44,7 +44,7 @@ export default function ErrorLayout() {
                 <h1>
                     {error.status} : {error.statusText}
                 </h1>
-                <div>{error.data.message}</div>
+                <div>{error.data?.message}</div>
             </div>
         </div>
     );
