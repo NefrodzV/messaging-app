@@ -36,7 +36,7 @@ const router = createBrowserRouter([
                         element: <Chat />,
                         loader: async ({ params }) => {
                             const chat = await getChat(params.chatId);
-                            if (!Object.hasOwn(chat, 'chat')) {
+                            if (Object.hasOwn(chat, 'status')) {
                                 throw json(
                                     { message: chat.message },
                                     {
