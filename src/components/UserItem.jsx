@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import style from '../stylesheets/UserItem.module.css';
 import userSvg from '../assets/svgs/user.svg';
+import useStartChat from '../hooks/useStartChat';
 export default function UserItem({ user }) {
     const { _id, username, image } = user;
-
+    const { startChat } = useStartChat();
     return (
         <article className={style.user}>
             <img src={image || userSvg} alt={`${username} profile image`} />
@@ -11,6 +12,7 @@ export default function UserItem({ user }) {
             <button
                 title={`Start chat with ${user?.username}`}
                 aria-label={`Start chat with ${user?.username}`}
+                onClick={startChat.bind('userId', _id)}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path
