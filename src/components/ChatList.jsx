@@ -4,10 +4,13 @@ import ChatItem from '../components/ChatItem';
 import useUser from '../hooks/useUser.js';
 import { SocketContext } from '../providers/SocketProvider';
 import CenteredWrapper from './CenteredWrapper';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 export default function ChatList() {
     const { user } = useUser();
     const { chats } = user;
+    const data = useLoaderData();
+    console.log('loader data chatlist');
+    console.log(data);
     // const [data, setData] = useState(dataMock);
 
     const { socket } = useContext(SocketContext);
