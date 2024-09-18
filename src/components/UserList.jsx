@@ -27,7 +27,7 @@ export default function UserList() {
             <div className={style.container}>
                 {status === 'pending' ? (
                     <Loader />
-                ) : users.length != 0 ? (
+                ) : users == undefined || users?.length != 0 ? (
                     users?.map((user) => (
                         <UserItem key={user._id} user={user} />
                     ))

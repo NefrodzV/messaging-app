@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 
 // Gives the users data for the user list
 export default function useUsers() {
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState(
+        // Handles the undefined the useLoader gives if its not used with a loader
+        useLoaderData()
+    );
     const [status, setStatus] = useState(null);
 
     async function getUsers() {
@@ -27,7 +31,7 @@ export default function useUsers() {
     }
 
     useEffect(() => {
-        getUsers();
+        if (users === undefined || users.length === 0) getUsers();
     }, []);
     return { users, status };
 }
