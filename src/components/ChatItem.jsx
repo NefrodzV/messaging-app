@@ -43,7 +43,7 @@ export default function ChatItem({ chat, delayAnim }) {
                     ></Link>
                     <img
                         className={style.user}
-                        src={user?.imgUrl || userSvg}
+                        src={user?.image || userSvg}
                         alt={`${user?.username} profile image`}
                     />
                 </article>

@@ -49,8 +49,10 @@
 .chatItem .user {
     pointer-events: none;
     order:0;
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: var(--border-radius);
+    object-fit: fill;
 }
 
 .chatItem[data-show='true'] {
