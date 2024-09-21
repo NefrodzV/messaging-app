@@ -9,11 +9,14 @@ export default function MessageItem({ message, onClick }) {
         return date.toLocaleString();
     }
 
-    function messageIsMine() {
+    function messageIsFromAuthUser() {
         return auth.user.username == user.username;
     }
     return (
-        <article className={style.message} data-reverse={messageIsMine()}>
+        <article
+            className={style.message}
+            data-reverse={messageIsFromAuthUser()}
+        >
             <div
                 className={style.bubble}
                 onClick={onClick.bind('message', message)}
