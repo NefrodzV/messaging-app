@@ -9,8 +9,6 @@ export default function ChatList() {
     const { user } = useUser();
     const { chats } = user;
     const data = useLoaderData();
-    console.log('loader data chatlist');
-    console.log(data);
     // const [data, setData] = useState(dataMock);
 
     const { socket } = useContext(SocketContext);
