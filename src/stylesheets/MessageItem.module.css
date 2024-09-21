@@ -16,7 +16,7 @@
 }
 
 .bubble {
-    cursor: pointer;
+    pointer-events: none;
     z-index: 1;
     box-sizing: border-box;
     padding: .5rem 1.2rem;
@@ -29,6 +29,11 @@
     background-color: var(--background30);
     overflow: visible;
     clip-path: polygon(0 12px, 12px 6px, 12px 0, 100% 0, 100% 100%, 12px 100%, 12px 20px) ;
+}
+
+.message[data-reverse=true] .bubble {
+    cursor: pointer;
+    pointer-events: auto;
 }
 
 .time {
