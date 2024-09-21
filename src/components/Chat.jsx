@@ -13,6 +13,7 @@ export default function Chat() {
     const [selectedMessage, setSelectedMessage] = useState(null);
 
     const openDialog = (message) => {
+        if (!message.mine) return;
         setSelectedMessage(message);
         setIsDialogOpen(!isDialogOpen);
     };
@@ -117,7 +118,10 @@ export default function Chat() {
                     <h1>Options</h1>
                     <button
                         aria-label="Close options menu"
-                        onClick={openDialog}
+                        onClick={() => {
+                            setIsDialogOpen(false);
+                            setSelectedMessage(null);
+                        }}
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
