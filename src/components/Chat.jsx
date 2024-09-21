@@ -1,79 +1,16 @@
 import { useParams, useLocation, useLoaderData } from 'react-router-dom';
 import { useContext, useState, useEffect, useRef } from 'react';
 import { ResizeableTextarea, MessageItem, SectionModal } from '../components';
-import { useChat, useSocket, useUser } from '../hooks';
+import { useChat } from '../hooks';
 import style from '../stylesheets/Chat.module.css';
 import userSvg from '../assets/svgs/user.svg';
 
 export default function Chat() {
     const [text, setText] = useState('');
-    const { chatId } = useParams();
-    const { socket } = useSocket();
-    const { chat } = useChat();
-    const { user } = useUser();
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const { chat, updateMessage, deleteMessage, sendMessage } = useChat();
     const [isEditing, setIsEditing] = useState(false);
     const [selectedMessage, setSelectedMessage] = useState(null);
-
-    //     useEffect(() => {
-    //         function onMessage(message) {
-    //             console.log('Message from other user:');
-    //             console.log(message);
-    //             setData((prev) => [...prev, message]);
-    //         }
-    //
-    //         function onDelete(message) {
-    //             console.log('delete message');
-    //             console.log(message);
-    //             setData((prev) => prev.filter((item) => item._id != message._id));
-    //         }
-    //
-    //         function onEdit(message) {
-    //             setData((prev) => {
-    //                 return prev.map((item) => {
-    //                     if (item._id === message._id) {
-    //                         return message;
-    //                     }
-    //
-    //                     return item;
-    //                 });
-    //             });
-    //         }
-    //         socket?.on('message', onMessage);
-    //         socket?.on('delete', onDelete);
-    //         socket?.on('edit', onEdit);
-    //         return () => {
-    //             console.log('removing listeners');
-    //             // This listens to messages sent by other users
-    //             socket?.off('message', onMessage);
-    //             socket?.off('delete', onDelete);
-    //             socket?.off('edit', onEdit);
-    //         };
-    //     }, []);
-
-    useEffect(() => {
-        socket?.emit('join', chatId);
-
-        return () => {
-            socket.emit('leave', chatId);
-        };
-    }, [chatId]);
-
-    useEffect(() => {
-        function onError(err) {
-            console.log('connection error');
-            console.log(err instanceof Error);
-            console.log(err);
-        }
-
-        // socket.on('connect_error', onError);
-        socket.on(`error`, onError);
-
-        return () => {
-            // socket.off('connect_error', onError);
-            socket.off(`error`, onError);
-        };
-    });
 
     const openDialog = (message) => {
         setSelectedMessage(message);
@@ -113,14 +50,14 @@ export default function Chat() {
                             ...selectedMessage,
                             text: text,
                         };
-                        socket?.emit('edit', chatId, editedMessage);
+                        updateMessage(editedMessage);
                         setIsEditing(false);
                         setSelectedMessage(null);
                         setText('');
                         return;
                     }
 
-                    socket?.emit('message', chatId, text);
+                    sendMessage(text);
                 }}
             >
                 <div className={style.container}>
@@ -150,7 +87,7 @@ export default function Chat() {
                             ariaLabel={'Enter message here'}
                             name={text}
                             id={text}
-                            placeholder={'Enter message to Rose'}
+                            placeholder={`Enter message to ${chat.user.username}`}
                             maxRows={5}
                             onChangeHandler={(e) => {
                                 setText(e.target.value);
@@ -196,6 +133,7 @@ export default function Chat() {
                         onClick={() => {
                             setIsEditing(true);
                             setText(selectedMessage.text);
+                            editedMessage;
                             setIsDialogOpen(false);
                             // TODO DO OTHER LOGIC FOR THE EDIT MESSAGE
                         }}
@@ -212,7 +150,7 @@ export default function Chat() {
                     <button
                         className={style.option}
                         onClick={() => {
-                            socket?.emit('delete', chatId, selectedMessage);
+                            deleteMessage(selectedMessage);
                             setIsDialogOpen(false);
                         }}
                     >
