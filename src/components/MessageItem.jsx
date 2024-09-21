@@ -1,13 +1,19 @@
 import style from '../stylesheets/MessageItem.module.css';
 import userSvg from '../assets/svgs/user.svg';
+import { useUser } from '../hooks';
 export default function MessageItem({ message, onClick }) {
+    const auth = useUser();
     const { _id, user, text, date, imgs, mine } = message;
     function formatDate(dateString) {
         const date = new Date(dateString);
         return date.toLocaleString();
     }
+
+    function messageIsMine() {
+        return auth.user.username == user.username;
+    }
     return (
-        <article className={style.message} data-reverse={mine}>
+        <article className={style.message} data-reverse={messageIsMine()}>
             <div
                 className={style.bubble}
                 onClick={onClick.bind('message', message)}
