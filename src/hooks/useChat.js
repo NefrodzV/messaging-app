@@ -19,21 +19,22 @@ export default function useChat() {
         }
 
         function onDelete(message) {
-            console.log('delete message');
-            console.log(message);
-            setChat((prev) => prev.filter((item) => item._id != message._id));
+            setChat((prev) => ({
+                ...prev,
+                messages: prev.messages.filter(
+                    (item) => item._id != message._id
+                ),
+            }));
         }
 
         function onEdit(message) {
-            setChat((prev) => {
-                return prev.map((item) => {
-                    if (item._id === message._id) {
-                        return message;
-                    }
-
+            setChat((prev) => ({
+                ...prev,
+                messages: prev.messages.map((item) => {
+                    if (item._id === message._id) return message;
                     return item;
-                });
-            });
+                }),
+            }));
         }
         socket?.on('message', onMessage);
         socket?.on('delete', onDelete);
