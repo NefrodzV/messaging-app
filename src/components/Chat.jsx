@@ -1,7 +1,7 @@
 import { useParams, useLocation, useLoaderData } from 'react-router-dom';
 import { useContext, useState, useEffect, useRef } from 'react';
 import { ResizeableTextarea, MessageItem, SectionModal } from '../components';
-import { useChat } from '../hooks';
+import { useChat, useUser } from '../hooks';
 import style from '../stylesheets/Chat.module.css';
 import userSvg from '../assets/svgs/user.svg';
 
@@ -11,9 +11,9 @@ export default function Chat() {
     const { chat, updateMessage, deleteMessage, sendMessage } = useChat();
     const [isEditing, setIsEditing] = useState(false);
     const [selectedMessage, setSelectedMessage] = useState(null);
-
+    const auth = useUser();
     const openDialog = (message) => {
-        if (!message.mine) return;
+        if (message.user.username != auth.user.username) return;
         setSelectedMessage(message);
         setIsDialogOpen(!isDialogOpen);
     };
@@ -137,7 +137,6 @@ export default function Chat() {
                         onClick={() => {
                             setIsEditing(true);
                             setText(selectedMessage.text);
-                            editedMessage;
                             setIsDialogOpen(false);
                             // TODO DO OTHER LOGIC FOR THE EDIT MESSAGE
                         }}
