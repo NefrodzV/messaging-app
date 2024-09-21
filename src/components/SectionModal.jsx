@@ -6,7 +6,6 @@ export default function SectionModal({ children, isOpen, title, className }) {
     const [isClosing, setIsClosing] = useState(false);
 
     useEffect(() => {
-        console.log(isOpen);
         if (isOpen) {
             setIsMounted(true);
             setOpen(true);

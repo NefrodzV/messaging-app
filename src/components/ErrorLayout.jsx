@@ -2,7 +2,7 @@ import { useRouteError } from 'react-router-dom';
 
 export default function ErrorLayout() {
     const error = useRouteError();
-    console.log(error);
+
     return (
         <div
             style={{
