@@ -8,8 +8,8 @@
 
 .userImage {
     order: 0;
-    height: 2rem;
-    border-radius: 50%;
+    height: 2.5rem;
+    border-radius: var(--border-radius);
     aspect-ratio:  1 / 1;
     /* filter: drop-shadow(0 0 1px  var(--shadow)) */
     
@@ -40,19 +40,19 @@
     margin: 0;
 }
 /** When the message is not the  logged in user*/
-.message[data-reverse=true] {
+.message[data-reverse=false] {
     align-self: flex-end;
 }
-.message[data-reverse=true] .bubble {
+.message[data-reverse=false] .bubble {
     display: flex;
     align-items: end;
     clip-path: polygon(100% 12px, calc(100% - 12px) 6px, calc(100% - 12px) 0, 0 0, 0 100%, calc(100% - 12px) 100%, calc(100% - 12px) 20px);
 }
 
-.message[data-reverse=true] .text {
+.message[data-reverse=false] .text {
     width: fit-content;
     align-self: flex-start;
 }
-.message[data-reverse=true] .userImage {
+.message[data-reverse=false] .userImage {
     order: 3;
 }
