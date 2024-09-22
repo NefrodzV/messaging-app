@@ -59,6 +59,7 @@ export default function Chat() {
                     }
 
                     sendMessage(text);
+                    setText('');
                 }}
             >
                 <div className={style.container}>
