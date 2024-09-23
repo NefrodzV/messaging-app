@@ -1,0 +1,62 @@
+.toast {
+    padding: .5rem;
+    box-sizing: border-box;
+    position: absolute;
+    height: 75px;
+    width: min(90%, 500px);
+    bottom: 50px;
+    left: 50%;
+    box-shadow: 0 0 3px black;
+    display: flex;
+    align-items: center;
+    background-color: var(--background);
+    gap: 1rem;
+    text-transform: capitalize;
+    border-radius: var(--border-radius);
+    z-index: 1;
+}
+
+.toast[data-active=true] {
+    animation: show .5s forwards;
+}
+
+.toast[data-active=false] {
+    animation: close .5s forwards;
+}
+
+.iconContainer {
+    box-sizing: border-box;
+}
+
+.iconContainer > img {
+    background-color: var(--background);
+    height: 50px;
+}
+
+@keyframes show {
+
+    from {
+
+        opacity: 0;
+        transform: translate(-50%, 10%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    
+}
+
+@keyframes close {
+    from {
+
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate(-50%, 10%);
+    }
+}
