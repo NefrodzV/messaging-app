@@ -11,28 +11,18 @@ export default function SocketProvider({ children }) {
     useEffect(() => {
         function onConnect() {
             setIsConnected(true);
-            console.log('connected to socket');
-            console.log(socket?.id);
         }
 
         function onDisconnect() {
-            console.log('disconnecting from socket');
             setIsConnected(false);
-        }
-
-        function onFooEvent(text) {
-            setFooEvents((previous) => [...previous, text]);
-            console.log('An event on foo has happened with this value');
         }
 
         socket?.on('connect', onConnect);
         socket?.on('disconnect', onDisconnect);
-        socket?.on('foo', onFooEvent);
 
         return () => {
             socket?.off('connect', onConnect);
             socket?.off('disconnect', onDisconnect);
-            socket?.off('foo', onFooEvent);
         };
     }, []);
 
