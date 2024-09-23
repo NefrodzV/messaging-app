@@ -6,7 +6,6 @@ export default function useChat() {
     const { chatId } = useParams();
     const { socket } = useSocket();
     const [chat, setChat] = useState(useLoaderData());
-    console.log(chat);
     useEffect(() => {
         function onMessage(message) {
             console.log('Message from other user:');
@@ -56,15 +55,56 @@ export default function useChat() {
     }, [chatId]);
 
     function sendMessage(text) {
-        socket?.emit('message', chatId, text);
+        socket?.emit('message', chatId, text, (response) => {
+            console.log('response');
+            console.log(response);
+            if (Object.hasOwn(response, 'errors')) {
+                console.log('some errors has happened sending the message');
+                console.log(errors);
+                return;
+            }
+            // Update the messages in the chat locally
+            setChat((prev) => ({
+                ...prev,
+                messages: [...prev.messages, response.message],
+            }));
+        });
     }
 
     function updateMessage(message) {
-        socket?.emit('edit', chatId, message);
+        socket?.emit('edit', chatId, message, (response) => {
+            if (Object.hasOwn(response, 'errors')) {
+                console.log('some errors has happened updating the message');
+                console.log(errors);
+                return;
+            }
+            // Update the messages in the chat locally
+            setChat((prev) => ({
+                ...prev,
+                messages: prev.messages.map((item) => {
+                    if (item._id === response.message._id)
+                        return response.message;
+                    return item;
+                }),
+            }));
+        });
     }
 
     function deleteMessage(message) {
-        socket?.emit('delete', chatId, message);
+        socket?.emit('delete', chatId, message, (response) => {
+            if (Object.hasOwn(response, 'errors')) {
+                console.log('some errors has happened deleting the message');
+                console.log(errors);
+                return;
+            }
+            // Update the messages in the chat locally
+            setChat((prev) => ({
+                ...prev,
+                messages: prev.messages.filter(
+                    (item) => item._id != message._id
+                ),
+            }));
+        });
     }
     return { chat, updateMessage, deleteMessage, sendMessage };
 }
