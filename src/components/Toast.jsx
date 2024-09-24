@@ -6,10 +6,13 @@ const icons = {
     error: errorSvg,
 };
 export default function Toast({ message, type }) {
-    const [isMounted, setIsMounted] = useState(true);
+    const [isMounted, setIsMounted] = useState(false);
     const [isActive, setIsActive] = useState(false);
     useEffect(() => {
-        if (message) setIsActive(true);
+        if (message) {
+            setIsMounted(true);
+            setIsActive(true);
+        }
     }, [message]);
 
     useEffect(() => {
