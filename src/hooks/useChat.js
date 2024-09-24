@@ -6,11 +6,10 @@ export default function useChat() {
     const { chatId } = useParams();
     const { socket } = useSocket();
     const [chat, setChat] = useState(useLoaderData());
+    const [error, setError] = useState('');
+    const [status, setStatus] = useState(null);
     useEffect(() => {
         function onMessage(message) {
-            console.log('Message from other user:');
-            console.log(message);
-
             setChat((prev) => ({
                 ...prev,
                 messages: [...prev.messages, message],
@@ -54,13 +53,23 @@ export default function useChat() {
         };
     }, [chatId]);
 
-    function sendMessage(text) {
+    useEffect(() => {
+        // This will listen to a handler
+        if (error) {
+            setTimeout(() => {
+                setError('');
+            }, 2100);
+        }
+    }, [error]);
+    function sendMessage(text, onSuccess) {
+        onSuccess();
+        setError('Message failed to send. Please try again');
+        return;
         socket?.emit('message', chatId, text, (response) => {
             console.log('response');
             console.log(response);
             if (Object.hasOwn(response, 'errors')) {
-                console.log('some errors has happened sending the message');
-                console.log(errors);
+                setError('Message failed to send. Please try again');
                 return;
             }
             // Update the messages in the chat locally
@@ -68,14 +77,14 @@ export default function useChat() {
                 ...prev,
                 messages: [...prev.messages, response.message],
             }));
+            onSuccess();
         });
     }
 
-    function updateMessage(message) {
+    function updateMessage(message, onSuccess) {
         socket?.emit('edit', chatId, message, (response) => {
             if (Object.hasOwn(response, 'errors')) {
-                console.log('some errors has happened updating the message');
-                console.log(errors);
+                setError('Update message failed. Please try again');
                 return;
             }
             // Update the messages in the chat locally
@@ -87,14 +96,14 @@ export default function useChat() {
                     return item;
                 }),
             }));
+            onSuccess();
         });
     }
 
     function deleteMessage(message) {
         socket?.emit('delete', chatId, message, (response) => {
             if (Object.hasOwn(response, 'errors')) {
-                console.log('some errors has happened deleting the message');
-                console.log(errors);
+                setError('Delete message failed. Please try again');
                 return;
             }
             // Update the messages in the chat locally
@@ -106,5 +115,5 @@ export default function useChat() {
             }));
         });
     }
-    return { chat, updateMessage, deleteMessage, sendMessage };
+    return { chat, error, updateMessage, deleteMessage, sendMessage };
 }
