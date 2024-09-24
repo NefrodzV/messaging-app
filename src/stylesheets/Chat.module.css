@@ -148,8 +148,7 @@
     padding: .5rem;
     display: flex;
     flex-direction: column;
-    gap: .5px
-    
+    gap: .5px;
 }
 
 .option {
