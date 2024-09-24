@@ -4,16 +4,15 @@
     position: absolute;
     height: 75px;
     width: min(90%, 500px);
-    bottom: 50px;
-    left: 50%;
+    inset: 50%;
     box-shadow: 0 0 3px black;
     display: flex;
     align-items: center;
     background-color: var(--background);
     gap: 1rem;
-    text-transform: capitalize;
     border-radius: var(--border-radius);
     z-index: 1;
+    font-size: calc(var(--font-size) * .8);
 }
 
 .toast[data-active=true] {
