@@ -13,7 +13,8 @@ import userSvg from '../assets/svgs/user.svg';
 export default function Chat() {
     const [text, setText] = useState('');
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const { chat, updateMessage, deleteMessage, sendMessage } = useChat();
+    const { chat, error, updateMessage, deleteMessage, sendMessage } =
+        useChat();
     const [isEditing, setIsEditing] = useState(false);
     const [selectedMessage, setSelectedMessage] = useState(null);
     const auth = useUser();
@@ -56,15 +57,20 @@ export default function Chat() {
                             ...selectedMessage,
                             text: text,
                         };
-                        updateMessage(editedMessage);
-                        setIsEditing(false);
-                        setSelectedMessage(null);
-                        setText('');
+                        updateMessage(editedMessage, () => {
+                            // On success reset the values
+                            setIsEditing(false);
+                            setSelectedMessage(null);
+                            setText('');
+                        });
                         return;
                     }
 
-                    sendMessage(text);
-                    setText('');
+                    sendMessage(text, () => {
+                        console.log('message send resetting text');
+                        // Success callback reset the text
+                        setText('');
+                    });
                 }}
             >
                 <div className={style.container}>
@@ -118,7 +124,6 @@ export default function Chat() {
                     </button>
                 </div>
             </form>
-
             <SectionModal className={style.options} isOpen={isDialogOpen}>
                 <header>
                     <h1>Options</h1>
@@ -173,7 +178,8 @@ export default function Chat() {
                     </button>
                 </section>
             </SectionModal>
-            <Toast message={'dummy message'} type={'error'} />
+            {/* This will show when a error is present */}
+            <Toast message={error} type={'error'} />
         </section>
     );
 }
