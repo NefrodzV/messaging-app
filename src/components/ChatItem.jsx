@@ -2,15 +2,25 @@ import { useEffect, useState } from 'react';
 import style from '../stylesheets/ChatItem.module.css';
 import userSvg from '../assets/svgs/user.svg';
 import { Link } from 'react-router-dom';
-
+import { isToday, isYesterday } from '../utils/utils';
 export default function ChatItem({ chat, delayAnim }) {
-    const { text, _id, user, date } = chat;
+    const { lastMessage, _id, user, date } = chat;
     const [mounted, setMounted] = useState(false);
     const [show, setShow] = useState(false);
     useEffect(() => {
         setMounted(true);
         setShow(true);
     }, []);
+    function formatDate(date) {
+        const options = { hour: 'numeric', minute: 'numeric' };
+        if (isToday(date)) {
+            return date.toLocaleString(undefined, options);
+        } else if (isYesterday(date)) {
+            return 'Yesterday';
+        } else {
+            return date.toLocaleDateString();
+        }
+    }
 
     return (
         <>
@@ -26,11 +36,11 @@ export default function ChatItem({ chat, delayAnim }) {
                                 {user?.username || 'Rose Vargas Hernandez'}
                             </div>
                             <span className={style.time}>
-                                {date || '8:12pm'}
+                                {formatDate(new Date(lastMessage?.date))}
                             </span>
                         </header>
                         <p>
-                            {text ||
+                            {lastMessage?.text ||
                                 `Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                     Blanditiis laborum similique nesciunt, explicabo saepe
                     laboriosam minus eveniet est delectus minima sit odit eos
