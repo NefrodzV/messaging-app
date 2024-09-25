@@ -5,7 +5,6 @@ const url = import.meta.env.VITE_API;
 export const SocketContext = createContext(null);
 
 export default function SocketProvider({ children }) {
-    const [fooEvents, setFooEvents] = useState([]);
     const [socket, setSocket] = useState(io(url, { withCredentials: true }));
     const [isConnected, setIsConnected] = useState(socket.connected);
     useEffect(() => {
@@ -26,8 +25,15 @@ export default function SocketProvider({ children }) {
         };
     }, []);
 
+    useEffect(() => {
+        const logMessage = isConnected
+            ? 'socket connected'
+            : 'socket disconnected';
+        console.log(logMessage);
+    }, [isConnected]);
+
     return (
-        <SocketContext.Provider value={{ socket, fooEvents }}>
+        <SocketContext.Provider value={{ socket }}>
             {children}
         </SocketContext.Provider>
     );
