@@ -7,7 +7,7 @@ export default function ChatAndProfileLayout() {
     const { queryIsActive } = useMediaQuery('(max-width:768px)');
     const { pathname } = useLocation();
     return (
-        <SocketProvider>
+        <>
             {/** Only show the chatlist if query is not active. If the query
              * is active and the pathname is /chats only show chatlist if there
              * chat id
@@ -18,6 +18,6 @@ export default function ChatAndProfileLayout() {
                 pathname.includes('/chats') && !chatId && <ChatList />
             )}
             {queryIsActive && pathname === '/chats' ? null : <Outlet />}
-        </SocketProvider>
+        </>
     );
 }
