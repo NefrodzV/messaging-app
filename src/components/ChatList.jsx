@@ -6,21 +6,30 @@ import { SocketContext } from '../providers/SocketProvider';
 import CenteredWrapper from './CenteredWrapper';
 import { Link, useLoaderData } from 'react-router-dom';
 export default function ChatList() {
-    const { user } = useUser();
+    const { user, setUser } = useUser();
     const { chats } = user;
-    const data = useLoaderData();
-    // const [data, setData] = useState(dataMock);
 
     const { socket } = useContext(SocketContext);
 
     useEffect(() => {
-        const onUpdate = (message) =>
-            console.log('data from scoket id: ' + message);
+        const lastMessageUpdate = (message) => {
+            const copy = structuredClone(user);
+            copy.chats.map((chat) => {
+                if (chat._id === message.chatId) {
+                    chat.lastMessage = message;
+                    return chat;
+                }
 
-        socket?.on('update', onUpdate);
+                return chat;
+            });
+
+            setUser(copy);
+        };
+
+        socket?.on('lastMessage', lastMessageUpdate);
 
         return () => {
-            socket?.off('update', onUpdate);
+            socket?.off('lastMessage', lastMessageUpdate);
         };
     }, []);
     return (
