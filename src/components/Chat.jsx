@@ -28,7 +28,7 @@ export default function Chat() {
             <header>
                 <img
                     className={style.user}
-                    src={chat?.user.image || userSvg}
+                    src={chat?.user.image.w56 || userSvg}
                     alt={`${chat.user.username} profile image`}
                 />
                 <h2 className={style.username}>{chat?.user?.username}</h2>
@@ -67,7 +67,6 @@ export default function Chat() {
                     }
 
                     sendMessage(text, () => {
-                        console.log('message send resetting text');
                         // Success callback reset the text
                         setText('');
                     });

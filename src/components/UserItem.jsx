@@ -8,7 +8,10 @@ export default function UserItem({ user }) {
     return (
         <article className={style.user}>
             <div className={style.imgWrapper}>
-                <img src={image || userSvg} alt={`${username} profile image`} />
+                <img
+                    src={image.w72 || userSvg}
+                    alt={`${username} profile image`}
+                />
             </div>
             <span className={style.username}>{username}</span>
             <button
