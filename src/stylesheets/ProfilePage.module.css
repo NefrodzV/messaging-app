@@ -43,8 +43,9 @@
     background: var(--background);
     height: 150px;
     width: 150px;
-    border-radius: 100px;
-    object-fit: contain;
+    border-radius: var(--border-radius);
+    object-fit: fill;
+    border: .8rem solid var(--primary);
 }
 
 .imgLabel {
