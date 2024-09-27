@@ -1,11 +1,10 @@
 .wrapper {
-    height: 2.8rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .loader {
-    height: calc(2.8rem / 2);
+    height: 25%;
     aspect-ratio: 1 / 1;
     border: 16px solid hwb(192 96% 16); 
     border-top: 16px solid var(--primary); 
