@@ -1,10 +1,34 @@
 import style from '../stylesheets/loader.module.css';
-// NOTE: Right now we are representing
-// this as a full page with the loader in the middle
-export default function Loader({ width, height, marginTop, containerHeight }) {
+
+export default function Loader({ covers, height = '2.8rem' }) {
+    // If covers the wrapper will take up the whole parent space
+    // else use the default height
     return (
-        <div className={style.wrapper}>
-            <div className={style.loader}></div>
+        <div
+            className={style.wrapper}
+            style={
+                covers
+                    ? {
+                          position: 'absolute',
+                          inset: 0,
+                          backgroundColor: 'rgba(255,255,255,1)',
+                          boxShadow: '0 0 3px rgba(0,0,0,.3) inset',
+                      }
+                    : {
+                          height,
+                      }
+            }
+        >
+            <div
+                className={style.loader}
+                style={
+                    !covers
+                        ? {
+                              height: '50%',
+                          }
+                        : null
+                }
+            ></div>
         </div>
     );
 }
