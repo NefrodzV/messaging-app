@@ -1,7 +1,6 @@
 import style from '../stylesheets/ProfilePage.module.css';
 import userSvg from '../assets/svgs/user.svg';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import useUser from '../hooks/useUser';
 import { Image } from '.';
 import useUpdateImage from '../hooks/useUpdateImage';
@@ -18,6 +17,7 @@ export default function Profile() {
                 <Image
                     url={user?.image?.w150 || userSvg}
                     className={style.userImg}
+                    alt={'My profile image'}
                 />
 
                 <h2>{user?.username}</h2>
