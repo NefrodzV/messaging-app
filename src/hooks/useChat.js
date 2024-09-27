@@ -62,9 +62,6 @@ export default function useChat() {
         }
     }, [error]);
     function sendMessage(text, onSuccess) {
-        onSuccess();
-        setError('Message failed to send. Please try again');
-        return;
         socket?.emit('message', chatId, text, (response) => {
             console.log('response');
             console.log(response);
