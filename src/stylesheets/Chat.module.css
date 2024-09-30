@@ -171,6 +171,22 @@
     background-color: rgba(0,0,0,.3);
 }
 
+.imgsInput {
+    display: none;
+}
+
+.button {
+    display: flex;
+    width: var(--control-height);
+    height: var(--control-height);
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
 
 @media(max-width: 768px) {
     .chat {
