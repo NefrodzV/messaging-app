@@ -6,7 +6,7 @@ export default function Image({ url, className, alt }) {
 
     useEffect(() => {
         setHasMounted(true);
-    });
+    }, []);
 
     useEffect(() => {
         if (!hasMounted) return;
