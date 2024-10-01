@@ -179,6 +179,28 @@ a {
 .overlay[data-closing=true] {
   animation: fade-out .5s ease-in-out forwards;
 }
+
+.wrap-container {
+  position: relative;
+  width: min-content;
+}
+
+button.only-svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--control-height);
+  height: var(--control-height);                
+}
+
+button.red {
+  background-color: hsl(0, 100%, 50%);
+}
+
+button.red:hover {
+  background-color: hsl(0, 100%, 60%);
+  
+}
 @media(max-width:768px) {
   :root {
       --font-size: 1rem
