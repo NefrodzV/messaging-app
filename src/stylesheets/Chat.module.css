@@ -71,17 +71,18 @@
 }
 
 
-.sendMessage {
+.form {
     box-sizing: border-box;
     max-height: 400px;
     display: flex;
     padding: .4rem;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 
-.sendMessage > .container {
+.form > .container {
     border-radius: var(--border-radius);
     flex: 1;
     background-color: var(--background30);
@@ -184,7 +185,25 @@
     align-items: center;
 }
 
+.formImage {
+    height: 250px;
+    width: 250px;
+}
 
+.formImage > img  {
+    height: 250px;
+    aspect-ratio: 1 / 1;
+    object-fit: fill;
+}
+
+.imageContainer {
+    top: 0;
+    left: .4rem;
+    right: .4rem;
+    background-color: black;
+    position: absolute;
+    transform: translate(0, -100%);
+}
 
 
 

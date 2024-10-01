@@ -5,13 +5,17 @@ import {
     MessageItem,
     SectionModal,
     Toast,
+    Image,
 } from '../components';
 import { useChat, useUser } from '../hooks';
 import style from '../stylesheets/Chat.module.css';
 import userSvg from '../assets/svgs/user.svg';
+import dummyPic1 from '../assets/images/dane-deaner-_-KLkj7on_c-unsplash.jpg';
+import FormImage from './FormImage';
 
 export default function Chat() {
     const [text, setText] = useState('');
+    const [images, setImages] = useState([dummyPic1]);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const { chat, error, updateMessage, deleteMessage, sendMessage } =
         useChat();
@@ -45,7 +49,7 @@ export default function Chat() {
                 })}
             </section>
             <form
-                className={style.sendMessage}
+                className={style.form}
                 style={{
                     position: 'relative',
                 }}
@@ -72,6 +76,16 @@ export default function Chat() {
                     });
                 }}
             >
+                <div className={style.imageContainer}>
+                    <button style={{ float: 'right' }}>Close</button>
+                    {images?.map((image, i) => (
+                        <FormImage
+                            key={i}
+                            url={image}
+                            className={style.formImage}
+                        />
+                    ))}
+                </div>
                 <div className={style.container}>
                     <div className={style.wrapper}>
                         {isEditing && (
@@ -124,6 +138,7 @@ export default function Chat() {
                             name="images"
                             type="file"
                             id="images"
+                            multiple
                         />
                     </label>
                     <button
