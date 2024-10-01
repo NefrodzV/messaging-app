@@ -18,3 +18,4 @@ export { default as LoginForm } from './LoginForm';
 export { default as ChatAndProfileLayout } from './ChatAndProfileLayout';
 export { default as Toast } from './Toast';
 export { default as Image } from './Image';
+export { default as ImageForm } from './FormImage';
