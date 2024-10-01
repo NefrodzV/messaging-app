@@ -15,7 +15,7 @@ export default function Image({ url, className, alt }) {
     }, [url]);
     return (
         // Needs position relative so loader can cover the image
-        <div className="wrap-content">
+        <div className="wrap-container">
             <img
                 className={className}
                 src={url}
