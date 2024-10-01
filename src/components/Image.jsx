@@ -15,12 +15,11 @@ export default function Image({ url, className, alt }) {
     }, [url]);
     return (
         // Needs position relative so loader can cover the image
-        <div style={{ position: 'relative' }}>
+        <div className="wrap-content">
             <img
-                loading="lazy"
+                className={className}
                 src={url}
                 alt={alt}
-                className={className}
                 onLoad={() => {
                     setIsLoading(false);
                 }}
