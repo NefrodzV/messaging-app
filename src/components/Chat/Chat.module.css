@@ -8,24 +8,6 @@
     
 }
 
-.wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.label {
-    text-decoration: underline;
-    display: flex;
-    align-items: ce;
-    gap: .5rem;
-    padding: 0 .8rem;
-}
-
-.label button {
-    border: none;
-    background-color: inherit;
-}
 .chat header {
     display: flex;
     align-items: center;
@@ -55,41 +37,6 @@
     flex-direction: column;
     gap: 1rem;
     box-sizing: border-box;
-}
-
-.sendButton {
-    justify-self: center;
-    display: flex;
-    border: none;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--primary);
-    height: var(--control-height);
-    width: var(--control-height);
-    color: var(--background);
-}
-
-
-.form {
-    box-sizing: border-box;
-    
-    display: flex;
-    padding: .4rem;
-    position: relative;
-    flex-direction: column;
-    gap: .4rem;
-}
-
-
-.form > .container {
-    border-radius: var(--border-radius);
-    flex: 1;
-    background-color: var(--background30);
-    height: inherit;
-    
-    box-sizing: border-box;
-    display: flex;
 }
 
 .options {
@@ -172,44 +119,9 @@
     background-color: rgba(0,0,0,.3);
 }
 
-.imgsInput {
-    display: none;
-}
 
-.button {
-    display: flex;
-    width: var(--control-height);
-    height: var(--control-height);
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-}
 
-.formImage {
-    height: 250px;
-    width: 250px;
-    object-fit: fill;
-    display: block;
-    border-radius: var(--border-radius);
-}
 
-.files {
-    border-radius: var(--border-radius);
-    padding: .4rem;
-    display: flex;
-    flex-direction: column;
-    gap: .4rem;
-    background-color: var(--background30);
-}
-
-.files header {
-    display: flex;
-    justify-content: space-between;
-}
-
-.fileContainer {
-    /* display: flex; */
-}
 
 
 
