@@ -61,10 +61,23 @@ export default function useChat() {
             }, 2100);
         }
     }, [error]);
-    function sendMessage(text, onSuccess) {
-        socket?.emit('message', chatId, text, (response) => {
-            console.log('response');
-            console.log(response);
+    function isLessThan100MB(files) {
+        const total = files.reduce(
+            (acumulator, currentFile) =>
+                acumulator + currentFile.size / 1024 ** 2,
+            0
+        );
+
+        return total < 100;
+    }
+    function sendMessage(message, onSuccess) {
+        const isValidFileSize = isLessThan100MB(message.images);
+        if (!isValidFileSize) {
+            setError('Files total size must be less than 100MB');
+            return;
+        }
+
+        socket?.emit('message', chatId, message, (response) => {
             if (Object.hasOwn(response, 'errors')) {
                 setError('Message failed to send. Please try again');
                 return;

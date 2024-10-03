@@ -1,8 +1,9 @@
 import Image from './Image';
-export default function FormImage({ url, className }) {
+export default function FormImage({ url, className, deleteImage }) {
     return (
         <div className="wrap-container">
             <button
+                onClick={deleteImage.bind('url', url)}
                 title="Remove image"
                 aria-label="Remove image"
                 className="primary only-svg red"

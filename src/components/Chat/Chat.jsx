@@ -8,15 +8,7 @@ import dummyPic1 from '../../assets/images/dane-deaner-_-KLkj7on_c-unsplash.jpg'
 import MessageOptions from './MessageOptions';
 
 export default function Chat() {
-    const [images, setImages] = useState([
-        dummyPic1,
-        dummyPic1,
-        dummyPic1,
-        dummyPic1,
-        dummyPic1,
-        dummyPic1,
-        dummyPic1,
-    ]);
+    const [images, setImages] = useState([]);
     const [text, setText] = useState('');
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const { chat, error, updateMessage, deleteMessage, sendMessage } =
@@ -47,9 +39,37 @@ export default function Chat() {
             return;
         }
 
-        sendMessage(text, () => {
-            // Success callback reset the text
-            setText('');
+        sendMessage(
+            {
+                text: text,
+                images:
+                    images.length === 0
+                        ? null
+                        : images.map((image) => image.file),
+            },
+            () => {
+                // Success callback reset the text
+                setText('');
+            }
+        );
+    }
+
+    function onFileChange(e) {
+        const files = Array.from(e.target.files);
+        files.forEach((file) => {
+            const reader = new FileReader();
+            reader.addEventListener(
+                'load',
+                () => {
+                    const dataUrl = reader.result;
+                    setImages((images) => [
+                        ...images,
+                        { file: file, dataUrl: dataUrl },
+                    ]);
+                },
+                { once: true }
+            );
+            reader.readAsDataURL(file);
         });
     }
 
@@ -73,6 +93,10 @@ export default function Chat() {
     function onDeleteMessage() {
         deleteMessage(selectedMessage);
         setIsDialogOpen(false);
+    }
+
+    function deleteImage(url) {
+        setImages((images) => images.filter((image) => image.dataUrl != url));
     }
     return (
         <section className={style.chat} aria-label="Chat">
@@ -102,6 +126,8 @@ export default function Chat() {
                 images={images}
                 onSubmit={onSubmit}
                 cancelEdit={cancelEdit}
+                onFileChange={onFileChange}
+                deleteImage={deleteImage}
             />
             <MessageOptions
                 isOpen={isDialogOpen}
