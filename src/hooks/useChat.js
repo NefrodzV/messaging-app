@@ -71,8 +71,10 @@ export default function useChat() {
         return total < 100;
     }
     function sendMessage(message, onSuccess) {
-        const isValidFileSize = isLessThan100MB(message.images);
-        if (!isValidFileSize) {
+        const isValidFileSize = message.images
+            ? isLessThan100MB(message.images)
+            : null;
+        if (isValidFileSize === false) {
             setError('Files total size must be less than 100MB');
             return;
         }
