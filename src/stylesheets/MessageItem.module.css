@@ -1,8 +1,9 @@
 .message {
-    max-width: 80%;
+    max-width: 75%;
     display: flex;  
     gap: .8rem;
-    overflow: visible;
+    
+    /* overflow: visible; */
     /* filter: drop-shadow(0 0 1px  var(--shadow)); */
 }
 
@@ -16,10 +17,11 @@
 }
 
 .bubble {
+    max-width: 75%;
     pointer-events: none;
     z-index: 1;
     box-sizing: border-box;
-    padding: .5rem 1.2rem;
+    padding: .5rem .55rem .5rem 1.2rem;
     position: relative;
     margin: 0;
     order: 1;
@@ -27,7 +29,7 @@
     flex-direction: column;
     gap: .5rem;
     background-color: var(--background30);
-    overflow: visible;
+    overflow-wrap: break-word;
     clip-path: polygon(0 12px, 12px 6px, 12px 0, 100% 0, 100% 100%, 12px 100%, 12px 20px) ;
 }
 
@@ -43,6 +45,8 @@
 
 .text {
     margin: 0;
+    overflow: hidden;
+    overflow-wrap: break-word;
 }
 /** When the message is not the  logged in user*/
 .message[data-reverse=false] {
@@ -60,4 +64,17 @@
 }
 .message[data-reverse=false] .userImage {
     order: 3;
+}
+
+.images {
+    display: flex; 
+    gap: .5rem;
+    flex-wrap: wrap;
+   
+}
+
+@media(max-width: 768px) {
+    .images {
+        flex-direction: column;
+    }
 }
