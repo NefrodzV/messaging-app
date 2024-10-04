@@ -35,17 +35,15 @@ export default function ChatItem({ chat, delayAnim }) {
                             <div className={style.username}>
                                 {user?.username || 'Rose Vargas Hernandez'}
                             </div>
-                            <span className={style.time}>
-                                {formatDate(new Date(lastMessage?.date))}
-                            </span>
+                            {lastMessage != undefined && lastMessage?.date && (
+                                <span className={style.time}>
+                                    {formatDate(new Date(lastMessage?.date))}
+                                </span>
+                            )}
                         </header>
-                        <p>
-                            {lastMessage?.text ||
-                                `Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Blanditiis laborum similique nesciunt, explicabo saepe
-                    laboriosam minus eveniet est delectus minima sit odit eos
-                    fugiat, repellendus eum dicta illo cumque! Est!`}
-                        </p>
+                        {lastMessage != undefined && lastMessage.text && (
+                            <p>{lastMessage?.text}</p>
+                        )}
                     </div>
                     <Link
                         to={'/chats/' + _id}
