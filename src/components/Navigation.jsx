@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import useMediaQuery from '../hooks/useMediaQuery';
 export default function Navigation() {
-    const { queryIsActive } = useMediaQuery('(max-width: 768px)');
+    const { queryIsActive } = useMediaQuery('(max-width: 1024px)');
     const { chatId } = useParams();
     const handleNavLinkActive = ({ isActive, isPending, isTransitioning }) => {
         return isActive ? `${style.navLink} ${style.active}` : style.navLink;

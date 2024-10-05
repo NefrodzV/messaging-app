@@ -4,7 +4,7 @@ import useMediaQuery from '../hooks/useMediaQuery';
 import SocketProvider from '../providers/SocketProvider';
 export default function ChatAndProfileLayout() {
     const { chatId } = useParams();
-    const { queryIsActive } = useMediaQuery('(max-width:768px)');
+    const { queryIsActive } = useMediaQuery('(max-width:1024px)');
     const { pathname } = useLocation();
     return (
         <>
