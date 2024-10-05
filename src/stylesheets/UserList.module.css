@@ -55,9 +55,13 @@
     scrollbar-width: none;
     scroll-behavior: smooth;
     gap: .5rem;
-    
-    
-    
+}
+
+@media(max-width: 768px) {
+    .container {
+        grid-template-rows: auto;
+    grid-auto-rows: auto;
+    }
 }
 
 
