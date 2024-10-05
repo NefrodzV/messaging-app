@@ -4,7 +4,6 @@ import { useChat, useUser } from '../../hooks';
 import style from './Chat.module.css';
 import userSvg from '../../assets/svgs/user.svg';
 import ChatForm from './ChatForm';
-import dummyPic1 from '../../assets/images/dane-deaner-_-KLkj7on_c-unsplash.jpg';
 import MessageOptions from './MessageOptions';
 
 export default function Chat() {
@@ -88,6 +87,7 @@ export default function Chat() {
         setIsEditing(true);
         setText(selectedMessage.text);
         setIsDialogOpen(false);
+        setImages([...selectedMessage?.images]);
     }
 
     function onDeleteMessage() {
@@ -97,6 +97,10 @@ export default function Chat() {
 
     function deleteImage(url) {
         setImages((images) => images.filter((image) => image.dataUrl != url));
+    }
+
+    function deleteAllImages() {
+        setImages([]);
     }
     return (
         <section className={style.chat} aria-label="Chat">
@@ -128,6 +132,7 @@ export default function Chat() {
                 cancelEdit={cancelEdit}
                 onFileChange={onFileChange}
                 deleteImage={deleteImage}
+                deleteAllImages={deleteAllImages}
             />
             <MessageOptions
                 isOpen={isDialogOpen}

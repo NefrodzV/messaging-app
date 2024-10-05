@@ -12,6 +12,7 @@ export default function ChatForm({
     cancelEdit,
     onFileChange,
     deleteImage,
+    deleteAllImages,
 }) {
     return (
         <form
@@ -27,6 +28,7 @@ export default function ChatForm({
                         <h2>Files</h2>
                         <div className="flex-container">
                             <button
+                                onClick={deleteAllImages}
                                 title="Close and remove all files selected"
                                 aria-label="Close and remove all files selected"
                                 className="primary wrap-container only-svg red"
@@ -44,7 +46,7 @@ export default function ChatForm({
                         {images?.map((image, i) => (
                             <FormImage
                                 key={i}
-                                url={image?.dataUrl}
+                                url={image.url || image.dataUrl}
                                 className={style.formImage}
                                 deleteImage={deleteImage}
                             />
