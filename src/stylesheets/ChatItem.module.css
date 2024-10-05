@@ -66,6 +66,15 @@
     inset: 0;
 }
 
+@media(max-width: 320px) {
+    .chatItem .user {
+        
+        height:2rem;
+        width: 2rem;
+       
+    }
+}
+
 @keyframes show {
     from {
         transform: translateY(-5px);

@@ -1,5 +1,5 @@
 .message {
-    max-width: 75%;
+    
     display: flex;  
     gap: .8rem;
     
@@ -70,11 +70,30 @@
     display: flex; 
     gap: .5rem;
     flex-wrap: wrap;
-   
 }
+
 
 @media(max-width: 768px) {
     .images {
         flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media(max-width: 320px) {
+
+    
+    .bubble, .message {
+        max-width: auto;
+    }
+    .userImage {
+        width: 2rem;
+        height: 2rem;
+
+    }
+    .image {
+        width: 150px;
+        height: 150px;
+        object-fit: fill;
     }
 }

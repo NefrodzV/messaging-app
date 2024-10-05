@@ -38,3 +38,10 @@
     gap: 1rem;
     box-sizing: border-box;
 }
+
+@media(max-width: 320px) {
+    .chat header .user {
+        height: 2rem;
+        width: 2rem;
+    }
+}
