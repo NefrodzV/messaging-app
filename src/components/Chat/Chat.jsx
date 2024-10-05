@@ -28,12 +28,17 @@ export default function Chat() {
             const editedMessage = {
                 ...selectedMessage,
                 text: text,
+                imageFiles: images
+                    .filter((image) => Object.hasOwn(image, 'file'))
+                    .map((image) => image.file),
+                images: images.filter((image) => !Object.hasOwn(image, 'file')),
             };
             updateMessage(editedMessage, () => {
                 // On success reset the values
                 setIsEditing(false);
                 setSelectedMessage(null);
                 setText('');
+                setImages([]);
             });
             return;
         }
@@ -49,6 +54,7 @@ export default function Chat() {
             () => {
                 // Success callback reset the text
                 setText('');
+                setImages([]);
             }
         );
     }
@@ -96,7 +102,15 @@ export default function Chat() {
     }
 
     function deleteImage(url) {
-        setImages((images) => images.filter((image) => image.dataUrl != url));
+        setImages((images) =>
+            images.filter((image) => {
+                if (Object.hasOwn(image, 'dataUrl')) {
+                    return image.dataUrl !== url;
+                } else {
+                    return image.url !== url;
+                }
+            })
+        );
     }
 
     function deleteAllImages() {
@@ -124,6 +138,7 @@ export default function Chat() {
                 })}
             </section>
             <ChatForm
+                isEditing={isEditing}
                 user={chat?.user}
                 text={text}
                 setText={setText}

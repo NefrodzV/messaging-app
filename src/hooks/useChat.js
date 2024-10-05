@@ -62,6 +62,10 @@ export default function useChat() {
         }
     }, [error]);
     function isLessThan100MB(files) {
+        if (!Array.isArray(files))
+            throw new Error('Files are not an array type');
+        if (files.length === 0 || files === undefined || files === null)
+            return null;
         const total = files.reduce(
             (acumulator, currentFile) =>
                 acumulator + currentFile.size / 1024 ** 2,
@@ -75,7 +79,7 @@ export default function useChat() {
             ? isLessThan100MB(message.images)
             : null;
         if (isValidFileSize === false) {
-            setError('Files total size must be less than 100MB');
+            setError('Files total size must be less than 100MB.');
             return;
         }
 
@@ -94,6 +98,10 @@ export default function useChat() {
     }
 
     function updateMessage(message, onSuccess) {
+        const isValidFileSize = isLessThan100MB(message.imageFiles);
+        if (isValidFileSize === false) {
+            setError('Files total size must be less than 100MB.');
+        }
         socket?.emit('edit', chatId, message, (response) => {
             if (Object.hasOwn(response, 'errors')) {
                 setError('Update message failed. Please try again');
