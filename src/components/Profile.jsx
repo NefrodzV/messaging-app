@@ -1,12 +1,13 @@
 import style from '../stylesheets/ProfilePage.module.css';
 import userSvg from '../assets/svgs/user.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useUser from '../hooks/useUser';
 import { Image } from '.';
 import useUpdateImage from '../hooks/useUpdateImage';
 export default function Profile() {
     const { user } = useUser();
     const { upload } = useUpdateImage();
+    const navigate = useNavigate();
     return (
         <section className={style.profile}>
             <div className={style.hero}></div>
@@ -33,7 +34,27 @@ export default function Profile() {
                     type="file"
                     className={style.imgInput}
                 ></input>
-                <Link>Sign Out</Link>
+                <Link
+                    onClick={async (e) => {
+                        e.preventDefault();
+                        const request = await fetch(
+                            import.meta.env.VITE_API + '/session/signout',
+                            {
+                                credentials: 'include',
+                            }
+                        );
+                        if (request.ok) {
+                            navigate('/login');
+                            return;
+                        }
+
+                        console.error(
+                            'Could not logout status code' + request.status
+                        );
+                    }}
+                >
+                    Sign Out
+                </Link>
             </article>
         </section>
     );
