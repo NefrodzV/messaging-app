@@ -207,6 +207,18 @@ button.red:hover {
   background-color: hsl(0, 100%, 70%);
   
 }
+
+.logo-container {
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1.5rem;
+  width: 1.5rem;
+}
 @media(max-width:768px) {
   :root {
       --font-size: 1rem
