@@ -97,6 +97,12 @@ const router = createBrowserRouter([
         path: '/login',
         element: <LoginPage />,
         index: true,
+        loader: async () => {
+            // Get the user if it returns correctly
+            // just navigate to home or root
+            const user = await getUser();
+            if (user) return redirect('/');
+        },
     },
 
     {
