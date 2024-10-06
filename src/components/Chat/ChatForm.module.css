@@ -96,7 +96,12 @@
     border: none;
     background-color: inherit;
 }
-
+@media(max-width: 600px) {
+    .formImage {
+        width: 150px;
+        height: 150px;
+    }
+}
 @media(max-width: 320px) {
     .label .button{
         display: none;
