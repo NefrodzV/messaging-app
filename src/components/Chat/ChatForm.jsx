@@ -1,5 +1,4 @@
 import style from './ChatForm.module.css';
-import { useState } from 'react';
 import FormImage from '../FormImage';
 import ResizeableTextarea from '../ResizeableTextarea';
 export default function ChatForm({
@@ -70,18 +69,19 @@ export default function ChatForm({
                         </label>
                     )}
                     <ResizeableTextarea
-                        className={'primary'}
+                        className={`primary`}
                         value={text}
-                        ariaLabel={'Enter message here'}
+                        ariaLabel={`Enter message to ${user.username}`}
                         name={text}
-                        id={text}
-                        placeholder={`Enter message to ${user.username}`}
+                        id={'text'}
+                        placeholder={`Enter message`}
                         maxRows={5}
                         onChangeHandler={(e) => {
                             setText(e.target.value);
                         }}
                     />
                 </div>
+
                 <label
                     htmlFor="images"
                     className={style.button}
@@ -104,6 +104,7 @@ export default function ChatForm({
                         onChange={onFileChange}
                     />
                 </label>
+
                 <button
                     className={style.sendButton}
                     title="Send message button"
