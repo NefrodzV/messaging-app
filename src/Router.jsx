@@ -23,6 +23,7 @@ const router = createBrowserRouter([
             return user;
         },
 
+        errorElement: <ErrorLayout />,
         children: [
             {
                 loader: () => {
