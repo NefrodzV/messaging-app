@@ -5,7 +5,8 @@ import { useSocket } from './index';
 export default function useChat() {
     const { chatId } = useParams();
     const { socket } = useSocket();
-    const [chat, setChat] = useState(useLoaderData());
+    const data = useLoaderData();
+    const [chat, setChat] = useState(data);
     const [error, setError] = useState('');
     const [status, setStatus] = useState(null);
     useEffect(() => {
@@ -38,7 +39,6 @@ export default function useChat() {
         socket?.on('delete', onDelete);
         socket?.on('edit', onEdit);
         return () => {
-            console.log('removing listeners');
             // This listens to messages sent by other users
             socket?.off('message', onMessage);
             socket?.off('delete', onDelete);
@@ -46,8 +46,10 @@ export default function useChat() {
         };
     }, []);
     useEffect(() => {
+        setChat(data);
+    }, [data]);
+    useEffect(() => {
         socket?.emit('join', chatId);
-
         return () => {
             socket.emit('leave', chatId);
         };
