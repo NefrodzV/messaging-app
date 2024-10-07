@@ -76,6 +76,7 @@ export default function Chat() {
             );
             reader.readAsDataURL(file);
         });
+        e.target.value = '';
     }
 
     function cancelEdit() {
@@ -113,7 +114,7 @@ export default function Chat() {
         );
     }
 
-    function deleteAllImages() {
+    function deleteAllImages(e) {
         setImages([]);
     }
     return (
