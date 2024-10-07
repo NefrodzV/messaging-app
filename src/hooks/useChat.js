@@ -35,14 +35,68 @@ export default function useChat() {
                 }),
             }));
         }
+
+        function onImage(data) {
+            if (Object.hasOwn(data, 'totalLoadingImages')) {
+                console.log('rending loading container images', data);
+                const images = [];
+                for (let i = 0; i < data?.totalLoadingImages; i++) {
+                    images.push({ url: null });
+                }
+
+                setChat((prev) => ({
+                    ...prev,
+                    messages: prev.messages.map((message) => {
+                        // If the data message id update the message
+                        if (data?.messageId === message._id)
+                            return {
+                                ...message,
+                                images: images,
+                            };
+
+                        return message;
+                    }),
+                }));
+
+                return;
+            }
+
+            setChat((prev) => ({
+                ...prev,
+                messages: prev.messages.map((message) => {
+                    // If the data message id update the message
+                    if (data.messageId === message._id) {
+                        // Removing a image loading container
+                        const images = [...message.images];
+                        for (let i = 0; i < images.length; i++) {
+                            const image = images[i];
+                            // If there is a container loading
+                            // and break the loop
+                            if (image.url === null) {
+                                images[i] = data?.image;
+                                break;
+                            }
+                        }
+                        return {
+                            ...message,
+                            images: images,
+                        };
+                    }
+
+                    return message;
+                }),
+            }));
+        }
         socket?.on('message', onMessage);
         socket?.on('delete', onDelete);
         socket?.on('edit', onEdit);
+        socket?.on('image', onImage);
         return () => {
             // This listens to messages sent by other users
             socket?.off('message', onMessage);
             socket?.off('delete', onDelete);
             socket?.off('edit', onEdit);
+            socket?.off('image', onImage);
         };
     }, []);
     useEffect(() => {
