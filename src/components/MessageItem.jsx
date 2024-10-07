@@ -6,7 +6,6 @@ import Image from './Image.jsx';
 export default function MessageItem({ message, onClick }) {
     const auth = useUser();
     const { _id, user, text, date, images } = message;
-
     function messageIsFromAuthUser() {
         return auth.user.username == user.username;
     }
@@ -33,7 +32,7 @@ export default function MessageItem({ message, onClick }) {
             </div>
             <img
                 className={style.userImage}
-                src={user?.image.w56 || userSvg}
+                src={user?.image?.w56 || userSvg}
                 alt={`${user?.username} profile image`}
             />
         </article>
