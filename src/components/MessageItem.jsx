@@ -21,11 +21,11 @@ export default function MessageItem({ message, onClick }) {
                 <p className={style.text}>{text}</p>
                 <span className={style.time}>{formatDate(new Date(date))}</span>
                 <div className={style.images}>
-                    {images?.map((image) => (
+                    {images?.map((image, index) => (
                         <Image
                             className={style.image}
-                            key={image.cloudinary_public_id}
-                            url={image.url}
+                            key={image?.cloudinary_public_id || index}
+                            url={image?.url}
                         />
                     ))}
                 </div>
