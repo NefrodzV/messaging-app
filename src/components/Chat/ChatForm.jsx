@@ -71,7 +71,7 @@ export default function ChatForm({
                     <ResizeableTextarea
                         className={`primary`}
                         value={text}
-                        ariaLabel={`Enter message to ${user.username}`}
+                        ariaLabel={`Enter message to ${user?.username}`}
                         name={text}
                         id={'text'}
                         placeholder={`Enter message`}

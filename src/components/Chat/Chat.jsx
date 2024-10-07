@@ -122,7 +122,7 @@ export default function Chat() {
                 <img
                     className={style.user}
                     src={chat?.user?.image.w56 || userSvg}
-                    alt={`${chat.user.username} profile image`}
+                    alt={`${chat?.user?.username} profile image`}
                 />
                 <h2 className={style.username}>{chat?.user?.username}</h2>
             </header>
