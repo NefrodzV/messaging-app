@@ -39,7 +39,7 @@ export default function useChat() {
         function onImage(data) {
             if (Object.hasOwn(data, 'totalLoadingImages')) {
                 console.log('rending loading container images', data);
-                const images = [];
+                const images = [...(data?.images ?? [])];
                 for (let i = 0; i < data?.totalLoadingImages; i++) {
                     images.push({ url: null });
                 }
