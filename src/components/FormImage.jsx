@@ -3,6 +3,7 @@ export default function FormImage({ url, className, deleteImage }) {
     return (
         <div className="wrap-container">
             <button
+                type="button"
                 onClick={deleteImage.bind('url', url)}
                 title="Remove image"
                 aria-label="Remove image"
