@@ -102,6 +102,7 @@ const router = createBrowserRouter([
             // just navigate to home or root
             const user = await getUser();
             if (user) return redirect('/');
+            return null;
         },
     },
 
