@@ -20,6 +20,7 @@ const router = createBrowserRouter([
         loader: async () => {
             const user = await getUser();
             if (!user) return redirect('/login');
+            redirect('/chats/' + user?.lastChat);
             return user;
         },
 
