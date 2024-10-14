@@ -8,7 +8,7 @@ export default function useLogin() {
         try {
             setStatus('pending');
             const request = await fetch(
-                import.meta.env.VITE_API + '/session/login',
+                `${import.meta.env.VITE_API}/session/login`,
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
