@@ -6,7 +6,7 @@ export const SocketContext = createContext(null);
 
 export default function SocketProvider({ children }) {
     const [socket, setSocket] = useState(io(url, { withCredentials: true }));
-    const [isConnected, setIsConnected] = useState(socket.connected);
+    const [isConnected, setIsConnected] = useState(socket?.connected);
     useEffect(() => {
         function onConnect() {
             setIsConnected(true);
