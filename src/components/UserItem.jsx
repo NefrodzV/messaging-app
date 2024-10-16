@@ -9,7 +9,7 @@ export default function UserItem({ user }) {
         <article className={style.user}>
             <div className={style.imgWrapper}>
                 <img
-                    src={image.w72 || userSvg}
+                    src={image?.w72 || userSvg}
                     alt={`${username} profile image`}
                 />
             </div>
