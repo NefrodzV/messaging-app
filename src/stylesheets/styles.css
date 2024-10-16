@@ -52,7 +52,7 @@ body {
   font-family: 'CustomFont','Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   margin: 0;
   font-size: var(--font-size);
-  height: 100vh;
+  height: 100dvh;
 }
 
 #root {
