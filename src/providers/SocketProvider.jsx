@@ -5,7 +5,9 @@ const url = import.meta.env.VITE_API;
 export const SocketContext = createContext(null);
 
 export default function SocketProvider({ children }) {
-    const [socket, setSocket] = useState(io(url, { withCredentials: true }));
+    const [socket, setSocket] = useState(
+        io(url, { withCredentials: true, transports: ['websocket'] })
+    );
     const [isConnected, setIsConnected] = useState(socket?.connected);
     useEffect(() => {
         function onConnect() {
