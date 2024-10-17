@@ -16,7 +16,7 @@ export default function Chat() {
     const [selectedMessage, setSelectedMessage] = useState(null);
     const auth = useUser();
     const openDialog = (message) => {
-        if (message.user.username != auth.user.username) return;
+        if (message?.user?.username != auth.user.username) return;
         setSelectedMessage(message);
         setIsDialogOpen(!isDialogOpen);
     };
@@ -122,7 +122,7 @@ export default function Chat() {
             <header>
                 <img
                     className={style.user}
-                    src={chat?.user?.image.w56 || userSvg}
+                    src={chat?.user?.image?.w56 || userSvg}
                     alt={`${chat?.user?.username} profile image`}
                 />
                 <h2 className={style.username}>{chat?.user?.username}</h2>
