@@ -31,8 +31,8 @@ export default function SocketProvider({ children }) {
             ? 'socket connected'
             : 'socket disconnected';
         console.log(logMessage);
-        if (isConnected) socket?.emit('join', user?.lastChat);
-    }, [isConnected]);
+        if (isConnected && user) socket?.emit('join', user?.lastChat);
+    }, [isConnected, user]);
 
     return (
         <SocketContext.Provider value={{ socket }}>
