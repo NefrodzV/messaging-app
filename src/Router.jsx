@@ -1,18 +1,20 @@
 import { createBrowserRouter, json, redirect } from 'react-router-dom';
-import SignupPage from './pages/SignupPage';
-import LoginPage from './pages/LoginPage';
 import { Navigate } from 'react-router-dom';
-import ProfilePage from './pages/ProfilePage';
-import {
-    Profile,
-    Chat,
-    PageLayout,
-    ChatAndProfileLayout,
-    UserList,
-} from './components';
 import { withUserProvider } from './utils/utils.jsx';
 import { getChat, getUser, getUsers } from './data';
-import ErrorLayout from './components/ErrorLayout.jsx';
+import { lazy } from 'react';
+
+const Profile = lazy(() => import('./components/Profile.jsx'));
+const Chat = lazy(() => import('./components/Chat/Chat.jsx'));
+const PageLayout = lazy(() => import('./components/PageLayout.jsx'));
+const ChatAndProfileLayout = lazy(
+    () => import('./components/ChatAndProfileLayout.jsx')
+);
+const ProfilePage = lazy(() => import('./pages/ProfilePage.jsx'));
+const LoginPage = lazy(() => import('./pages/LoginPage.jsx'));
+const SignupPage = lazy(() => import('./pages/SignupPage.jsx'));
+const UserList = lazy(() => import('./components/UserList.jsx'));
+const ErrorLayout = lazy(() => import('./components/ErrorLayout.jsx'));
 const router = createBrowserRouter([
     {
         path: '/',
