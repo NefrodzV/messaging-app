@@ -114,7 +114,7 @@ const router = createBrowserRouter([
     {
         path: '/login',
         element: (
-            <Suspense fallback={<div>Loader...</div>}>
+            <Suspense fallback={<Loader covers={true} height={50} />}>
                 <LoginPage />
             </Suspense>
         ),

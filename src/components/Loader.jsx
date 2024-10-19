@@ -24,7 +24,7 @@ export default function Loader({ covers, height }) {
                 style={
                     !covers
                         ? {
-                              height: height || ' 50%',
+                              height: height || '50%',
                           }
                         : null
                 }
