@@ -5,8 +5,6 @@ import style from '../stylesheets/Navigation.module.css';
 import logoutIcon from '../assets/svgs/logout.svg';
 import xMarkSvg from '../assets/svgs/xmark.svg';
 import { Link, NavLink, useParams } from 'react-router-dom';
-import useUtils from '../hooks/useUtils';
-import useSessionStorage from '../hooks/useSessionStorage';
 import { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import useMediaQuery from '../hooks/useMediaQuery';

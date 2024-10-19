@@ -1,6 +1,6 @@
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import ChatList from './ChatList';
-import useMediaQuery from '../hooks/useMediaQuery';
+import useMediaQuery from '../hooks/useMediaQuery.js';
 import SocketProvider from '../providers/SocketProvider';
 export default function ChatAndProfileLayout() {
     const { chatId } = useParams();

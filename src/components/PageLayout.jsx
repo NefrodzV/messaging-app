@@ -6,7 +6,7 @@ import {
     Navigate,
 } from 'react-router-dom';
 import Header from './Header';
-import useMediaQuery from '../hooks/useMediaQuery';
+import useMediaQuery from '../hooks/useMediaQuery.js';
 import style from '../stylesheets/PageLayout.module.css';
 import { useEffect } from 'react';
 import useUser from '../hooks/useUser';
