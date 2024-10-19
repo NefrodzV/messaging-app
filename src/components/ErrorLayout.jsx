@@ -4,6 +4,7 @@ export default function ErrorLayout() {
     const error = useRouteError();
 
     if (isRouteErrorResponse(error)) {
+        console.log(error);
         return (
             <div
                 style={{

@@ -2,8 +2,8 @@ import style from '../stylesheets/ProfilePage.module.css';
 import userSvg from '../assets/svgs/user.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import useUser from '../hooks/useUser';
-import { Image } from '.';
 import useUpdateImage from '../hooks/useUpdateImage';
+import Image from './Image';
 export default function Profile() {
     const { user } = useUser();
     const { upload } = useUpdateImage();
