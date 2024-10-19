@@ -13,7 +13,7 @@ export default function Loader({ covers, height }) {
                           inset: 0,
                           backgroundColor: 'rgba(255,255,255,1)',
                           boxShadow: '0 0 3px rgba(0,0,0,.3) inset',
-                          height: height,
+                          height: height || '2.8rem',
                       }
                     : {
                           height: height || '2.8rem',

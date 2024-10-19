@@ -39,7 +39,9 @@ const router = createBrowserRouter([
                         path: ':chatId',
                         element: (
                             <Suspense
-                                fallback={<Loader covers={true} height={50} />}
+                                fallback={
+                                    <Loader covers={true} height={'4rem'} />
+                                }
                             >
                                 <Chat />
                             </Suspense>
@@ -84,7 +86,9 @@ const router = createBrowserRouter([
                         index: true,
                         element: (
                             <Suspense
-                                fallback={<Loader covers={true} height={50} />}
+                                fallback={
+                                    <Loader covers={true} height={'4rem'} />
+                                }
                             >
                                 <Profile />
                             </Suspense>
@@ -114,7 +118,7 @@ const router = createBrowserRouter([
     {
         path: '/login',
         element: (
-            <Suspense fallback={<Loader covers={true} height={50} />}>
+            <Suspense fallback={<Loader covers={true} height={'4rem'} />}>
                 <LoginPage />
             </Suspense>
         ),
@@ -131,7 +135,7 @@ const router = createBrowserRouter([
     {
         path: '/signup',
         element: (
-            <Suspense fallback={<Loader covers={true} height={50} />}>
+            <Suspense fallback={<Loader covers={true} height={'4rem'} />}>
                 <SignupPage />
             </Suspense>
         ),
