@@ -21,15 +21,9 @@ export default function Loader({ covers, height }) {
         >
             <div
                 className={style.loader}
-                style={
-                    !covers
-                        ? {
-                              height: height || '50%',
-                          }
-                        : {
-                              height: height || '50%',
-                          }
-                }
+                style={{
+                    height: height || '50%',
+                }}
             ></div>
         </div>
     );
