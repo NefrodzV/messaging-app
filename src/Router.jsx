@@ -2,7 +2,8 @@ import { createBrowserRouter, json, redirect } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { withUserProvider } from './utils/utils.jsx';
 import { getChat, getUser, getUsers } from './data';
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
+import Loader from './components/Loader.jsx';
 
 const Profile = lazy(() => import('./components/Profile.jsx'));
 const Chat = lazy(() => import('./components/Chat/Chat.jsx'));
@@ -10,7 +11,6 @@ const PageLayout = lazy(() => import('./components/PageLayout.jsx'));
 const ChatAndProfileLayout = lazy(
     () => import('./components/ChatAndProfileLayout.jsx')
 );
-const ProfilePage = lazy(() => import('./pages/ProfilePage.jsx'));
 const LoginPage = lazy(() => import('./pages/LoginPage.jsx'));
 const SignupPage = lazy(() => import('./pages/SignupPage.jsx'));
 const UserList = lazy(() => import('./components/UserList.jsx'));
@@ -37,7 +37,11 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: ':chatId',
-                        element: <Chat />,
+                        element: (
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <Chat />
+                            </Suspense>
+                        ),
                         loader: async ({ params }) => {
                             const chat = await getChat(params.chatId);
                             if (Object.hasOwn(chat, 'status')) {
@@ -72,10 +76,18 @@ const router = createBrowserRouter([
             {
                 path: 'profile',
                 element: <ChatAndProfileLayout />,
+                errorElement: <ErrorLayout />,
                 children: [
                     {
                         index: true,
-                        element: <Profile />,
+                        element: (
+                            <Suspense
+                                fallback={<Loader covers={true} height={50} />}
+                            >
+                                <Profile />
+                            </Suspense>
+                        ),
+                        errorElement: <ErrorLayout />,
                     },
                 ],
             },
@@ -91,6 +103,7 @@ const router = createBrowserRouter([
                             const users = await getUsers();
                             return users;
                         },
+                        errorElement: <ErrorLayout />,
                     },
                 ],
             },
@@ -98,8 +111,11 @@ const router = createBrowserRouter([
     },
     {
         path: '/login',
-        element: <LoginPage />,
-        index: true,
+        element: (
+            <Suspense fallback={<div>Loader...</div>}>
+                <LoginPage />
+            </Suspense>
+        ),
         loader: async () => {
             // Get the user if it returns correctly
             // just navigate to home or root
@@ -107,17 +123,23 @@ const router = createBrowserRouter([
             if (user) return redirect('/');
             return null;
         },
+        errorElement: <ErrorLayout />,
     },
 
     {
         path: '/signup',
-        element: <SignupPage />,
+        element: (
+            <Suspense fallback={<div>Loader...</div>}>
+                <SignupPage />
+            </Suspense>
+        ),
+        errorElement: <ErrorLayout />,
     },
 
-    {
-        path: '/profile',
-        element: <ProfilePage />,
-    },
+    // {
+    //     path: '/profile',
+    //     element: <ProfilePage />,
+    // },
 ]);
 
 export default router;
