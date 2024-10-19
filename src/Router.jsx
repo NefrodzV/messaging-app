@@ -38,7 +38,9 @@ const router = createBrowserRouter([
                     {
                         path: ':chatId',
                         element: (
-                            <Suspense fallback={<div>Loading...</div>}>
+                            <Suspense
+                                fallback={<Loader covers={true} height={50} />}
+                            >
                                 <Chat />
                             </Suspense>
                         ),
@@ -129,17 +131,12 @@ const router = createBrowserRouter([
     {
         path: '/signup',
         element: (
-            <Suspense fallback={<div>Loader...</div>}>
+            <Suspense fallback={<Loader covers={true} height={50} />}>
                 <SignupPage />
             </Suspense>
         ),
         errorElement: <ErrorLayout />,
     },
-
-    // {
-    //     path: '/profile',
-    //     element: <ProfilePage />,
-    // },
 ]);
 
 export default router;
