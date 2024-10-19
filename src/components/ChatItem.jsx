@@ -41,7 +41,7 @@ export default function ChatItem({ chat, delayAnim }) {
                                 </span>
                             )}
                         </header>
-                        {lastMessage != undefined && lastMessage.text && (
+                        {lastMessage != undefined && lastMessage?.text && (
                             <p>{lastMessage?.text}</p>
                         )}
                     </div>
