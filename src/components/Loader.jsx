@@ -1,6 +1,6 @@
 import style from '../stylesheets/loader.module.css';
 
-export default function Loader({ covers, height = '2.8rem' }) {
+export default function Loader({ covers, height }) {
     // If covers the wrapper will take up the whole parent space
     // else use the default height
     return (
@@ -15,7 +15,7 @@ export default function Loader({ covers, height = '2.8rem' }) {
                           boxShadow: '0 0 3px rgba(0,0,0,.3) inset',
                       }
                     : {
-                          height,
+                          height: height || '2.8rem',
                       }
             }
         >
@@ -24,7 +24,7 @@ export default function Loader({ covers, height = '2.8rem' }) {
                 style={
                     !covers
                         ? {
-                              height: '50%',
+                              height: height || ' 50%',
                           }
                         : null
                 }
