@@ -4,10 +4,11 @@
 The purpose of this project was to learn about the workflow of sockets and how to implement them.
 
 ## Tech Stack 
-React
-NodeJS
-MongoDB
-Vite
+* React
+* NodeJS
+* MongoDB
+* Vite
+* Cloudinary
 
 ## Features
 Send, edit and delete message with images.
